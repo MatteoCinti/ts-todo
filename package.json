@@ -22,12 +22,15 @@
     "typescript": "^4.5.4"
   },
   "scripts": {
+    "start": "node dist/server/index.js",
     "watch:ts": "tsc -w",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:client": "cd client && npm run test",
     "lint": "eslint --ext .ts --ext .tsx .",
     "lint:fix": "eslint --ext .ts --ext .tsx . --fix",
+    "build": "build:client",
+    "build:client": "cd client && npm i",
     "postinstall": "tsc && rm -v -rf server && rm -v -rf client"
   },
   "repository": {
