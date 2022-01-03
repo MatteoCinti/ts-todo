@@ -19,5 +19,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  return console.log(`Express is listening at http://localhost:${port} HELLOOOOOOO`);
+  return console.log(`Express is listening at http://localhost:${PORT} HELLOOOOOOO`);
 });
