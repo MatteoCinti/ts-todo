@@ -35,8 +35,7 @@
     "lint:fix": "eslint --ext .ts --ext .tsx . --fix",
     "build": "cd client && npm i",
     "build:client": "cd client && npm i",
-    "postinstall": "tsc",
-    "postinstallwfqwqfqwf": "tsc && rm -v -rf client",
+    "postinstall": "tsc && rm -v -rf client && rm -v -rf server",
     "heroku-prebuild": "cd client && npm i",
     "heroku-postbuild": "echo This runs after Heroku installs dependencies, but before Heroku prunes and caches dependencies.",
     "heroku-cleanup": "echo This runs after Heroku prunes and caches dependencies."
