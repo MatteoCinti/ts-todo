@@ -26,7 +26,7 @@
     "typescript": "^4.5.4"
   },
   "scripts": {
-    "start": "node dist/server/index.js",
+    "start": "node dist/server/app.js",
     "watch:ts": "tsc -w",
     "test": "jest",
     "test:watch": "jest --watch",
