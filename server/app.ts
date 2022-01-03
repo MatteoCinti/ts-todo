@@ -1,11 +1,23 @@
 import express from 'express';
 const app = express();
-const port = 3000;
+import path from 'path';
+const PORT = process.env.PORT || 5000;
+
+
+if (process.env.NODE_ENV === "production") {
+  //server static content
+  //npm run build
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
+console.log(__dirname);
+console.log(path.join(__dirname, "client/build"));
 
 app.get('/', (req, res) => {
+  console.log('Pinche pendejo');
   res.send('Hello World!');
 });
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   return console.log(`Express is listening at http://localhost:${port} HELLOOOOOOO`);
 });
