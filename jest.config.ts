@@ -1,0 +1,13 @@
+import type { Config } from '@jest/types';
+
+const config: Config.InitialOptions = {
+  verbose: true,
+  transform: {
+    '^.+\\.ts?$': 'ts-jest',
+  },
+  testPathIgnorePatterns: [
+    'client',
+  ],
+};
+
+export default config;
