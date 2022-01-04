@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+const Joe:string = '3';
+
 function App() {
   return (
     <div className="App">
@@ -28,3 +30,6 @@ function App() {
 }
 
 export default App;
+
+
+

@@ -4,14 +4,16 @@ import path from 'path';
 const PORT = process.env.PORT || 5000;
 
 
-if (process.env.NODE_ENV === "production") {
-  //server static content
-  //npm run build
-  app.use(express.static(path.join(__dirname, "client/build")));
-}
-
-console.log(__dirname);
-console.log(path.join(__dirname, "client/build"));
+// if (process.env.NODE_ENV === "production") {
+  // server static content
+  // npm run build
+  app.use(express.static(path.join(__dirname, "../client", "build")));
+  console.log(path.join(__dirname, "../../client"));
+  app.get('/*', (req, res) => {
+    console.log('NO MAMEEEEES')
+    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+  });
+// }
 
 app.get('/', (req, res) => {
   console.log('Pinche pendejo');
