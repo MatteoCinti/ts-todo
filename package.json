@@ -39,8 +39,8 @@
     "lint": "eslint --ext .ts --ext .tsx .",
     "lint:fix": "eslint --ext .ts --ext .tsx . --fix",
     "build": "tsc -p .",
-    "build-prod": "cd client && npm i && npm run build",
-    "heroku-prebuild": "npm run build-prod",
+    "build-prod": "npm i && npm run build && cd client && npm i && npm run build",
+    "postinstall": "npm run build-prod",
     "heroku-cleanup": "rm -v -rf client && rm -v -rf server"
   },
   "repository": {
