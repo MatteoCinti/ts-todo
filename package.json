@@ -40,9 +40,9 @@
     "lint:fix": "eslint --ext .ts --ext .tsx . --fix",
     "build": "tsc",
     "build-prod": "npm run build && cd client && npm run build",
-    "heroku-prebuild": "npm i && cd client && npm i",
+    "heroku-prebuild": "cd client && npm i",
     "heroku-postbuild": "npm run build-prod",
-    "heroku-cleanup": "rm -v -rf client && rm -v -rf server"
+    "heroku-cleanup": "rm -v -rf client && rm -v -rf server && rm tsconfig.json Procfile"
   },
   "repository": {
     "type": "git",
