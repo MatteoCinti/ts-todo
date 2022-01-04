@@ -38,7 +38,7 @@
     "test": "concurrently \"npm run test:client\" \"npm run test:server\"",
     "lint": "eslint --ext .ts --ext .tsx .",
     "lint:fix": "eslint --ext .ts --ext .tsx . --fix",
-    "build": "tsc -p .",
+    "build": "tsc",
     "build-prod": "npm run build && npm run build",
     "heroku-prebuild": "npm i && cd client && npm i",
     "heroku-postbuild": "npm run build-prod",
