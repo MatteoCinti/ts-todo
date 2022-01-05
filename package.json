@@ -39,10 +39,10 @@
     "lint": "eslint --ext .ts --ext .tsx .",
     "lint:fix": "eslint --ext .ts --ext .tsx . --fix",
     "build": "tsc",
-    "build-prod": "npm run build && cd client && npm run build",
+    "build:production": "npm run build && cd client && npm run build",
     "heroku-prebuild": "cd client && npm i",
-    "heroku-postbuild": "npm run build-prod",
-    "heroku-cleanup": "rm -v -rf client && rm -v -rf server && rm tsconfig.json Procfile"
+    "heroku-postbuild": "npm run build:production",
+    "heroku-cleanup": "rm -v -rf client && rm -v -rf server && rm tsconfig.json Procfile jest.config.ts"
   },
   "repository": {
     "type": "git",
@@ -52,8 +52,10 @@
   "license": "ISC",
   "homepage": "https://github.com/MatteoCinti/ts-todo#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "express": "^4.17.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "socket.io": "^4.4.0"
   }
 }

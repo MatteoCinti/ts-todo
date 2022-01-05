@@ -1,0 +1,2 @@
+export const CREATE_SHARED_LIST:string = 'CREATE_SHARED_LIST'
+export const JOINED_SHARED_LIST:string = 'JOINED_SHARED_LIST'
