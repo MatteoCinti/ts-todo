@@ -4,14 +4,17 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import Home from './pages/Home/Home.page';
 import Shared from './pages/Shared/Shared.page';
+import WelcomePage from './pages/Welcome/Welcome.page';
+import './App.css';
 
 import { JOINED_SHARED_LIST, CREATE_SHARED_LIST } from './sockets/actions';
+import { useAppSelector } from './state/hooks';
 import logo from './logo.svg';
-import './App.css';
 
 
 function App() {
   let navigate = useNavigate();
+  const userState = useAppSelector(state => state.user)
 
   useEffect(() => {
     socket.on('connect', () => {
@@ -44,7 +47,11 @@ function App() {
           and save to reload.
         </p>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={
+            !userState.isLoggedIn 
+              ? <WelcomePage />
+              : <Home />
+          } />
           <Route path=":userId/lists/:list" element={<Shared />} />
         </Routes>
         <button
