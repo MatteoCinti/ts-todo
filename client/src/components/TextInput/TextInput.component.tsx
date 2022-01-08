@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './TextInput.styles.scss';
+
 interface Map {
   [key: string]: string | undefined
 }
@@ -7,14 +9,14 @@ interface Map {
 interface TextInputProps {
   type: string;
   name: string;
-  placeholder: string;
+  innerText: string;
   cssClass: string;
   todoState?: [Map, React.Dispatch<React.SetStateAction<object>>];
 }
 
 
 const TextInput: React.FC<TextInputProps> = ({
-  type, name, placeholder, todoState, cssClass,
+  type, name, innerText, todoState, cssClass,
 }) => {
   
   const [todoValue, setTodoValue] = todoState || [];
@@ -31,25 +33,24 @@ const TextInput: React.FC<TextInputProps> = ({
   };
 
   return (
-    <>
-      <label 
-        id={name} 
-        htmlFor={name} 
-        className="form__label hidden"
-      >
-        {placeholder}
-      </label>
-      <input
+    <div className="text-input">
+       <input
         aria-labelledby={name}
         type={type}
         name={name}
-        className={`${cssClass}__input`}
-        placeholder={placeholder}
+        className={`text-input__input ${cssClass}__input`}
         value={todoValue && todoValue[name]}
         onChange={handleChange}
         required 
       />
-    </>
+      <label 
+        id={name} 
+        htmlFor={name} 
+        className={`${cssClass}__label text-input__label`}
+      >
+        {innerText}
+      </label>
+    </div>
   );
 };
 

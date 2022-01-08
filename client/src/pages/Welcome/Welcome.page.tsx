@@ -1,31 +1,57 @@
-import { SetStateAction, useState } from "react";
-import { useDispatch } from "react-redux";
-import Form from "../../components/Form/Form.component";
-import TextInput from "../../components/TextInput/TextInput.component";
-import { useAppSelector } from "../../state/hooks";
+import React, { SetStateAction, useState } from "react";
 
+import "./Welcome.styles.scss";
+import UserForm from "../../components/Form/UserForm.component";
+import TextInput from "../../components/TextInput/TextInput.component";
+import {ReactComponent as Imagotype} from '../../images/Imagotype.svg'
+import { useAppSelector } from "../../state/hooks";
+import LogOrRegister from "../../components/LogOrRegister/LogOrRegister.component";
 
 const WelcomePage = () => {
-  const userState = useAppSelector(state => state.user)
+  const userState = useAppSelector(state => state.user);
+  const { error } = userState;
+  const [logOrRegister, setLogOrRegister] = useState<'Login'|'Register'>('Register');
 
   return (
-    <>
-      <Form 
-        ariaLabel='username-form'
-        cssClass='username-form'
-        setStateFunction='setUsername'
-        stateKey='username'
-        elementState={userState}
+    <article className="welcome-page">
+
+      <section className='logo'>
+        <Imagotype className='logo__imagotype'/>
+        <div className='logo__text-wrapper'>
+          <h1 className='logo__title'>Just Do It</h1>
+          <p className='logo__sub-title'>Simplifying To Dos</p>
+        </div>
+      </section>
+
+      <UserForm 
+        ariaLabel='user-form'
+        cssClass='user-form'
+        isLoginOrRegister={logOrRegister}
+        state={userState}
       >
         <TextInput 
           type='text'
           name='username'
           cssClass='username-form'
-          placeholder='Enter Your Username' 
+          innerText='Enter Your Username' 
           // todoState={[]}        
         />
-      </Form>
-    </>
+        <>
+          {error && <p>{userState.errorMessage}</p>}
+        </>
+         <TextInput 
+          type='password'
+          name='password'
+          cssClass='user-form'
+          innerText='Enter Your Password' 
+          // todoState={[]}        
+        />
+      </UserForm>
+      <LogOrRegister 
+        setLogOrRegister={setLogOrRegister} 
+        isLoginOrRegister={logOrRegister}
+      />
+    </article >
   )
 }
 

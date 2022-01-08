@@ -1,12 +1,16 @@
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
 
-import socketsRouter from './routes/socketsRouter';
-import { socketsSetup } from './sockets/setup';
+dotenv.config({path: path.join(__dirname, '..', '.env')});
 import { CREATE_SHARED_LIST, JOINED_SHARED_LIST } from '../client/src/sockets/actions';
+import { socketsSetup } from './sockets/setup';
+import { connectToDatabase } from './db';
+import socketsRouter from './routes/socketsRouter';
+import userRouter from './routes/userRoute/userRouter';
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -17,11 +21,18 @@ app.set('socketio', io);
 //   req.io = io;
 //   return next();
 // });
-app.use(cors());
+
+var corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+  credentials: true,
+  allowedHeaders: ["Content-Type"]
+}
+app.use(cors(corsOptions));
+app.use(express.json());
 
 io.on('connection', (socket) => {
   console.log(`🌺 Socket: ${socket.id} Connected to socket`);
-
 
   socket.on(CREATE_SHARED_LIST, (room) => {
     const data = {
@@ -48,5 +59,14 @@ app.get('/', (req, res) => {
 });
 
 app.use('/sockets', socketsRouter);
+app.use('/api/users', userRouter);
 
-httpServer.listen(PORT, () => console.log(`Express is listening at http://localhost:${PORT}`));
+app.use(function (err, req, res, next) {
+  console.error(err);
+  res.status(err.code || 500).json(err.message);
+})
+
+connectToDatabase()
+  .then(() => {
+    httpServer.listen(PORT, () => console.log(`Express is listening at http://localhost:${PORT}`));
+  })

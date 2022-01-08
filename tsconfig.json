@@ -1,17 +1,20 @@
 {
   "compilerOptions": {
+    "target": "es6",
     "module": "commonjs",
     "esModuleInterop": true,
-    "target": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationMap": true
   },  
-  "lib": [ "es5", "es6", "dom", "dom.iterable"],
+  "testRunner": "jest-jasmine2",
+  "lib": ["es2015"],
   "include": [
     "client/**/*",
     "server/**/*",
-    "jest.config.ts"
+    "server/jest.config.ts"
   ]
 }

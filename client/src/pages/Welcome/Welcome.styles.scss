@@ -1,0 +1,33 @@
+@use '../../styles/vars' as *;
+@use '../../styles/mixins' as *;
+
+.welcome-page{
+  @include full-screen;
+  @include flex-centred(column);
+}
+
+.user-form {
+  @include flex-centred(column);
+}
+
+.logo {
+  @include flex-centred(row);
+  position: absolute;
+  top: 22%;
+
+  &__imagotype {
+    width: 85px;
+    height: 85px;
+  }
+
+  &__text-wrapper {
+    margin-left: 1em;
+  }
+
+  &__title{
+    font-weight: bold;
+    font-size: $font-size-big;
+    padding-bottom: .125em;
+  }
+
+}
