@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './TextInput.styles.scss';
 
 interface Map {
-  [key: string]: string | undefined
+  [key: string]: string |undefined
 }
 
 interface TextInputProps {
@@ -18,13 +18,22 @@ interface TextInputProps {
 const TextInput: React.FC<TextInputProps> = ({
   type, name, innerText, todoState, cssClass,
 }) => {
-  
-  const [todoValue, setTodoValue] = todoState || [];
+  const [todoValue, setTodoValue] = todoState || [{}];
+  const [isEmpty, setIsEmpty] = useState(true);
 
+  useEffect(() => {
+    if(todoValue[name] !== '' && todoValue[name]) {
+      setIsEmpty(false);
+    }
+    if(todoValue[name] === '' || !todoValue[name]) {
+      setIsEmpty(true);
+    }
+  }, [todoValue]);
+  
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const element = e.currentTarget as HTMLInputElement
-    const value = element.value
+    const element = e.currentTarget as HTMLInputElement;
+    const { value } = element;
     
     setTodoValue && setTodoValue((oldState: object) => ({
       ...oldState,
@@ -46,7 +55,11 @@ const TextInput: React.FC<TextInputProps> = ({
       <label 
         id={name} 
         htmlFor={name} 
-        className={`${cssClass}__label text-input__label`}
+        className={`
+          ${cssClass}__label 
+          text-input__label
+          ${ !isEmpty && 'shrink'}
+        `}
       >
         {innerText}
       </label>

@@ -31,8 +31,8 @@
     top: 10px;
     transition: 300ms ease all;
 
-    // &.shrink {
-    //   // @include shrinkLabel;
-    // }
+    &.shrink {
+      @include shrinkLabel;
+    }
   }
 }
