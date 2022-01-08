@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IUserState } from './user.interfaces';
-import { createNewUser, setNewUser } from './user.reducers';
+import { handleLogin, setNewUser } from './user.reducers';
 
 
 export const initialUserState: IUserState = {
@@ -18,13 +18,14 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createNewUser.fulfilled, (state, action) => {
+      .addCase(handleLogin.fulfilled, (state, action) => {
+        console.log('Fulfilled')
         return {
           ...action.payload,
           isLoggedIn: true
         };
       })
-      .addCase(createNewUser.rejected, (state, action) => ({
+      .addCase(handleLogin.rejected, (state, action) => ({
           ...initialUserState,
           error: true,
           errorMessage: 'Username already exists'

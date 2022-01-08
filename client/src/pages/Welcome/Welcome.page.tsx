@@ -6,11 +6,12 @@ import TextInput from "../../components/TextInput/TextInput.component";
 import {ReactComponent as Imagotype} from '../../images/Imagotype.svg'
 import { useAppSelector } from "../../state/hooks";
 import LogOrRegister from "../../components/LogOrRegister/LogOrRegister.component";
+import { RegisterLogin } from "../../state/user/user.interfaces";
 
 const WelcomePage = () => {
   const userState = useAppSelector(state => state.user);
   const { error } = userState;
-  const [logOrRegister, setLogOrRegister] = useState<'Login'|'Register'>('Register');
+  const [logOrRegister, setLogOrRegister] = useState<RegisterLogin>(RegisterLogin.login);
 
   return (
     <article className="welcome-page">
@@ -18,7 +19,7 @@ const WelcomePage = () => {
       <section className='logo'>
         <Imagotype className='logo__imagotype'/>
         <div className='logo__text-wrapper'>
-          <h1 className='logo__title'>Just Do It</h1>
+          <h1 className='logo__title'>Just {logOrRegister}</h1>
           <p className='logo__sub-title'>Simplifying To Dos</p>
         </div>
       </section>
@@ -28,6 +29,7 @@ const WelcomePage = () => {
         cssClass='user-form'
         isLoginOrRegister={logOrRegister}
         state={userState}
+        buttonValue={logOrRegister}
       >
         <TextInput 
           type='text'
@@ -39,6 +41,7 @@ const WelcomePage = () => {
         <>
           {error && <p>{userState.errorMessage}</p>}
         </>
+     
          <TextInput 
           type='password'
           name='password'
@@ -46,11 +49,13 @@ const WelcomePage = () => {
           innerText='Enter Your Password' 
           // todoState={[]}        
         />
+        
       </UserForm>
-      <LogOrRegister 
-        setLogOrRegister={setLogOrRegister} 
-        isLoginOrRegister={logOrRegister}
-      />
+        <LogOrRegister 
+          setLogOrRegister={setLogOrRegister} 
+          isLoginOrRegister={logOrRegister}
+        />
+   
     </article >
   )
 }

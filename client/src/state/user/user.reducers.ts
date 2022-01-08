@@ -1,16 +1,22 @@
 import { CaseReducer, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { IUserNamePassword, IUserState } from "./user.interfaces";
+import { IUserNamePassword, IUserState, RegisterLogin } from "./user.interfaces";
 
-export const createNewUser = createAsyncThunk (
-  'users/createNewUser',
-  async (payload: IUserNamePassword, thunkAPI) => {
+interface IUserRequest extends IUserNamePassword {
+  request: RegisterLogin.login |  RegisterLogin.register;
+}
+
+
+export const handleLogin = createAsyncThunk (
+  'users/handleLogin',
+  async (payload: IUserRequest, thunkAPI) => {
     const uri = process.env.REACT_APP_HOST
     const userObject = {
       username: payload.username,
       password: payload.password,
     };
+    const { request } = payload
 
-    const response = await fetch(`${uri}/api/users`, {
+    const response = await fetch(`${uri}/api/users/${request.toLowerCase()}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -18,6 +24,9 @@ export const createNewUser = createAsyncThunk (
         body: JSON.stringify(userObject)
     });
 
+    if(response.status === 400) {
+      throw new Error('User & password combination not found')
+    }
     if(response.status === 409) {
       throw new Error('User already exists')
     }

@@ -7,13 +7,16 @@
 
 .text-input{
   position: relative;
-  margin: 45px 0;
-
+  margin-bottom: 2rem;
+  
   &__input{
     display: block;
+    min-width: 280px;
+    width: 23vw;
     padding: 10px 10px 10px 5px;
+    
     border: none;
-    border-bottom: 1px solid $light-grey;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     
     &:focus {
       outline: none;
@@ -29,6 +32,8 @@
     pointer-events: none;
     left: 5px;
     top: 10px;
+    
+    color: $placeholder-gray;
     transition: 300ms ease all;
 
     &.shrink {

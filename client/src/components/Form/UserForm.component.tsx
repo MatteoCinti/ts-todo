@@ -1,12 +1,15 @@
 import React, { Children, cloneElement, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
-import { createNewUser } from '../../state/user/user.reducers';
+import { RegisterLogin } from '../../state/user/user.interfaces';
+import { handleLogin } from '../../state/user/user.reducers';
 import { initialUserState } from '../../state/user/user.slice';
 import { FormProps } from './Form.interfaces';
+
+import './Form.styles.scss'
 import utils from './Form.utils';
 
 const UserForm = ({ 
-  ariaLabel, cssClass, children, toggleEditMode, isLoginOrRegister, state
+  ariaLabel, cssClass, children, toggleEditMode, isLoginOrRegister, state, buttonValue
 } : FormProps) => {
   const getState = useAppSelector(state => state.user);
   const [formState, setFormState] = useState(state);
@@ -14,16 +17,23 @@ const UserForm = ({
   
   const handleSubmit = ((e: React.FormEvent) => {
     e.preventDefault();
-    const logOrRegister = isLoginOrRegister;
-    if(logOrRegister === 'Register') {
-      dispatch(createNewUser(formState));
+    if( isLoginOrRegister === RegisterLogin.register ) {
+      const newUserBody = {
+        ...formState,
+        request: RegisterLogin.register
+      }
+      dispatch(handleLogin(newUserBody));
     }
-    if(logOrRegister === 'Login') {
-
+    if(isLoginOrRegister === RegisterLogin.login) {
+      const newUserBody = {
+        ...formState,
+        request: RegisterLogin.login
+      }
+      dispatch(handleLogin(newUserBody));
     }
     // utils[setStateFunction](user, dispatch);
     // utils.addCategory(inputValue.category, useAppDispatch)
-    setFormState(getState);
+    setFormState(state);
     toggleEditMode && toggleEditMode(e);
   });
 
@@ -43,7 +53,7 @@ const UserForm = ({
         type="submit"
         className={`form__submit ${cssClass}__submit`}
         name={cssClass}
-        value='Sing In' 
+        value={buttonValue}
       />
     </form>
   );

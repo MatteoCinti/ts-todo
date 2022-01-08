@@ -4,16 +4,17 @@
 .welcome-page{
   @include full-screen;
   @include flex-centred(column);
+  justify-content: space-between;
+  padding: 5rem 0 2rem;
 }
 
 .user-form {
   @include flex-centred(column);
+  min-height: 350px;
 }
 
 .logo {
   @include flex-centred(row);
-  position: absolute;
-  top: 22%;
 
   &__imagotype {
     width: 85px;
@@ -30,4 +31,8 @@
     padding-bottom: .125em;
   }
 
+}
+
+.form-switch {
+  margin-top: 1.75rem;
 }

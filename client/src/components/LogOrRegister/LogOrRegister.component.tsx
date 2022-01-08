@@ -1,8 +1,10 @@
+import { RegisterLogin } from "../../state/user/user.interfaces";
 import { FormProps } from "../Form/Form.interfaces";
+import './LogOrRegister.styles.scss';
 
 interface IComponentProps { 
-  isLoginOrRegister: FormProps['isLoginOrRegister'];
-  setLogOrRegister: React.Dispatch<React.SetStateAction<"Login" | "Register">>;
+  isLoginOrRegister: RegisterLogin;
+  setLogOrRegister: React.Dispatch<React.SetStateAction<RegisterLogin>>;
 }
 
 const LogOrRegister: React.FC<IComponentProps> = ({
@@ -10,20 +12,24 @@ const LogOrRegister: React.FC<IComponentProps> = ({
   setLogOrRegister
 }) => (
 
-  <p className="form-switch">
-    {isLoginOrRegister === 'Register' 
+  <p className="form-switch bold">
+    {isLoginOrRegister === RegisterLogin.register
       ? 'Alredy' 
       : `Don't`
-    } have an account? 
+    } have an account?
     <span 
       className='form-switch__link'
       onClick={
-        isLoginOrRegister === 'Register' 
-          ? () => setLogOrRegister('Login')
-          : () => setLogOrRegister('Register')
+        isLoginOrRegister === RegisterLogin.register 
+          ? () => setLogOrRegister( RegisterLogin.login )
+          : () => setLogOrRegister( RegisterLogin.register)
       }
     >
-      {isLoginOrRegister} Here
+      {
+      isLoginOrRegister === RegisterLogin.register
+       ? ' Login '
+       : ' Register '} 
+       Here
     </span>
   </p>
 )

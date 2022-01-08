@@ -28,7 +28,6 @@ function App() {
   return (
     <div className="App">
         <Routes>
-          {console.log(process.env.REACT_APP_NOT_SECRET_CODE)}
           <Route path="/" element={
             !userState.isLoggedIn 
               ? <WelcomePage />

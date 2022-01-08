@@ -46,7 +46,7 @@ afterAll(async () => {
   await mongoose.connection.close();
 })
 
-describe('The POST method:', () => {
+describe('The POST newUser method:', () => {
 
   beforeEach((done) => {
     mongoose.connection.db.dropDatabase(() => {

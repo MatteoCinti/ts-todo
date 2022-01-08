@@ -9,3 +9,8 @@ export interface IUserState extends IUserNamePassword{
   error: boolean;
   errorMessage?: string;
 }
+
+export const enum RegisterLogin {
+  register = "Register",
+  login = "Login",
+}
