@@ -1,5 +1,9 @@
+import Navigation from "../../components/Navigation/Navigation.component";
+
 const Home = () => (
-  <h1>This is tthe Homepage</h1>
+  <article className="home-page">
+    <Navigation />
+  </article>
 )
 
 export default Home;
