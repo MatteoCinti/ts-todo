@@ -2,8 +2,13 @@ import { ISingleList } from '../../../client/src/state/todoLists/todoLists.inter
 
 import { Schema, model } from 'mongoose';
 
-const  schema = new Schema ({
+const todoListsSchema = new Schema<ISingleList> ({
+  name: {type: String, required: true},
+  category: String,
+  todos: []
+});
 
-})
+const todoLists = model<ISingleList>('todoLists', todoListsSchema);
 
 export { ISingleList };
+export default todoListsSchema;

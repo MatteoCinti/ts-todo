@@ -43,6 +43,6 @@ export interface ITodoListsHandleSubmit<T> extends IHandleSubmit<T> {
     user: T;
   }, undefined, AnyAction>,
   isLoginOrRegister?: RegisterLogin;
-  userId?: string;
+  username?: string;
 }
 

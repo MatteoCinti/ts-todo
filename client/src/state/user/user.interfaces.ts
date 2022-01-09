@@ -1,10 +1,13 @@
-export interface IUserNamePassword { 
+import { ITodoLists } from "../todoLists/todoLists.interfaces";
+
+export interface IUser { 
   username: string;
   password: string;
+  userLists?: ITodoLists;
 }
 
-export interface IUserState extends IUserNamePassword{ 
-  [key: string]: string | boolean | undefined;
+export interface IUserState extends IUser { 
+  [key: string]: string | boolean | undefined | ITodoLists;
   _id: string;
   state: 'user';
   isLoggedIn: boolean;
@@ -17,7 +20,7 @@ export const enum RegisterLogin {
   login = "Login",
 }
 
-export interface IUserRequest extends IUserNamePassword {
+export interface IUserRequest extends IUser {
   request: RegisterLogin.login |  RegisterLogin.register;
   navigate: any;
 }

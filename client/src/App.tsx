@@ -16,6 +16,10 @@ function App() {
   const userState = useAppSelector(state => state.user)
 
   useEffect(() => {
+    const  { isLoggedIn, username } = userState
+    if ( isLoggedIn ) {
+      navigate(`${username}/lists/`);
+    } 
     socketConnectionListener(socket, privateRoom);
   }, []);
 
@@ -28,17 +32,13 @@ function App() {
   return (
     <div className="App">
         <Routes>
-          <Route path="/" element={
-            !userState.isLoggedIn 
-              ? <WelcomePage />
-              : <Home />
-          } />
+          <Route path="/" element={<WelcomePage />} />
           <Route 
-            path=":userId/lists" 
+            path=":username/lists" 
             element={<Home />} 
           />
           <Route 
-            path=":userId/lists/:list" 
+            path=":username/lists/:list" 
             element={<Home />} 
           />
         </Routes>

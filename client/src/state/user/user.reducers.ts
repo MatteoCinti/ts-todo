@@ -28,7 +28,7 @@ export const handleLogin = createAsyncThunk (
     }
 
     const parsedNewUser = await response.json();
-    navigate(`/${parsedNewUser._id}/lists`);
+    navigate(`/${parsedNewUser.username}/lists`);
     return parsedNewUser;
   }
 );

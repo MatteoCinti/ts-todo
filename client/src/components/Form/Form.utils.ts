@@ -35,13 +35,12 @@ export const userFormHandleSubmit = (props: IUserHandleSubmit<IUserState>): void
 };
 
 export const listsFormHandleSubmit = (props: ITodoListsHandleSubmit<ISingleList>): void => {
-  const { e, dispatch, isLoginOrRegister, formState, setFormState, navigate, userId } = props;
+  const { e, dispatch, isLoginOrRegister, formState, setFormState, navigate, username } = props;
   e.preventDefault();
-
   if(formState.state !== 'singleList') {
     throw new Error('Wrong Params Passed to Function');
   }
-  dispatch(addNewList({...formState, userId}));
+  dispatch(addNewList({...formState, username}));
   setFormState(emptySingleList);
 }
 

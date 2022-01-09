@@ -22,5 +22,5 @@ export interface ITodoLists {
 }
 
 export interface IAddNewListProps extends ISingleList{ 
-  userId?: string;
+  username?: string;
 }

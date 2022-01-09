@@ -12,7 +12,7 @@ const Form = ({
   const [formState, setFormState] = useState(state);
   const dispatch = useAppDispatch();
   let navigate = useNavigate();
-  const { userId } = useParams();
+  const { username } = useParams();
   
   const childrenWithExtraProp = Children.map(children, child => (
     cloneElement(child, { todoState: [formState, setFormState] })
@@ -24,7 +24,7 @@ const Form = ({
       className={`form ${cssClass}`} 
       aria-label={ariaLabel} 
       onSubmit={(e) => handleSubmit({
-        e, dispatch, isLoginOrRegister, setFormState, formState, navigate, userId
+        e, dispatch, isLoginOrRegister, setFormState, formState, navigate, username
       })}
     > 
       {childrenWithExtraProp}

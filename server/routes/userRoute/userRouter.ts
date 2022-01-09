@@ -24,7 +24,7 @@ router.post('/login', async (req, res, next) => {
   const { username, password } = req.body;
   if( !username || !password ) {
     const error = newError('Username or Password not set!', 400);
-    return next(error);;
+    return next(error);
   }
 
   try {
@@ -34,5 +34,16 @@ router.post('/login', async (req, res, next) => {
     next(error);
   }
 });
+
+router.put('/:username/lists', async (req, res, next) => {
+  const { username } = req.params;
+  const { listName } = req.body;
+
+  if( !username || !listName ) {
+    const error = newError('Missing a required parameter!', 400);
+    return next(error);
+  }
+  res.end();
+})
 
 export default router;

@@ -7,14 +7,13 @@ import { IAddNewListProps } from "./todoLists.interfaces";
 export const addNewList = createAsyncThunk(
   'todoLists/addNewList',
   async (payload: IAddNewListProps, _) => {
-    const { name, userId } = payload;
+    const { name, username } = payload;
     const listName = name;
 
-    const newList = {
-      userId,
+    const message = {
+      username,
       listName
     }
-
-    socket.emit(CREATE_NEW_LIST, newList);
+    socket.emit(CREATE_NEW_LIST, message);
   }
 )

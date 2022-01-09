@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
 import axios from 'axios';
+dotenv.config({path: path.join(__dirname, '..', '.env')});
 
 import { CREATE_SHARED_LIST, JOINED_SHARED_LIST, CREATE_NEW_LIST } from '../client/src/sockets/actions';
 import { socketsSetup } from './sockets/setup';
@@ -18,7 +19,7 @@ const io = new Server(httpServer, socketsSetup);
 
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST;
-dotenv.config({path: path.join(__dirname, '..', '.env')});
+
 const corsOptions = {
   origin: "http://localhost:3000",
   optionsSuccessStatus: 200,
@@ -44,9 +45,12 @@ io.on('connection', (socket) => {
   })
 
   socket.on(CREATE_NEW_LIST, async (message) => {
-    const { userId, listName } = message;
-    console.log(message)
-    const newList = axios.post(`${HOST}/api/users/${userId}/lists`, { listName });
+    try {
+      const { username, listName } = message;
+      const newList = await axios.put(`${HOST}/api/users/${username}/lists`, { listName });
+    } catch (error) {
+      console.error(error.message)
+    }
   })
 
 });
