@@ -11,7 +11,7 @@ export const handleLogin = createAsyncThunk (
       username: payload.username,
       password: payload.password,
     };
-
+    console.log(request);
     const response = await fetch(`${uri}/api/users/${request.toLowerCase()}`, {
       method: 'POST',
       headers: {
