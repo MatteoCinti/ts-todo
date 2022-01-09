@@ -1,23 +1,16 @@
 import { RegisterLogin } from "../../state/user/user.interfaces";
 import { FormProps } from "../Form/Form.interfaces";
-import { ILRHandleClick, ILRComponentProps } from "./LogOrRegister.interfaces";
 import './LogOrRegister.styles.scss';
 
-const handleClick = (
-  props: ILRComponentProps
-) => {
-  const { isLoginOrRegister, setLogOrRegister} = props;
-  isLoginOrRegister === RegisterLogin.register 
-    ? setLogOrRegister(RegisterLogin.register)
-    : setLogOrRegister(RegisterLogin.login);
+interface IComponentProps { 
+  isLoginOrRegister: RegisterLogin;
+  setLogOrRegister: React.Dispatch<React.SetStateAction<RegisterLogin>>;
 }
 
-const LogOrRegister: React.FC<ILRComponentProps> = ({
+const LogOrRegister: React.FC<IComponentProps> = ({
   isLoginOrRegister,
   setLogOrRegister
-}) => {
-  
-  return(
+}) => (
 
   <p className="form-switch bold">
     {isLoginOrRegister === RegisterLogin.register
@@ -26,15 +19,19 @@ const LogOrRegister: React.FC<ILRComponentProps> = ({
     } have an account?
     <span 
       className='form-switch__link'
-      onClick={() => handleClick( {isLoginOrRegister, setLogOrRegister} )}
+      onClick={
+        isLoginOrRegister === RegisterLogin.register 
+          ? () => setLogOrRegister( RegisterLogin.login )
+          : () => setLogOrRegister( RegisterLogin.register)
+      }
     >
       {
       isLoginOrRegister === RegisterLogin.register
-        ? ' Login '
-        : ' Register '} 
-        Here
+       ? ' Login '
+       : ' Register '} 
+       Here
     </span>
   </p>
-)}
+)
 
 export default LogOrRegister
