@@ -14,6 +14,7 @@ console.log("🚀 ~ file: todoLists.slice.ts ~ line 12 ~ persistedState", persis
 const initialState = persistedState
                       ? persistedState.todoLists
                       : emptyTodoListsState
+console.log("🚀 ~ file: todoLists.slice.ts ~ line 15 ~ initialState", initialState)
 
 const todoListsSlice = createSlice({
   name: 'userLists',
