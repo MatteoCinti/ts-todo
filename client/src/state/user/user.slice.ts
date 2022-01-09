@@ -12,12 +12,9 @@ export const emptyUserState: IUserState = {
 }
 
 const persistedState = getPersistedState();
-console.log("🚀 ~ file: user.slice.ts ~ line 15 ~ persistedState", persistedState)
-
 const initialState = persistedState 
                       ? persistedState.user
                       : emptyUserState
-console.log("🚀 ~ file: user.slice.ts ~ line 18 ~ initialState", initialState)
 
 const userSlice = createSlice({
   name: 'user',

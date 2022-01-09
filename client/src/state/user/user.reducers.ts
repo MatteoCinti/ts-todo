@@ -39,7 +39,6 @@ export const handleLogin = createAsyncThunk (
         state: 'user',
         ...parsedNewUser
       }
-      socket.emit(FETCH_USER_DATA, parsedNewUser.username);
       saveToLocalStorage('user', userState);
       navigate(`/${userObject.username}/lists`);
       return parsedNewUser;

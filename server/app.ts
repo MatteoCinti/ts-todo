@@ -7,7 +7,7 @@ import path from 'path';
 import axios from 'axios';
 dotenv.config({path: path.join(__dirname, '..', '.env')});
 
-import { CREATE_SHARED_LIST, JOINED_SHARED_LIST, CREATE_NEW_LIST, USER_LISTS_UPDATE, USER_LIST_DELETE } from '../client/src/sockets/actions';
+import { CREATE_SHARED_LIST, JOINED_SHARED_LIST, CREATE_NEW_LIST, USER_LISTS_UPDATE, USER_LIST_DELETE, FETCH_USER_DATA } from '../client/src/sockets/actions';
 import { socketsSetup } from './sockets/setup';
 import { connectToDatabase } from './db';
 import socketsRouter from './routes/socketsRouter';
@@ -65,6 +65,17 @@ io.on('connection', (socket) => {
       socket.emit(USER_LISTS_UPDATE, todoLists)
     } catch (error) {
       console.error(error.message)      
+    }
+  })
+
+  socket.on(FETCH_USER_DATA, async(username) => {
+    try {
+      const response = await axios.get(`${HOST}/api/users/${username}`);
+      const { todoLists } = response.data;
+  
+      socket.emit(USER_LISTS_UPDATE, todoLists)
+    } catch (error) {
+      console.error(error.message);
     }
   })
 
