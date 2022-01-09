@@ -7,11 +7,8 @@ router.get('/', (req, res) => {
   console.log(io);
   io.on("connection", (socket) => {
     console.log(`SOCKET ACCESSED: ${socket.id}`);
-
-   
   })
-
-
+  
   res.json(JSON.stringify('ROUTING'));
 });
 

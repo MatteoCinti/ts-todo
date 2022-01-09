@@ -10,6 +10,7 @@ export interface ITodo {
 }
 
 export interface ISingleList {
+  _id: string;
   state?: 'singleList',
   name: string;
   category?: string;
@@ -17,7 +18,7 @@ export interface ISingleList {
 } 
 
 export interface ITodoLists {
-  state: "todoLists",
+  state: 'todoLists' | string,
   todoLists: ISingleList[]
 }
 

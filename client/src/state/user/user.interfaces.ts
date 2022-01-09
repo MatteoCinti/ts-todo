@@ -3,7 +3,7 @@ import { ITodoLists } from "../todoLists/todoLists.interfaces";
 export interface IUser { 
   username: string;
   password: string;
-  userLists?: ITodoLists;
+  todoLists?: ITodoLists;
 }
 
 export interface IUserState extends IUser { 

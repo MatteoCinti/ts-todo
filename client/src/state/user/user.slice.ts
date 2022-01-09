@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getPersistedState, saveToLocalStorage } from '../utils/utils';
 import { IUserState } from './user.interfaces';
 import { handleLogin, logOut } from './user.reducers';
-
 
 export const emptyUserState: IUserState = {
   _id: '',
@@ -9,12 +9,17 @@ export const emptyUserState: IUserState = {
   username: '',
   password: '',
   isLoggedIn: false,
-  error: false,
+  error: false
 }
+
+const persistedState = getPersistedState();
+const initialState = persistedState 
+                      ? persistedState.user
+                      : emptyUserState
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: emptyUserState,
+  initialState,
   reducers: {
     logOut
   },
@@ -25,12 +30,6 @@ const userSlice = createSlice({
           ...action.payload,
           isLoggedIn: true
         }
-        const persistedState = JSON.parse(localStorage.getItem('justDoItState') || '{}');    
-        const localStorageState = {
-          ...persistedState,
-          user: loggedInUserState
-        }
-        localStorage.setItem("justDoItState", JSON.stringify(localStorageState));
         return loggedInUserState;
       })
       .addCase(handleLogin.rejected, (state, action) =>  ({

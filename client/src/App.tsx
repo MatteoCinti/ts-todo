@@ -7,20 +7,21 @@ import Shared from './pages/Shared/Shared.page';
 import WelcomePage from './pages/Welcome/Welcome.page';
 
 import { JOINED_SHARED_LIST, CREATE_SHARED_LIST } from './sockets/actions';
-import { useAppSelector } from './state/hooks';
+import { useAppDispatch, useAppSelector } from './state/hooks';
 import { socketConnectionListener } from './sockets/listeners';
 
 
 function App() {
   let navigate = useNavigate();
   const userState = useAppSelector(state => state.user)
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const  { isLoggedIn, username } = userState
     if ( isLoggedIn ) {
       navigate(`${username}/lists/`);
     } 
-    socketConnectionListener(socket, privateRoom);
+    socketConnectionListener(socket, privateRoom, dispatch);
   }, []);
 
   const handleClick = () => {

@@ -1,45 +1,55 @@
 import { CaseReducer, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { saveToLocalStorage } from '../utils/utils';
 import { IUserState, IUserRequest } from "./user.interfaces";
 import { emptyUserState } from './user.slice';
 
 export const handleLogin = createAsyncThunk (
   'users/handleLogin',
   async (payload: IUserRequest, thunkAPI) => {
-    const uri = process.env.REACT_APP_HOST;
-    const { request, navigate } = payload;
-    const userObject = {
-      username: payload.username,
-      password: payload.password,
-    };
-    
-    const response = await fetch(`${uri}/api/users/${request.toLowerCase()}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-        body: JSON.stringify(userObject)
-    });
+    try {
+      const uri = process.env.REACT_APP_HOST;
+      const { request, navigate } = payload;
+      const userObject = {
+        username: payload.username,
+        password: payload.password,
+      };
 
-    if(response.status === 401) {
-      throw new Error('User & password combination not found')
-    }
-    if(response.status === 409) {
-      throw new Error('User already exists')
-    }
+      const url = `${uri}/api/users/${request.toLowerCase()}`;
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+          body: JSON.stringify(userObject)
+      };
+      const response = await fetch(url, options);
+  
+      if(response.status === 401) {
+        throw new Error('User & password combination not found')
+      }
+      if(response.status === 409) {
+        throw new Error('User already exists')
+      }
+  
+      const parsedNewUser = await response.json();
+      delete parsedNewUser.todoLists;
+      const userState = {
+        state: 'user',
+        ...parsedNewUser
+      }
 
-    const parsedNewUser = await response.json();
-    navigate(`/${parsedNewUser.username}/lists`);
-    return parsedNewUser;
+      saveToLocalStorage('user', userState);
+      navigate(`/${userObject.username}/lists`);
+      return parsedNewUser;
+    } catch (error) {
+      throw error;
+    }
   }
 );
 
 export const logOut: CaseReducer<IUserState> = (state) => {
-  const persistedState = JSON.parse(localStorage.getItem('justDoItState') || '{}');    
-  const localStorageState = {
-    ...persistedState,
-    user: emptyUserState
-  }
-  localStorage.setItem("justDoItState", JSON.stringify(localStorageState));
+  localStorage.setItem("justDoItState", JSON.stringify({}));
   return ({
     ...emptyUserState
-})};
+  })
+};

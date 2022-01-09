@@ -25,7 +25,6 @@ export const userFormHandleSubmit = (props: IUserHandleSubmit<IUserState>): void
       ...formState,
       request: RegisterLogin.login
     }
-    console.log('qwfdqfqjwfpojqwpofj', newUserBody);
     if(newUserBody.state === 'user') {
       dispatch(handleLogin({...newUserBody, navigate}));
     }

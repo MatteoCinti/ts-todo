@@ -28,7 +28,7 @@ const Form = ({
       })}
     > 
       {childrenWithExtraProp}
-      <label className={svg && `${cssClass}__submit`}>
+      <label className={svg && `${cssClass}__submit icon-submit`}>
         <input
           type="submit"
           className={`form__submit ${cssClass}__submit ${svg && 'hidden'}`}

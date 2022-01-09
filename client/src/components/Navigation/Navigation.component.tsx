@@ -13,7 +13,6 @@ const Navigation: React.FC = () => {
   let navigate = useNavigate();
 
   const handleClick = () => {
-    socket.disconnect();
     navigate('/');
     dispatch(userActions.logOut());
   }

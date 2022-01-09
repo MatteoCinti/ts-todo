@@ -8,7 +8,6 @@
 }
 
 .user-form {
-  
   &__submit {
     margin-top: 1.7rem;
     padding: 1rem 7rem;
@@ -22,4 +21,8 @@
   $size: 24px;
   width: $size;
   height: $size;
+}
+
+.icon-submit {
+  cursor: pointer;
 }
