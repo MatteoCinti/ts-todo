@@ -12,6 +12,7 @@ export const saveToLocalStorage = (key: string, payload: ITodoLists) => {
 
 export const getPersistedState = () => {
   const serializedState = localStorage.getItem('justDoItState');
-  if (!serializedState) return undefined;
+  console.log("🚀 ~ file: utils.ts ~ line 15 ~ getPersistedState ~ serializedState", serializedState)
+  if (!serializedState || serializedState === '{}') return undefined;
   return JSON.parse(serializedState);
 }

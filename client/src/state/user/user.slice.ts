@@ -12,6 +12,7 @@ export const emptyUserState: IUserState = {
 }
 
 const persistedState = getPersistedState();
+console.log(persistedState)
 const initialState = persistedState 
                       ? persistedState.user
                       : emptyUserState
