@@ -10,7 +10,7 @@ export interface ITodo {
 }
 
 export interface ISingleList {
-  _id: string;
+  _id?: string;
   state?: 'singleList',
   name: string;
   category?: string;

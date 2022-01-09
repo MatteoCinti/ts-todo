@@ -1,5 +1,5 @@
 const mockingoose = require('mockingoose');
-import createUser from "../controllers/createUser";
+import { createUser } from "../controllers/register";
 import User from "../../../db/schemas/user.schema";
 
 beforeEach(() => {

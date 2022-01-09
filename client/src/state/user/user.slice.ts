@@ -4,7 +4,6 @@ import { IUserState } from './user.interfaces';
 import { handleLogin, logOut } from './user.reducers';
 
 export const emptyUserState: IUserState = {
-  _id: '',
   state: 'user',
   username: '',
   password: '',

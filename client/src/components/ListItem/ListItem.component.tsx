@@ -6,7 +6,7 @@ import { useAppSelector } from '../../state/hooks';
 
 interface IListItemProps {
   listName: string;
-  listId: string;
+  listId: string | undefined;
 }
 
 const ListItem: React.FC<IListItemProps> = ({

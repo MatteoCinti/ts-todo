@@ -6,7 +6,6 @@ import TodoListsForm from "../TodoListsForm/TodoListsForm.component";
 import './TodoLists.styles.scss';
 
 export const emptySingleList: ISingleList = {
-  _id: '',
   state: 'singleList',
   name: '',
   todos: []

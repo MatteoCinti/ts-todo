@@ -3,7 +3,7 @@ import { USER_LIST_DELETE } from "../../sockets/actions";
 
 const handleClick = (
   username: string, 
-  listId: string,
+  listId: string | undefined,
 ) => {
   const message = {
     username, 

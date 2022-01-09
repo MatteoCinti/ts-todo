@@ -5,7 +5,7 @@ import { newError } from '../../utilities/errorHandling';
 import { findUser } from '../../utilities/helpers';
 import logIn from './logIn';
 
-const createUser = async (username:string, password: string): Promise<IUser> => {
+export const createUser = async (username:string, password: string): Promise<IUser> => {
   try {
     const userExists = await findUser<IUser>(User, 'username', username);
     if(userExists) {

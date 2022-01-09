@@ -8,7 +8,7 @@ export interface IUser {
 
 export interface IUserState extends IUser { 
   [key: string]: string | boolean | undefined | ITodoLists;
-  _id: string;
+  _id?: string;
   state: 'user';
   isLoggedIn: boolean;
   error: boolean;

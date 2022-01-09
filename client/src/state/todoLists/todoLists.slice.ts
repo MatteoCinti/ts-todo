@@ -9,12 +9,9 @@ const emptyTodoListsState: ITodoLists = {
 }
 
 const persistedState = getPersistedState();
-const formattedPersistedState = {
-  state: 'todoLists', 
-  todoLists: [ persistedState.todoLists ]
-}
+console.log(persistedState ? 'no' : 'yes');
 
-const initialState = persistedState.todoLists
+const initialState = persistedState
                       ? persistedState.todoLists
                       : emptyTodoListsState
 

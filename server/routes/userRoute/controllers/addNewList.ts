@@ -19,7 +19,6 @@ const addNewList = async (req, res, next): Promise<ISingleList[]> => {
   }
 
   const newListPayload: ISingleList = {
-    _id: '',
     name: listName,
     todos: []
   }
