@@ -40,6 +40,7 @@ const userSlice = createSlice({
           errorMessage: action.error.message
         })
       )
+      
   }
 });
 
