@@ -11,7 +11,7 @@ export const handleLogin = createAsyncThunk (
       username: payload.username,
       password: payload.password,
     };
-    console.log(request);
+    
     const response = await fetch(`${uri}/api/users/${request.toLowerCase()}`, {
       method: 'POST',
       headers: {
@@ -20,7 +20,7 @@ export const handleLogin = createAsyncThunk (
         body: JSON.stringify(userObject)
     });
 
-    if(response.status === 404) {
+    if(response.status === 401) {
       throw new Error('User & password combination not found')
     }
     if(response.status === 409) {
