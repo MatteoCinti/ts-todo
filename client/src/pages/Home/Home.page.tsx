@@ -1,8 +1,10 @@
 import Navigation from "../../components/Navigation/Navigation.component";
+import TodoLists from "../../components/TodoLists/TodoLists.component";
 
-const Home = () => (
+const Home: React.FC = () => (
   <article className="home-page">
     <Navigation />
+    <TodoLists />  
   </article>
 )
 

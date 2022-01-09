@@ -34,8 +34,12 @@ function App() {
               : <Home />
           } />
           <Route 
+            path=":userId/lists" 
+            element={<Home />} 
+          />
+          <Route 
             path=":userId/lists/:list" 
-            element={<Shared />} 
+            element={<Home />} 
           />
         </Routes>
     </div>
@@ -43,3 +47,4 @@ function App() {
 }
 
 export default App;
+ 

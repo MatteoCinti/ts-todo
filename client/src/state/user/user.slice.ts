@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IUserState } from './user.interfaces';
-import { handleLogin, setNewUser } from './user.reducers';
+import { handleLogin, logOut } from './user.reducers';
 
 
-export const initialUserState: IUserState = {
+export const emptyUserState: IUserState = {
+  _id: '',
+  state: 'user',
   username: '',
   password: '',
   isLoggedIn: false,
@@ -12,24 +14,31 @@ export const initialUserState: IUserState = {
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: initialUserState,
+  initialState: emptyUserState,
   reducers: {
-    setNewUser
+    logOut
   },
   extraReducers: (builder) => {
     builder
       .addCase(handleLogin.fulfilled, (state, action) => {
-        console.log('Fulfilled')
-        return {
+        const loggedInUserState = {
           ...action.payload,
           isLoggedIn: true
-        };
+        }
+        const persistedState = JSON.parse(localStorage.getItem('justDoItState') || '{}');    
+        const localStorageState = {
+          ...persistedState,
+          user: loggedInUserState
+        }
+        localStorage.setItem("justDoItState", JSON.stringify(localStorageState));
+        return loggedInUserState;
       })
-      .addCase(handleLogin.rejected, (state, action) => ({
-          ...initialUserState,
+      .addCase(handleLogin.rejected, (state, action) =>  ({
+          ...emptyUserState,
           error: true,
-          errorMessage: 'Username already exists'
-      }))
+          errorMessage: action.error.message
+        })
+      )
   }
 });
 

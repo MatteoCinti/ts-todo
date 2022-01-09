@@ -1,21 +1,48 @@
-// import { addTodo, updateTodo } from '../../state/actions/todos.actions';
-// import { addCategory } from '../../state/actions/categories.actions'
-import { IUserNamePassword } from '../../state/user/user.interfaces'
-import { userActions } from "../../state/user/user.slice";
+import { ISingleList, ITodoLists } from '../../state/todoLists/todoLists.interfaces';
+import { IUserState, RegisterLogin } from '../../state/user/user.interfaces'
+import { handleLogin } from '../../state/user/user.reducers';
+import { emptyUserState } from "../../state/user/user.slice";
+import { IUserHandleSubmit, ITodoListsHandleSubmit } from './Form.interfaces';
+import { socket } from '../../sockets';
+import { addNewList } from '../../state/todoLists/todoLists.reducers';
+import { emptySingleList } from '../TodoLists/TodoLists.component';
 
+export const userFormHandleSubmit = (props: IUserHandleSubmit<IUserState>): void => {
+  const {e, dispatch, isLoginOrRegister, formState, setFormState, navigate} = props;
+  e.preventDefault();
+  
+  if( isLoginOrRegister === RegisterLogin.register ) {
+    const newUserBody = {
+      ...formState,
+      request: RegisterLogin.register
+    }
+    if(newUserBody.state === 'user') {
+      dispatch(handleLogin({...newUserBody, navigate}));
+    }
+  }
+  if(isLoginOrRegister === RegisterLogin.login) {
+    const newUserBody = {
+      ...formState,
+      request: RegisterLogin.login
+    }
+    console.log('qwfdqfqjwfpojqwpofj', newUserBody);
+    if(newUserBody.state === 'user') {
+      dispatch(handleLogin({...newUserBody, navigate}));
+    }
+  }
 
-// const dispatchAddTodo = (todoValue: string, dispatch: AppDispatch) => dispatch(addTodo(todoValue));
-// const dispatchUpdateTodo = (todoValue: string, dispatch: AppDispatch) => dispatch(updateTodo(todoValue));
-// const dispatchAddCategory = (newCategory: string, dispatch: AppDispatch) => dispatch(addCategory(newCategory))
-const useDispatchSetNewUser = (payload: IUserNamePassword, dispatch: (arg0: { payload: IUserNamePassword; type: string; }) => void) => { dispatch(userActions.setNewUser(payload)); };
-
-
-const utils = {
-  // 'addTodo': dispatchAddTodo,
-  // 'updateTodo': dispatchUpdateTodo,
-  // 'addCategory': dispatchAddCategory,
-  'setNewUser': useDispatchSetNewUser
+  setFormState(emptyUserState);
 };
-export default utils;
+
+export const listsFormHandleSubmit = (props: ITodoListsHandleSubmit<ISingleList>): void => {
+  const { e, dispatch, isLoginOrRegister, formState, setFormState, navigate, userId } = props;
+  e.preventDefault();
+
+  if(formState.state !== 'singleList') {
+    throw new Error('Wrong Params Passed to Function');
+  }
+  dispatch(addNewList({...formState, userId}));
+  setFormState(emptySingleList);
+}
 
 

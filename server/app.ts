@@ -4,30 +4,29 @@ import { Server } from 'socket.io';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
+import axios from 'axios';
 
-dotenv.config({path: path.join(__dirname, '..', '.env')});
-import { CREATE_SHARED_LIST, JOINED_SHARED_LIST } from '../client/src/sockets/actions';
+import { CREATE_SHARED_LIST, JOINED_SHARED_LIST, CREATE_NEW_LIST } from '../client/src/sockets/actions';
 import { socketsSetup } from './sockets/setup';
 import { connectToDatabase } from './db';
 import socketsRouter from './routes/socketsRouter';
 import userRouter from './routes/userRoute/userRouter';
 
-const PORT = process.env.PORT || 5000;
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, socketsSetup);
-app.set('socketio', io);
-// app.use((req, res, next) => {
-//   req.io = io;
-//   return next();
-// });
 
-var corsOptions = {
+const PORT = process.env.PORT || 5000;
+const HOST = process.env.HOST;
+dotenv.config({path: path.join(__dirname, '..', '.env')});
+const corsOptions = {
   origin: "http://localhost:3000",
   optionsSuccessStatus: 200,
   credentials: true,
   allowedHeaders: ["Content-Type"]
 }
+
+app.set('socketio', io);
 app.use(cors(corsOptions));
 app.use(express.json());
 
@@ -42,6 +41,12 @@ io.on('connection', (socket) => {
     socket.join(room);
     console.log(`Pinche Cochiloco joined 🍂 room: ${room}, with 🐛 ID: ${socket.id} `)
     io.to(room).emit(JOINED_SHARED_LIST, JSON.stringify(data));
+  })
+
+  socket.on(CREATE_NEW_LIST, async (message) => {
+    const { userId, listName } = message;
+    console.log(message)
+    const newList = axios.post(`${HOST}/api/users/${userId}/lists`, { listName });
   })
 
 });

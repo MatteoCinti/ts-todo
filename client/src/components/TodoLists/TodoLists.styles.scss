@@ -1,0 +1,40 @@
+@use '../../styles/vars' as *;
+@use '../../styles/mixins' as *;
+
+$margin-left: 20px;
+
+.todo-lists {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: calc(100vh - #{$menu-height-mobile});
+  width: 33%;
+  min-width: 320px;
+  background-color: $light-grey;
+  &__title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: $margin-left 0 15px $margin-left;
+  }
+}
+
+.todo-lists-form{
+  $input-width: 220px;
+  display: grid;
+  grid-template-columns: minmax($input-width, 80%) 1fr;
+  grid-template-rows: $input-height;
+  grid-gap: 1rem;
+  justify-self: flex-end;
+
+  width: 100%;
+  padding: 0 34px 1rem $margin-left;
+  margin: auto 0 1rem 0;
+
+  &__input {
+    min-width: $input-width;
+  }
+  &__submit {
+    justify-self: end;
+    align-self: flex-end;
+  }
+}

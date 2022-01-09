@@ -1,14 +1,16 @@
 import React, { SetStateAction, useState } from "react";
 
 import "./Welcome.styles.scss";
-import UserForm from "../../components/Form/UserForm.component";
+import Form from "../../components/Form/Form.component";
 import TextInput from "../../components/TextInput/TextInput.component";
 import {ReactComponent as Imagotype} from '../../images/Imagotype.svg'
 import { useAppSelector } from "../../state/hooks";
 import LogOrRegister from "../../components/LogOrRegister/LogOrRegister.component";
 import { RegisterLogin } from "../../state/user/user.interfaces";
+import { userFormHandleSubmit } from "../../components/Form/Form.utils";
+import { useNavigate } from "react-router-dom";
 
-const WelcomePage = () => {
+const WelcomePage: React.FC = () => {
   const userState = useAppSelector(state => state.user);
   const { error } = userState;
   const [logOrRegister, setLogOrRegister] = useState<RegisterLogin>(RegisterLogin.login);
@@ -24,12 +26,13 @@ const WelcomePage = () => {
         </div>
       </section>
 
-      <UserForm 
+      <Form 
         ariaLabel='user-form'
         cssClass='user-form'
         isLoginOrRegister={logOrRegister}
         state={userState}
         buttonValue={logOrRegister}
+        handleSubmit={userFormHandleSubmit}
       >
         <TextInput 
           type='text'
@@ -50,7 +53,7 @@ const WelcomePage = () => {
           // todoState={[]}        
         />
         
-      </UserForm>
+      </Form>
         <LogOrRegister 
           setLogOrRegister={setLogOrRegister} 
           isLoginOrRegister={logOrRegister}

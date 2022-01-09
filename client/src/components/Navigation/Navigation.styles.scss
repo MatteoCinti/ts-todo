@@ -1,0 +1,27 @@
+@use '../../styles/vars' as *;
+@use '../../styles/mixins' as *;
+
+
+.navigation {
+  @include flex-centred(row);
+
+  height: $menu-height-mobile;
+  justify-content: space-between;
+  background-color: $light-grey;
+
+  &__imagotype {
+    height: $menu-height-mobile;
+    width: $menu-height-mobile;
+  }
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &__logout {
+    cursor: pointer;
+    text-decoration: underline;
+    margin-right: 1.35rem;
+  }
+
+}

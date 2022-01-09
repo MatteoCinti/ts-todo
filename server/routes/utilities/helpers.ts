@@ -7,3 +7,7 @@ export const checkIfExisting = async <T>(model: Model<T>, keyName: string, keyVa
   }
   return false;
 }
+
+export const checkPassword = <T>(existingUser: T, password: string): boolean=> (
+  existingUser['password'] === password
+)

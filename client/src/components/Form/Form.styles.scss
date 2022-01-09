@@ -1,4 +1,5 @@
 @use '../../styles/vars' as *;
+@use '../../styles/mixins' as *;
 
 .form__submit {
   background: $light-blue;
@@ -7,7 +8,7 @@
 }
 
 .user-form {
-
+  
   &__submit {
     margin-top: 1.7rem;
     padding: 1rem 7rem;
@@ -15,4 +16,10 @@
     font-size: 18px;
     min-width: 300px;
   }
+}
+
+.create {
+  $size: 24px;
+  width: $size;
+  height: $size;
 }
