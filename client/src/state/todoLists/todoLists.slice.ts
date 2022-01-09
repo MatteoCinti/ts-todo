@@ -9,7 +9,7 @@ const emptyTodoListsState: ITodoLists = {
 }
 
 const persistedState = getPersistedState();
-console.log(persistedState ? 'no' : 'yes');
+console.log("🚀 ~ file: todoLists.slice.ts ~ line 12 ~ persistedState", persistedState)
 
 const initialState = persistedState
                       ? persistedState.todoLists
