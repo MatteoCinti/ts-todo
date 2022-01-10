@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ListTodosElements from "../../components/ListTodoElements/ListTodosElements.component";
 import Navigation from "../../components/Navigation/Navigation.component";
 import TodoLists from "../../components/TodoLists/TodoLists.component";
 import socket from "../../sockets";
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
     <article className="home-page">
       <Navigation />
       <TodoLists />  
+      <ListTodosElements /> 
     </article>
 )}
 

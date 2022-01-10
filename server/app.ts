@@ -72,10 +72,11 @@ io.on('connection', (socket) => {
     try {
       console.log("🚀 ~ file: app.ts ~ line 72 ~ socket.on ~ username", username)
       const response = await axios.get(`${HOST}/api/users/${username}`);
+      console.log("🚀 ~ file: app.ts ~ line 75 ~ socket.on ~ `${HOST}/api/users/${username}`", `${HOST}/api/users/${username}`)
       const { todoLists } = response.data;
       console.log("🚀 ~ file: app.ts ~ line 75 ~ socket.on ~ todoLists", todoLists)
 
-      socket.emit(USER_LISTS_UPDATE, todoLists)
+      // socket.emit(USER_LISTS_UPDATE, todoLists)
     } catch (error) {
       console.error(error.message);
     }
@@ -102,10 +103,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
   });
 }
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
 
 app.use('/sockets', socketsRouter);
 app.use('/api/users', userRouter);

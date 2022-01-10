@@ -19,8 +19,6 @@ const ListItem: React.FC<IListItemProps> = ({
   const userState = useAppSelector(state => state.user);
   const todoListsState = useAppSelector(state => state.todoLists);
   const { todoLists } = todoListsState;
-  // const selectedListState = todoLists.filter((list: ISingleList) => list.isSelected)[0];
-  // console.log("🚀 ~ file: ListItem.component.tsx ~ line 20 ~ todoListsState", selectedListState.todos)
   const { username } = userState;
 
   return (

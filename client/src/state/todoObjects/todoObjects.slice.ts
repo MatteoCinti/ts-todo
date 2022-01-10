@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getPersistedState } from "../utils/utils";
-import { ISingleTodoState } from "./todoElement.interfaces";
+import { ISingleTodoState } from "./todoObjects.interfaces";
 
 const emptyTodoState: ISingleTodoState = {
   state: 'todos',
@@ -12,11 +12,11 @@ const emptyTodoState: ISingleTodoState = {
 //                       ? persistedState.todoLists
 //                       : emptyTodoListsState
 
-const todoListsSlice = createSlice({
+const listTodosSlice = createSlice({
   name: 'userLists',
   initialState: emptyTodoState,
   reducers: {}
 });
 
-export const { actions: todoListsActions } = todoListsSlice;
-export default todoListsSlice.reducer;
+export const { actions: todoListsActions } = listTodosSlice;
+export default listTodosSlice.reducer;

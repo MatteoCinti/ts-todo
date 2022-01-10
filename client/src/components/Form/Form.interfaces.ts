@@ -38,9 +38,9 @@ export interface IUserHandleSubmit<T> extends IHandleSubmit<T> {
 export interface ITodoListsHandleSubmit<T> extends IHandleSubmit<T> { 
   // dispatch: any,
   dispatch:ThunkDispatch<{
-    user: T;
+    todoLists: T;
   }, null, AnyAction> & ThunkDispatch<{
-    user: T;
+    todoLists: T;
   }, undefined, AnyAction>,
   isLoginOrRegister?: RegisterLogin;
   username?: string;
