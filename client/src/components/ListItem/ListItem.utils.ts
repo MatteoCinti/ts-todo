@@ -2,52 +2,14 @@ import { Dispatch } from "@reduxjs/toolkit";
 import socket from "../../sockets";
 import { USER_LISTS_UPDATE, USER_LIST_DELETE } from "../../sockets/actions";
 import { ISingleList, ITodoLists } from "../../state/todoLists/todoLists.interfaces";
-
-const unselectAllLists = (state: ITodoLists): ITodoLists => {
-  const { todoLists } = state;
-  const unselectedLists = todoLists.map(list => {
-    if(list.isSelected) {
-      return {
-        ...list,
-        isSelected: false
-      }
-    }
-    return list;
-  })
-  return {
-    ...state, 
-    todoLists: unselectedLists
-  };
-}
-
-const selectCorrectList = (
-  state: ITodoLists,
-  _id: string | undefined
-) : ITodoLists => {
-  const { todoLists } = state;
-  const updatedLists = todoLists.map((list) => {
-    if(list._id === _id) {
-      return { 
-        ...list,
-        isSelected: true
-      }
-    }
-    return list
-  })
-  return {
-    ...state,
-    todoLists: updatedLists
-  }
-}
-
+import { selectCorrectList, unselectAllLists } from "../../state/todoLists/todoLists.utils";
 export const handleSelectClick = (
-  state: ITodoLists,
-  listId: string | undefined,
   username: string,
+  listId: string | undefined,
+  state: ITodoLists,
   // setIsSelected: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const { todoLists } = state;
-  
   const selectedList = todoLists.find((list: ISingleList) => list._id === listId)
   if (!selectedList) { return false }
   
@@ -64,7 +26,7 @@ export const handleSelectClick = (
 
 export const handleDeleteClick = (
   username: string, 
-  listId: string | undefined,
+  listId: string | undefined
 ) => {
   const message = {
     username, 

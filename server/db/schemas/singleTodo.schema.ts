@@ -14,4 +14,4 @@ const singleTodoSchema = new Schema<ITodo> ({
 
 
 export { ITodo }
-export default singleTodoSchema;
+export default singleTodoSchema; 

@@ -3,11 +3,6 @@ import User from "../../../db/schemas/user.schema";
 import { newError } from "../../utilities/errorHandling";
 
 const findAndAddTodo = async (username:string, listId: string, newListPayload: ITodo ) : Promise<any> => {
-  // return await User.findOneAndUpdate( 
-  //   { username },
-  //   { $push: { todoLists: newListPayload }},
-  //   { new: true }
-  // )      
   return await User
     .findOneAndUpdate(
       { username, 'todoLists._id': listId }, 
@@ -27,8 +22,7 @@ const addNewTodo = async (req, res, next): Promise<ITodo[]> => {
     }
 
     const { todoLists } = await findAndAddTodo(username, listId, todoObject);
-    // const updatedList = todoLists.find(todo => todo['_id'].toString() === listId);
-
+    
     res.status(201).json(todoLists);
   } catch (error) {
     next(error);

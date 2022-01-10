@@ -10,6 +10,13 @@ const findAndAddList = async (username:string, newListPayload: ISingleListDB ) :
   )      
 }
 
+const unselectAllLists = async (username:string) => {
+  return await User.findOneAndUpdate(
+    { username, 'todoLists.isSelected': true }, 
+    { $set: {'todoLists.$.isSelected': false} }
+  )
+}
+
 const addNewList = async (req, res, next): Promise<ISingleListDB[]> => {
   try {
     const { username } = req.params;
@@ -18,12 +25,12 @@ const addNewList = async (req, res, next): Promise<ISingleListDB[]> => {
       const error = newError('Missing a required parameter!', 400);
       return next(error);
     }
-
     const newListPayload: ISingleListDB = {
       name: listName,
-      isSelected: false,
+      isSelected: true,
       todos: []
     }
+    await unselectAllLists(username);
     const { todoLists } = await findAndAddList(username, newListPayload)
     res.status(201).json(todoLists);
   } catch (error) {

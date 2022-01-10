@@ -1,7 +1,8 @@
 import { addNewList } from '../../state/todoLists/todoLists.reducers';
-import { ISingleList } from '../../state/todoLists/todoLists.interfaces';
+import { emptySingleList, ISingleList } from '../../state/todoLists/todoLists.interfaces';
 import { ITodoListsHandleSubmit } from '../Form/Form.interfaces';
-import { emptySingleList } from '../SidebarTodoLists/SidebarTodoLists.component';
+import { selectCorrectList, unselectAllLists } from '../../state/todoLists/todoLists.utils';
+import { todoListsActions } from '../../state/todoLists/todoLists.slice';
 
 export const handleSubmit = (props: ITodoListsHandleSubmit<ISingleList>): void => {
   const { e, dispatch, formState, setFormState, username } = props;
@@ -9,6 +10,7 @@ export const handleSubmit = (props: ITodoListsHandleSubmit<ISingleList>): void =
   if(formState.state !== 'singleList') {
     throw new Error('Wrong Params Passed to Function');
   }
+  // console.log("🚀 ~ file: ListItem.utils.ts ~ line 55 ~ unselectedLists", unselectedLists)
   dispatch(addNewList({...formState, username}));
   setFormState(emptySingleList);
 }

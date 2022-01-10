@@ -1,15 +1,8 @@
-import { ReactChild, ReactFragment, ReactPortal, useEffect, useState } from "react";
 import { useAppSelector } from "../../state/hooks";
-import { ISingleList } from "../../state/todoLists/todoLists.interfaces";
+import { emptySingleList, ISingleList } from "../../state/todoLists/todoLists.interfaces";
 import ListItem from "../ListItem/ListItem.component";
 import TodoListsForm from "../TodoListsForm/TodoListsForm.component";
 import './SidebarTodoLists.styles.scss';
-
-export const emptySingleList: ISingleList = {
-  state: 'singleList',
-  isSelected: false,
-  name: ''
-}
 
 const TodoLists: React.FC = ({
 

@@ -23,13 +23,14 @@ export const addNewList = createAsyncThunk(
 )
 
 export const updateTodoLists = ( state: ITodoLists, action: PayloadAction<ISingleList[]> ) => {
-  const updatedState = {
-    ...state,
+  const updatedState: ITodoLists = {
+    state: 'todoLists',
     todoLists: action.payload
   }
 
   saveToLocalStorage('todoLists', updatedState)
   return updatedState;
 }
+
 
 

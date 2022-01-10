@@ -26,8 +26,8 @@ const ListItem: React.FC<IListItemProps> = ({
   return (
     <div className='list-item'>
       <p 
-        className={`list-item__name ${isSelected && 'selected'}`}
-        onClick={() => handleSelectClick(todoListsState, listId, username)}
+        className={`list-item__name ${isSelected ? 'selected' : 'unselected'}`}
+        onClick={() => handleSelectClick(username, listId, todoListsState)}
       >
         {listName}
       </p>

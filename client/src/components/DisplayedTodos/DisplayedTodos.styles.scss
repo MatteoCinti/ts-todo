@@ -4,12 +4,42 @@
 $margin-left: 5rem;
 $margin-right: 5rem;
 
+@mixin display-width {
+  width: 75%;
+  max-width: 750px;
+}
+
 .displayed-todos {
   @include flex-centred(column);
   height: calc(100vh - #{$menu-height-mobile});
   width: calc(100% - #{$sidebar-width});
   margin-top: $menu-height-mobile;
   margin-left: calc(#{$sidebar-width} + #{$margin-left});
+
+  &__header {
+    @include flex-centred(row);
+    @include display-width;
+    justify-content: space-between;
+
+    margin: 2rem 0;
+  }
+  
+  &__title {
+    font-weight: bold;
+  }
+
+  &__tag {
+    font-size: 16px;
+    font-style: italic;
+    opacity: .8;
+  }
+
+  &__container{
+    @include flex-centred(column);
+    @include display-width;
+    align-items: flex-start;
+
+  }
 
 }
 

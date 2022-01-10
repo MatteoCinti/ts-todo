@@ -22,7 +22,15 @@ export interface ISingleList {
   isSelected: boolean,
   name: string;
   category?: string;
-} 
+  todos: ITodo[] | [];
+}
+
+export const emptySingleList: ISingleList = {
+  state: 'singleList',
+  isSelected: true,
+  name: '',
+  todos: []
+}
 
 export interface ITodoLists {
   state: 'todoLists' | string,

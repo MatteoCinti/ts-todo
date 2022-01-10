@@ -14,3 +14,16 @@ export const getPersistedState = () => {
   if (!serializedState || serializedState === '{}') return undefined;
   return JSON.parse(serializedState);
 }
+
+export const partitionArray = (
+  array: any[], 
+  filter: (
+    arg0: any, 
+    arg1: number, 
+    arg2: any[]
+  ) => any
+): [any[], any[]] => {
+  let pass: any[] = [], fail: any[] = [];
+  array.forEach((e, idx, arr) => (filter(e, idx, arr) ? pass : fail).push(e));
+  return [pass, fail];
+}
