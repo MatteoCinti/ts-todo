@@ -7,6 +7,7 @@ import './TodoLists.styles.scss';
 
 export const emptySingleList: ISingleList = {
   state: 'singleList',
+  isSelected: false,
   name: '',
   todos: []
 }
@@ -25,6 +26,7 @@ const TodoLists: React.FC = ({
             key={list._id} 
             listName={list.name} 
             listId={list._id}
+            isSelected={list.isSelected}
           />
         ))
       }

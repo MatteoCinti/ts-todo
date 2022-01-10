@@ -12,6 +12,7 @@ export interface ITodo {
 export interface ISingleList {
   _id?: string;
   state?: 'singleList',
+  isSelected: boolean,
   name: string;
   category?: string;
   todos: ITodo[];

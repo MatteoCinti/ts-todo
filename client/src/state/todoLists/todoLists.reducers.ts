@@ -1,4 +1,4 @@
-import { CaseReducer, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { CaseReducer, createAsyncThunk, current, PayloadAction } from "@reduxjs/toolkit";
 import socket from "../../sockets";
 import { CREATE_NEW_LIST } from "../../sockets/actions";
 import { saveToLocalStorage } from "../utils/utils";
@@ -31,3 +31,5 @@ export const updateTodoLists = ( state: ITodoLists, action: PayloadAction<ISingl
   saveToLocalStorage('todoLists', updatedState)
   return updatedState;
 }
+
+

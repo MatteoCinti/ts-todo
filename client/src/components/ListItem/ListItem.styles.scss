@@ -5,16 +5,21 @@
   @include flex-centred(row);
   justify-content: space-between;
   margin: 0 calc(#{$sidebar-margin-left} + 3px) 0 55px;
+  margin-bottom: 1rem;
 
   &__name {
     font-size: 20px;
-    margin-bottom: 1rem;
     cursor: pointer;
   }
 
   &__delete {
-    width: 17px;
+    width: 16px;
     height: auto;
     cursor: pointer;
   }
+}
+
+.selected {
+  color: $dark-blue;
+  font-weight: bold;
 }

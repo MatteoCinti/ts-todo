@@ -2,8 +2,7 @@ import { ISingleList } from "../../../db/schemas/lists.schema";
 import User, { IUser } from "../../../db/schemas/user.schema";
 import { newError } from "../../utilities/errorHandling";
 
-const findOne = async (username:string) : Promise<IUser> => {
-  console.log(username)
+export const findOne = async (username:string) : Promise<IUser> => {
   return await User.findOne({ username });      
 }
 

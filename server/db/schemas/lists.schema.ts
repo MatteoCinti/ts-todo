@@ -5,6 +5,10 @@ import { Schema, model } from 'mongoose';
 const todoListsSchema = new Schema<ISingleList> ({
   name: {type: String, required: true},
   category: String,
+  isSelected: {
+    type: Boolean,
+    default: false
+  },
   todos: []
 });
 
