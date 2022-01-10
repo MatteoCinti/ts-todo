@@ -68,11 +68,12 @@ io.on('connection', (socket) => {
     }
   })
 
-  socket.on(FETCH_USER_DATA, async(username) => {
+  socket.on(FETCH_USER_DATA, async (username) => {
     try {
+      console.log("🚀 ~ file: app.ts ~ line 72 ~ socket.on ~ username", username)
       const response = await axios.get(`${HOST}/api/users/${username}`);
       const { todoLists } = response.data;
-      console.log("🚀 ~ file: Home.page.tsx ~ line 14 ~ useEffect ~ username", todoLists)
+      console.log("🚀 ~ file: app.ts ~ line 75 ~ socket.on ~ todoLists", todoLists)
 
       socket.emit(USER_LISTS_UPDATE, todoLists)
     } catch (error) {
