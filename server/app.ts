@@ -84,7 +84,6 @@ io.on('connection', (socket) => {
       const { username, todoLists } = message;
       const response = await axios.put(`${HOST}/api/users/${username}/lists`, { todoLists });
       const updatedTodoLists = response.data.todoLists;
-      console.log("🚀 ~ file: app.ts ~ line 87 ~ socket.on ~ updatedTodoLists", updatedTodoLists)
       socket.emit(USER_LISTS_UPDATE, updatedTodoLists);
     } catch (error) {
       console.error(error)
