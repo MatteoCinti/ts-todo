@@ -1,8 +1,8 @@
-import { ISingleList } from "../../../db/schemas/lists.schema";
+import { ISingleListDB } from "../../../db/schemas/lists.schema";
 import User, { IUser } from "../../../db/schemas/user.schema";
 import { newError } from "../../utilities/errorHandling";
 
-const findAndAddList = async (username:string, newListPayload: ISingleList ) : Promise<IUser> => {
+const findAndAddList = async (username:string, newListPayload: ISingleListDB ) : Promise<IUser> => {
   return await User.findOneAndUpdate( 
     { username },
     { $push: { todoLists: newListPayload }},
@@ -10,7 +10,7 @@ const findAndAddList = async (username:string, newListPayload: ISingleList ) : P
   )      
 }
 
-const addNewList = async (req, res, next): Promise<ISingleList[]> => {
+const addNewList = async (req, res, next): Promise<ISingleListDB[]> => {
   try {
     const { username } = req.params;
     const { listName } = req.body;
@@ -18,8 +18,8 @@ const addNewList = async (req, res, next): Promise<ISingleList[]> => {
       const error = newError('Missing a required parameter!', 400);
       return next(error);
     }
-  
-    const newListPayload: ISingleList = {
+
+    const newListPayload: ISingleListDB = {
       name: listName,
       isSelected: false,
       todos: []

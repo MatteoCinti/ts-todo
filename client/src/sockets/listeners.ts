@@ -2,7 +2,7 @@ import { DefaultEventsMap } from "@socket.io/component-emitter";
 import { Socket } from "socket.io-client";
 import { todoListsActions } from "../state/todoLists/todoLists.slice";
 
-import { JOINED_SHARED_LIST, CREATE_SHARED_LIST, USER_LISTS_UPDATE } from './actions';
+import { JOINED_SHARED_LIST, CREATE_SHARED_LIST, USER_LISTS_UPDATE, ADD_TODO_OBJECT, UPDATE_DISPLAYED_TODOS } from './actions';
 
 export const socketConnectionListener = (
   socket: Socket<DefaultEventsMap, DefaultEventsMap>, 
@@ -23,5 +23,5 @@ export const socketConnectionListener = (
   socket.on(USER_LISTS_UPDATE, (updatedTodoList) => {
     const payload = updatedTodoList
     dispatch(todoListsActions.updateTodoLists(payload));
-  })  
+  })
 }

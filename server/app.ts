@@ -7,7 +7,7 @@ import path from 'path';
 import axios from 'axios';
 dotenv.config({path: path.join(__dirname, '..', '.env')});
 
-import { CREATE_SHARED_LIST, JOINED_SHARED_LIST, CREATE_NEW_LIST, USER_LISTS_UPDATE, USER_LIST_DELETE, FETCH_USER_DATA } from '../client/src/sockets/actions';
+import { CREATE_SHARED_LIST, JOINED_SHARED_LIST, CREATE_NEW_LIST, USER_LISTS_UPDATE, USER_LIST_DELETE, FETCH_USER_DATA, ADD_TODO_OBJECT, UPDATE_DISPLAYED_TODOS } from '../client/src/sockets/actions';
 import { socketsSetup } from './sockets/setup';
 import { connectToDatabase } from './db';
 import socketsRouter from './routes/socketsRouter';
@@ -89,6 +89,18 @@ io.on('connection', (socket) => {
       const response = await axios.put(`${HOST}/api/users/${username}/lists`, { todoLists });
       const updatedTodoLists = response.data.todoLists;
       socket.emit(USER_LISTS_UPDATE, updatedTodoLists);
+    } catch (error) {
+      console.error(error)
+    }
+  })
+
+  socket.on(ADD_TODO_OBJECT, async (message) => {
+    try {
+      const { username, listId, todoObject } = message;
+      const response = await axios.post(`${HOST}/api/users/${username}/lists/${listId}`, { todoObject });
+      
+      const updatedTodos = response.data;
+      socket.emit(USER_LISTS_UPDATE, updatedTodos);
     } catch (error) {
       console.error(error)
     }

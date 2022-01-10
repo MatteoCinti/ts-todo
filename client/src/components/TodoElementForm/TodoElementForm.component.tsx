@@ -1,8 +1,7 @@
-import { ISingleList } from "../../state/todoLists/todoLists.interfaces";
+import { ISingleList, ITodo } from "../../state/todoLists/todoLists.interfaces";
 import Form from "../Form/Form.component";
 import { handleSubmit } from './TodoElementForm.utils';
 import TextInput from "../TextInput/TextInput.component";
-import { IDisplayedTodoState, ITodo } from "../../state/todoObjects/todoObjects.interfaces";
 import './TodoElementForm.styles.scss'
 
 interface ITodoFormProps { 

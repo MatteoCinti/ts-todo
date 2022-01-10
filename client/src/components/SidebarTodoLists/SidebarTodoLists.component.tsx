@@ -8,14 +8,13 @@ import './SidebarTodoLists.styles.scss';
 export const emptySingleList: ISingleList = {
   state: 'singleList',
   isSelected: false,
-  name: '',
-  todos: []
+  name: ''
 }
 
 const TodoLists: React.FC = ({
 
 }) => {
-  const listsState = useAppSelector(state => state.todoLists.todoLists);
+  const listsState = useAppSelector(state => state.todoLists.todoLists) || [];
  
   return (
     <section className='todo-lists'>

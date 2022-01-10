@@ -16,12 +16,14 @@ const updateTodoLists = async (req, res, next): Promise<any> => {
   try {
     const { username } = req.params;
     const { todoLists } = req.body.todoLists;
+    console.log("🚀 ~ file: updateTodoLists.ts ~ line 19 ~ updateTodoLists ~ todoLists", todoLists)
     if( !username || !todoLists ) {
       const error = newError('Missing a required parameter!', 400);
       return next(error);
     }
     
     const updatedState = await findAndUpdate(username, todoLists);
+    console.log("🚀 ~ file: updateTodoLists.ts ~ line 25 ~ updateTodoLists ~ todoLists", todoLists)
     res.status(201).json(updatedState);
   } catch (error) {
     next(error); 

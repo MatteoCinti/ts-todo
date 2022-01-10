@@ -1,5 +1,6 @@
-import { ITodo } from "../../state/todoObjects/todoObjects.interfaces"
-import { todoElementTemplate } from "../../state/todoObjects/todoObjects.slice";
+import socket from "../../sockets";
+import { ADD_TODO_OBJECT } from "../../sockets/actions";
+import { ITodo, todoElementTemplate } from "../../state/todoLists/todoLists.interfaces";
 import { IDisplayedTodosHandleSubmit } from "../Form/Form.interfaces"
 
 export const handleSubmit = (props: IDisplayedTodosHandleSubmit<ITodo>): void => {
@@ -8,7 +9,13 @@ export const handleSubmit = (props: IDisplayedTodosHandleSubmit<ITodo>): void =>
   if(formState.state !== 'singleTodo') {
     throw new Error('Wrong Params Passed to Function');
   }
-  console.log('SUBMIT');
-  // dispatch(addNewTodo({...formState, username, listId}));
+
+  const message = {
+    username,
+    listId,
+    todoObject: formState
+  }
+
+  socket.emit(ADD_TODO_OBJECT, message);
   setFormState(todoElementTemplate);
 }

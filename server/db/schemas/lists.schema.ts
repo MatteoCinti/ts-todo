@@ -2,7 +2,11 @@ import { Schema, model } from 'mongoose';
 import { ISingleList } from '../../../client/src/state/todoLists/todoLists.interfaces';
 import singleTodoSchema from './singleTodo.schema';
 
-const todoListsSchema = new Schema<ISingleList> ({
+export interface ISingleListDB extends ISingleList {
+  todos: []
+}
+
+const todoListsSchema = new Schema<ISingleListDB> ({
   name: {type: String, required: true},
   category: String,
   isSelected: {

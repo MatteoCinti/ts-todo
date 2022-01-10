@@ -10,7 +10,7 @@ const Form = ({
   ariaLabel, cssClass, children, svg, isLoginOrRegister, state, buttonValue, handleSubmit, listId
 }: FormProps) => {
   const [formState, setFormState] = useState(state);
-  console.log("🚀 ~ file: Form.component.tsx ~ line 13 ~ formState", formState)
+  // console.log("🚀 ~ file: Form.component.tsx ~ line 13 ~ formState", formState)
   const dispatch = useAppDispatch();
   let navigate = useNavigate();
   const { username } = useParams();

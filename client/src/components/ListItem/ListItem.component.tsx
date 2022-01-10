@@ -3,6 +3,7 @@ import {ReactComponent as Delete} from '../../images/Delete.svg';
 import { handleDeleteClick, handleSelectClick } from './ListItem.utils';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
 import { ISingleList } from '../../state/todoLists/todoLists.interfaces';
+import { useState } from 'react';
 
 
 interface IListItemProps {
@@ -18,6 +19,7 @@ const ListItem: React.FC<IListItemProps> = ({
 }) => {
   const userState = useAppSelector(state => state.user);
   const todoListsState = useAppSelector(state => state.todoLists);
+  // const [ isSelected, setIsSelected ] = useState(false);
   const { todoLists } = todoListsState;
   const { username } = userState;
 

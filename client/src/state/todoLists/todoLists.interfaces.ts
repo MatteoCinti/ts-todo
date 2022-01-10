@@ -1,4 +1,16 @@
-import { ITodo } from "../todoObjects/todoObjects.interfaces";
+export interface ITodo {
+  state: 'singleTodo';
+  _id?: string;
+  name: string;
+  isCompleted: boolean;
+}
+
+
+export const todoElementTemplate: ITodo = {
+  state: 'singleTodo',
+  name: '', 
+  isCompleted: false,
+}
 
 export interface ISingleList {
   _id?: string;
@@ -6,7 +18,6 @@ export interface ISingleList {
   isSelected: boolean,
   name: string;
   category?: string;
-  todos: ITodo[];
 } 
 
 export interface ITodoLists {

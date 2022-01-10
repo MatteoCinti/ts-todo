@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   const { username } = useParams();
 
   useEffect(() => {
-    console.log("🚀 ~ file: Home.page.tsx ~ line 14 ~ useEffect ~ username", username)
+    // console.log("🚀 ~ file: Home.page.tsx ~ line 14 ~ useEffect ~ username", username)
     socket.emit(FETCH_USER_DATA, username);
   }, [username])
   
