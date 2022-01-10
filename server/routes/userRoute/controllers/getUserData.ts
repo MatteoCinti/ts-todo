@@ -9,14 +9,14 @@ export const findOne = async (username:string) : Promise<IUser> => {
 const getUserData = async (req, res, next): Promise<ISingleList[]> => {
   try {
     const { username } = req.params;
-    console.log("🚀 ~ file: getUserData.ts ~ line 12 ~ getUserData ~ username", username)
+    // console.log("🚀 ~ file: getUserData.ts ~ line 12 ~ getUserData ~ username", username)
     
     if( !username ) {
       const error = newError('Missing username!', 400);
       return next(error);
     }
     const response = await findOne(username);  
-    console.log("🚀 ~ file: getUserData.ts ~ line 19 ~ getUserData ~ response", response)
+    // console.log("🚀 ~ file: getUserData.ts ~ line 19 ~ getUserData ~ response", response)
     res.status(201).json(response);
   } catch (error) {
     next(error);

@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
       message: 'User accessed room'
     }
     socket.join(room);
-    console.log(`Pinche Cochiloco joined 🍂 room: ${room}, with 🐛 ID: ${socket.id} `)
+    console.log(`Joined 🍂 room: ${room}, with 🐛 ID: ${socket.id} `)
     io.to(room).emit(JOINED_SHARED_LIST, JSON.stringify(data));
   })
 
@@ -70,11 +70,11 @@ io.on('connection', (socket) => {
 
   socket.on(FETCH_USER_DATA, async (username) => {
     try {
-      console.log("🚀 ~ file: app.ts ~ line 72 ~ socket.on ~ username", username)
+      // console.log("🚀 ~ file: app.ts ~ line 72 ~ socket.on ~ username", username)
       const response = await axios.get(`${HOST}/api/users/${username}`);
-      console.log("🚀 ~ file: app.ts ~ line 75 ~ socket.on ~ `${HOST}/api/users/${username}`", `${HOST}/api/users/${username}`)
+      // console.log("🚀 ~ file: app.ts ~ line 75 ~ socket.on ~ `${HOST}/api/users/${username}`", `${HOST}/api/users/${username}`)
       const { todoLists } = response.data;
-      console.log("🚀 ~ file: app.ts ~ line 75 ~ socket.on ~ todoLists", todoLists)
+      // console.log("🚀 ~ file: app.ts ~ line 75 ~ socket.on ~ todoLists", todoLists)
 
       // socket.emit(USER_LISTS_UPDATE, todoLists)
     } catch (error) {

@@ -52,7 +52,7 @@ export const handleSelectClick = (
   if (!selectedList) { return false }
   
   const unselectedLists = unselectAllLists(state);
-  console.log("🚀 ~ file: ListItem.utils.ts ~ line 55 ~ unselectedLists", unselectedLists)
+  // console.log("🚀 ~ file: ListItem.utils.ts ~ line 55 ~ unselectedLists", unselectedLists)
   const updatedState = selectCorrectList(unselectedLists, listId);
   const message = {
     username,

@@ -35,7 +35,6 @@
   },
   "scripts": {
     "start": "node ./dist/server/app.js",
-    "start:production": "cross-env NODE_ENV=production node ./dist/server/app.js",
     "start:nodemon": "nodemon --verbose --watch \"server\" --ext \"ts,json\" --exec ts-node server/app.ts",
     "start:client": "cd client && npm run start",
     "start:dev": "concurrently \"npm run start:client\" \"npm run start:nodemon\"",

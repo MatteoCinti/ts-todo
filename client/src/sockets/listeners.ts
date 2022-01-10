@@ -10,14 +10,15 @@ export const socketConnectionListener = (
   dispatch: any
 ) : void => {
   socket.on('connect', () => {
-    console.log(`🦧🌊 PENDEJO chingastes con ID: 💨${socket.id}`);
+    // console.log(`🦧🌊 PENDEJO chingastes con ID: 💨${socket.id}`);
+    console.log(`🦧🌊 connected to websockets with ID: 💨${socket.id}`);
   });
   privateRoom.on('connect', () => {
-    console.log('CARNAL CONECTADO');
+    console.log('Connected to Private Room');
   })
   
   socket.on(JOINED_SHARED_LIST, (message) => {
-    console.log(`Pinche Cochiloco joined 🍂 room: ${message.room}, with 🐛 ID: ${socket.id} `)
+    console.log(`Joined 🍂 room: ${message.room}, with 🐛 ID: ${socket.id} `)
   })
 
   socket.on(USER_LISTS_UPDATE, (updatedTodoList) => {
