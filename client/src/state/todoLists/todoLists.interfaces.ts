@@ -2,14 +2,18 @@ export interface ITodo {
   state: 'singleTodo';
   _id?: string;
   name: string;
+  index: number;
   isCompleted: boolean;
+  role: string;
 }
 
 
 export const todoElementTemplate: ITodo = {
   state: 'singleTodo',
-  name: '', 
+  name: '',
+  index: 0,
   isCompleted: false,
+  role: 'task'
 }
 
 export interface ISingleList {
