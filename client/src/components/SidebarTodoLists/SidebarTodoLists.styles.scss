@@ -1,0 +1,24 @@
+@use '../../styles/vars' as *;
+@use '../../styles/mixins' as *;
+
+.todo-lists {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  margin-top: $menu-height-mobile;
+  height: calc(100vh - #{$menu-height-mobile});
+  width: $sidebar-width;
+  min-width: 320px;
+  background-color: $light-grey;
+  z-index: 1;
+
+  &__title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: $sidebar-margin-left 0 15px $sidebar-margin-left;
+  }
+}
+
+.todo-lists-form {
+  @include form-icon-input
+}

@@ -1,11 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getPersistedState } from "../utils/utils";
-import { ISingleTodoState } from "./todoObjects.interfaces";
+import { ETaskSubtask, IDisplayedTodoState, ITodo } from "./todoObjects.interfaces";
 
-const emptyTodoState: ISingleTodoState = {
-  state: 'todos',
+export const emptyTodoState: IDisplayedTodoState = {
+  state: 'todosCollection',
   todos: []
 }
+
+export const todoElementTemplate: ITodo = {
+  state: 'singleTodo',
+  name: '',
+  isCompleted: false,
+  index: 0,
+  role: ETaskSubtask.task
+} 
 
 // const persistedState = getPersistedState();
 // const initialState = persistedState

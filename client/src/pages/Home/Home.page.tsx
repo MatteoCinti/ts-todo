@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ListTodosElements from "../../components/ListTodoElements/ListTodosElements.component";
-import Navigation from "../../components/Navigation/Navigation.component";
-import TodoLists from "../../components/TodoLists/TodoLists.component";
-import socket from "../../sockets";
 import { FETCH_USER_DATA } from "../../sockets/actions";
+
+import socket from "../../sockets";
+import DisplayedTodos from "../../components/DisplayedTodos/DisplayedTodos.component";
+import Navigation from "../../components/Navigation/Navigation.component";
+import TodoLists from "../../components/SidebarTodoLists/SidebarTodoLists.component";
+import './Home.styles.scss'
 import { useAppSelector } from "../../state/hooks";
 
 const Home: React.FC = () => {
@@ -19,7 +21,7 @@ const Home: React.FC = () => {
     <article className="home-page">
       <Navigation />
       <TodoLists />  
-      <ListTodosElements /> 
+      <DisplayedTodos /> 
     </article>
 )}
 

@@ -4,6 +4,7 @@ export const enum ETaskSubtask {
 }
 
 export interface ITodo {
+  state: 'singleTodo'
   _id?: string;
   name: string;
   index: number;
@@ -11,7 +12,7 @@ export interface ITodo {
   role: ETaskSubtask;
 }
 
-export interface ISingleTodoState {
-  state: 'todos',
+export interface IDisplayedTodoState {
+  state: 'todosCollection',
   todos: ITodo[]
 }

@@ -1,0 +1,20 @@
+@use '../../styles/vars' as *;
+@use '../../styles/mixins' as *;
+
+$margin-left: 5rem;
+$margin-right: 5rem;
+
+.displayed-todos {
+  @include flex-centred(column);
+  height: calc(100vh - #{$menu-height-mobile});
+  width: calc(100% - #{$sidebar-width});
+  margin-top: $menu-height-mobile;
+  margin-left: calc(#{$sidebar-width} + #{$margin-left});
+
+}
+
+.todo-elements-form {
+  @include form-icon-input;
+  padding-right: $margin-right;
+
+}

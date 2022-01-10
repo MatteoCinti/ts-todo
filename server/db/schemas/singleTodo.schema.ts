@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { ITodo } from '../../../client/src/state/listTodos/listTodos.interfaces';
+import { ITodo } from '../../../client/src/state/todoObjects/todoObjects.interfaces';
 
 
 const singleTodoSchema = new Schema<ITodo> ({

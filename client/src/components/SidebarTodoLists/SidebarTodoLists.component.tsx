@@ -3,7 +3,7 @@ import { useAppSelector } from "../../state/hooks";
 import { ISingleList } from "../../state/todoLists/todoLists.interfaces";
 import ListItem from "../ListItem/ListItem.component";
 import TodoListsForm from "../TodoListsForm/TodoListsForm.component";
-import './TodoLists.styles.scss';
+import './SidebarTodoLists.styles.scss';
 
 export const emptySingleList: ISingleList = {
   state: 'singleList',

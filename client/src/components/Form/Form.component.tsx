@@ -7,9 +7,10 @@ import './Form.styles.scss'
 import { useNavigate, useParams } from 'react-router-dom';
 
 const Form = ({ 
-  ariaLabel, cssClass, children, svg, isLoginOrRegister, state, buttonValue, handleSubmit
+  ariaLabel, cssClass, children, svg, isLoginOrRegister, state, buttonValue, handleSubmit, listId
 }: FormProps) => {
   const [formState, setFormState] = useState(state);
+  console.log("🚀 ~ file: Form.component.tsx ~ line 13 ~ formState", formState)
   const dispatch = useAppDispatch();
   let navigate = useNavigate();
   const { username } = useParams();
@@ -24,7 +25,7 @@ const Form = ({
       className={`form ${cssClass}`} 
       aria-label={ariaLabel} 
       onSubmit={(e) => handleSubmit({
-        e, dispatch, isLoginOrRegister, setFormState, formState, navigate, username
+        e, dispatch, isLoginOrRegister, setFormState, formState, navigate, username, listId
       })}
     > 
       {childrenWithExtraProp}

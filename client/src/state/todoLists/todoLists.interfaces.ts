@@ -1,4 +1,4 @@
-import { ITodo } from "../listTodos/listTodos.interfaces";
+import { ITodo } from "../todoObjects/todoObjects.interfaces";
 
 export interface ISingleList {
   _id?: string;
