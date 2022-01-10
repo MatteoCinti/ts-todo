@@ -72,7 +72,8 @@ io.on('connection', (socket) => {
     try {
       const response = await axios.get(`${HOST}/api/users/${username}`);
       const { todoLists } = response.data;
-  
+      console.log("🚀 ~ file: Home.page.tsx ~ line 14 ~ useEffect ~ username", todoLists)
+
       socket.emit(USER_LISTS_UPDATE, todoLists)
     } catch (error) {
       console.error(error.message);
@@ -82,6 +83,7 @@ io.on('connection', (socket) => {
   socket.on(USER_LISTS_UPDATE, async (message) => {
     try {
       const { username, todoLists } = message;
+      
       const response = await axios.put(`${HOST}/api/users/${username}/lists`, { todoLists });
       const updatedTodoLists = response.data.todoLists;
       socket.emit(USER_LISTS_UPDATE, updatedTodoLists);
