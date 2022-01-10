@@ -13,12 +13,10 @@ const DisplayedTodos: React.FC<{}> = (
   const displayedList = useAppSelector(state => state.todoLists.todoLists)
   .find((todoList: ISingleList) => todoList.isSelected)
   || [];
-  console.log("🚀 ~ file: DisplayedTodos.component.tsx ~ line 14 ~ displayedList", displayedList)
   const listId  = displayedList._id;
-  // console.log("🚀 ~ file: DisplayedTodos.component.tsx ~ line 16 ~ listId", displayedList)
   
   return (
-    displayedList.length > 0 
+    displayedList.name 
       ? <section className="displayed-todos">
           <header className="displayed-todos__header">
             <h3 className="displayed-todos__title">
