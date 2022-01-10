@@ -1,13 +1,4 @@
-export const enum ETaskSubtask {
-  task= 'task',
-  subtask = 'subtask'
-}  
-export interface ITodo {
-  id: string;
-  index: number;
-  isCompleted: boolean;
-  role: ETaskSubtask;
-}
+import { ITodo } from "../todoElement.ts/todoElement.interfaces";
 
 export interface ISingleList {
   _id?: string;

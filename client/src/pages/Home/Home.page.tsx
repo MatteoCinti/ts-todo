@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     socket.emit(FETCH_USER_DATA, username);
     console.log("🚀 ~ file: Home.page.tsx ~ line 14 ~ useEffect ~ username", username)
-  }, [])
+  }, [username])
   
   return (
     <article className="home-page">

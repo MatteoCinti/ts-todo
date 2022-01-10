@@ -1,6 +1,6 @@
-import { ISingleList } from '../../../client/src/state/todoLists/todoLists.interfaces';
-
 import { Schema, model } from 'mongoose';
+import { ISingleList } from '../../../client/src/state/todoLists/todoLists.interfaces';
+import singleTodoSchema from './singleTodo.schema';
 
 const todoListsSchema = new Schema<ISingleList> ({
   name: {type: String, required: true},
@@ -9,7 +9,7 @@ const todoListsSchema = new Schema<ISingleList> ({
     type: Boolean,
     default: false
   },
-  todos: []
+  todos: [singleTodoSchema]
 });
 
 const todoLists = model<ISingleList>('todoLists', todoListsSchema);
