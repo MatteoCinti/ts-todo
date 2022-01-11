@@ -15,6 +15,7 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    console.log('Hello')
     socketConnectionListener(socket, privateRoom, dispatch);
   }, []);
 
