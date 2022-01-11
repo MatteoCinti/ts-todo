@@ -12,14 +12,10 @@ import { socketConnectionListener, socketConnectToPrivateRoom } from './sockets/
 
 function App() {
   let navigate = useNavigate();
-  const userState = useAppSelector(state => state.user)
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const  { isLoggedIn, username } = userState
-    if ( isLoggedIn ) {
-      navigate(`/app/${username}/lists/`);
-    } 
+    navigate('/app')
     socketConnectionListener(socket, privateRoom, dispatch);
   }, []);
 
