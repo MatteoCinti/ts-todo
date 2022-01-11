@@ -34,7 +34,6 @@ export const handleLogin = createAsyncThunk (
       }
   
       const parsedNewUser = await response.json();
-      console.log("🚀 ~ file: user.reducers.ts ~ line 37 ~ parsedNewUser", parsedNewUser)
       delete parsedNewUser.todoLists;
       const userState = {
         state: 'user',
