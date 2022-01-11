@@ -51,7 +51,9 @@ io.on('connection', (socket) => {
       const todoLists = response.data;
 
       socket.join(username);
+      
       io.to(username).emit(USER_LISTS_UPDATE, todoLists)
+      console.log("🚀 ~ file: app.ts ~ line 56 ~ socket.on ~ `${username}`", `${username}`)
     } catch (error) {
       console.error(error.message)
     }
@@ -106,17 +108,17 @@ io.on('connection', (socket) => {
 
 });
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client', 'build')));
-
-  app.get('/^(?!\/api).+/*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-  });
-}
 
 app.use('/sockets', socketsRouter);
 app.use('/api/users', userRouter);
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client', 'build')));
+
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+  });
+}
 app.use(function (err, req, res, next) {
   console.error(err);
   res.status(err.code || 500).json(err.message);
