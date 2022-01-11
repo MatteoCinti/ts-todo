@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FETCH_USER_DATA } from "../../sockets/actions";
 
@@ -11,7 +11,8 @@ import { useAppSelector } from "../../state/hooks";
 
 const Home: React.FC = () => {
   const { username } = useParams();
-  console.log("🚀 ~ file: Home.page.tsx ~ line 14 ~ username", username)
+  const [sidebarMinimized, setSidebarMinimized] = useState<boolean>(false);
+
 
   useEffect(() => {
     // console.log("🚀 ~ file: Home.page.tsx ~ line 14 ~ useEffect ~ username", username)
@@ -21,8 +22,8 @@ const Home: React.FC = () => {
   return (
     <article className="home-page">
       <Navigation />
-      <TodoLists />  
-      <DisplayedTodos /> 
+      <TodoLists sidebarMinimized={[sidebarMinimized, setSidebarMinimized]}/>  
+      <DisplayedTodos minimized={sidebarMinimized}/> 
     </article>
 )}
 

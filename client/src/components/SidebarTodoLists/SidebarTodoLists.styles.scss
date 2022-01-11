@@ -10,13 +10,60 @@
   width: $sidebar-width;
   min-width: 320px;
   background-color: $light-grey;
+  opacity: 1;
   z-index: 1;
+  transition: all 1s 200ms ease-out;
+
+  &:before {
+    position: absolute;
+    content: '';
+    background-color: $light-grey;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+  }
 
   &__title {
     font-size: 18px;
     font-weight: bold;
     margin: 2.3rem 0 1.1rem $sidebar-margin-left;
   }
+
+  &__minimize {
+    width: 45px;
+    height: auto;
+  }
+
+  &__icon-container{
+    height: fit-content;
+  }
+
+  & > * {
+    transition: opacity 300ms 600ms ease;
+  }
+
+  &--minimized {
+    width: $logo-width;
+    min-width: $logo-width;
+    .todo-lists__title,
+    .list-item,
+    .todo-lists-form,
+    .icon-container__label {
+      opacity: 0;
+      transform-origin: left;
+      visibility: hidden;      // transform: scaleX(0);
+      transition: all 400ms ease-out, transform 5s ease-out;
+    }
+    .icon-container {
+      display: block;
+    }
+  }
+}
+
+.icon-container {
+  display: flex;
 }
 
 .todo-lists-form {

@@ -10,6 +10,8 @@
        npm run test:client
     - for the tests
 
+You can share a list by copying the list url
+
 # NOTE ON HEROKU
 ##  If page shows white please delete local storage state for the app
 

@@ -38,14 +38,12 @@ export const handleLogin = createAsyncThunk (
       delete parsedNewUser.todoLists;
       const userState = {
         state: 'user',
-        guest: true,
         ...parsedNewUser
       }
       saveToLocalStorage('user', userState);
       if(userState.guest){
         console.log('guest');
         navigate(`/Matteo/lists`);
-
       } else {
         navigate(`/${userObject.username}/lists`);
       }

@@ -3,7 +3,6 @@ import { socket, privateRoom } from './sockets';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import Home from './pages/Home/Home.page';
-import Shared from './pages/Shared/Shared.page';
 import WelcomePage from './pages/Welcome/Welcome.page';
 
 import { JOINED_SHARED_LIST, CREATE_SHARED_LIST } from './sockets/actions';

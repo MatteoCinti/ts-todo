@@ -1,4 +1,4 @@
-import { Dispatch } from "@reduxjs/toolkit";
+import { NavigateFunction } from "react-router-dom";
 import socket from "../../sockets";
 import { USER_LISTS_UPDATE, USER_LIST_DELETE } from "../../sockets/actions";
 import { ISingleList, ITodoLists } from "../../state/todoLists/todoLists.interfaces";
@@ -7,6 +7,7 @@ export const handleSelectClick = (
   username: string,
   listId: string | undefined,
   state: ITodoLists,
+  navigate: NavigateFunction
   // setIsSelected: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const { todoLists } = state;
@@ -14,13 +15,12 @@ export const handleSelectClick = (
   if (!selectedList) { return false }
   
   const unselectedLists = unselectAllLists(state);
-  // console.log("🚀 ~ file: ListItem.utils.ts ~ line 55 ~ unselectedLists", unselectedLists)
   const updatedState = selectCorrectList(unselectedLists, listId);
   const message = {
     username,
     todoLists: updatedState,
   }
-
+  navigate(`/${username}/lists/${selectedList.name}`)
   socket.emit(USER_LISTS_UPDATE, message);
 }
 
