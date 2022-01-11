@@ -30,12 +30,10 @@ export const socketConnectionListener = (
 
   socket.on(USER_LISTS_UPDATE, (updatedTodoList) => {
     const payload = updatedTodoList
-    console.log("🚀 ~ file: listeners.ts ~ line 33 ~ socket.on ~ payload", payload)
     dispatch(todoListsActions.updateTodoLists(payload));
   })
   socket.on(USER_UPDATE, (updatedUser) => {
     const payload = updatedUser
-    console.log("🚀 ~ file: listeners.ts ~ line 38 ~ socket.on ~ payload", payload)
     dispatch(todoListsActions.updateTodoLists(payload));
   })
 }

@@ -53,7 +53,6 @@ io.on('connection', (socket) => {
       socket.join(username);
       
       io.to(username).emit(USER_LISTS_UPDATE, todoLists)
-      console.log("🚀 ~ file: app.ts ~ line 56 ~ socket.on ~ `${username}`", `${username}`)
     } catch (error) {
       console.error(error.message)
     }
@@ -119,6 +118,7 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
   });
 }
+
 app.use(function (err, req, res, next) {
   console.error(err);
   res.status(err.code || 500).json(err.message);
