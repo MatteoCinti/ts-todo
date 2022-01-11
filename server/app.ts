@@ -50,7 +50,8 @@ io.on('connection', (socket) => {
       const response = await axios.post(`${HOST}/api/users/${username}/lists`, { listName });
       const todoLists = response.data;
 
-      io.emit(USER_LISTS_UPDATE, todoLists)
+      socket.join(username);
+      io.to(username).emit(USER_LISTS_UPDATE, todoLists)
     } catch (error) {
       console.error(error.message)
     }
@@ -62,7 +63,7 @@ io.on('connection', (socket) => {
       const response = await axios.delete(`${HOST}/api/users/${username}/lists/${listId}`);
       const todoLists = response.data;
 
-      io.emit(USER_LISTS_UPDATE, todoLists)
+      io.to(username).emit(USER_LISTS_UPDATE, todoLists)
     } catch (error) {
       console.error(error.message)      
     }
@@ -70,14 +71,10 @@ io.on('connection', (socket) => {
 
   socket.on(FETCH_USER_DATA, async (username) => {
     try {
-      // console.log("🚀 ~ file: app.ts ~ line 72 ~ socket.on ~ username", username)
       const response = await axios.get(`${HOST}/api/users/${username}`);
-      // console.log("🚀 ~ file: app.ts ~ line 75 ~ socket.on ~ `${HOST}/api/users/${username}`", `${HOST}/api/users/${username}`)
       const { todoLists } = response.data;
-      console.log("🚀 ~ file: app.ts ~ line 77 ~ socket.on ~ response.data", response.data)
-      console.log("🚀 ~ file: app.ts ~ line 77 ~ socket.on ~ todoLists", todoLists)
 
-      io.emit(USER_LISTS_UPDATE, todoLists)
+      io.to(username).emit(USER_LISTS_UPDATE, todoLists)
     } catch (error) {
       console.error(error.message);
     }
@@ -86,12 +83,10 @@ io.on('connection', (socket) => {
   socket.on(USER_LISTS_UPDATE, async (message) => {
     try {
       const { username, todoLists } = message;
-      console.log("🚀 ~ file: app.ts ~ line 88 ~ socket.on ~ todoLists", todoLists)
       
       const response = await axios.put(`${HOST}/api/users/${username}/lists`, { todoLists });
-      console.log("🚀 ~ file: app.ts ~ line 93 ~ socket.on ~ response.data", response.data)
       const updatedTodoLists = response.data.todoLists;
-      io.emit(USER_LISTS_UPDATE, updatedTodoLists);
+      io.to(username).emit(USER_LISTS_UPDATE, updatedTodoLists);
     } catch (error) {
       console.error(error)
     }
@@ -103,7 +98,7 @@ io.on('connection', (socket) => {
       const response = await axios.post(`${HOST}/api/users/${username}/lists/${listId}`, { todoObject });
       
       const updatedTodos = response.data;
-      io.emit(USER_LISTS_UPDATE, updatedTodos);
+      io.to(username).emit(USER_LISTS_UPDATE, updatedTodos);
     } catch (error) {
       console.error(error)
     }
@@ -114,7 +109,7 @@ io.on('connection', (socket) => {
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client', 'build')));
 
-  app.get('/app', (req, res) => {
+  app.get('/^(?!\/api).+/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
   });
 }

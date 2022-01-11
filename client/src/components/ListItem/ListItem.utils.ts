@@ -20,7 +20,7 @@ export const handleSelectClick = (
     username,
     todoLists: updatedState,
   }
-  navigate(`/app/${username}/lists/${selectedList.name}`)
+  navigate(`/${username}/lists/${selectedList.name}`)
   socket.emit(USER_LISTS_UPDATE, message);
 }
 

@@ -21,7 +21,6 @@ const Home: React.FC = () => {
     if(username) {
       socket.emit(FETCH_USER_DATA, username);
     }
-    console.log("🚀 ~ file: Home.page.tsx ~ line 23 ~ username", username)
   }, [username])
   
   return (

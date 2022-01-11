@@ -13,7 +13,7 @@ const Navigation: React.FC = () => {
   let navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/app');
+    navigate('/');
     dispatch(userActions.logOut());
   }
 

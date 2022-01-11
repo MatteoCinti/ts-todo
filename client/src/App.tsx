@@ -15,15 +15,8 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    navigate('/app')
     socketConnectionListener(socket, privateRoom, dispatch);
   }, []);
-
-  const handleClick = () => {
-    socket.connect();
-    socket.emit(CREATE_SHARED_LIST, "privateRoom");
-    navigate(`/app/${socket.id}/lists/1`);
-  }
 
   return (
     <div className="App">

@@ -5,14 +5,7 @@ import { addNewList, updateTodoLists } from "./todoLists.reducers";
 
 const emptyTodoListsState: ITodoLists = {
   state: 'todoLists',
-  todoLists: [
-    {
-      state: 'singleList',
-      isSelected: false,
-      name: 'LIst',
-      todos: []
-    }
-  ]
+  todoLists: []
 }
 
 const persistedState = getPersistedState();
