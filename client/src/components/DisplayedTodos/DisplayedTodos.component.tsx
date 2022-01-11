@@ -11,14 +11,11 @@ interface IDisplayedTodosProps {
 const DisplayedTodos: React.FC<IDisplayedTodosProps> = ({
   minimized
 }) => {
-  console.log("🚀 ~ file: DisplayedTodos.component.tsx ~ line 14 ~ minimized", minimized)
-  const displayedList = useAppSelector(state => state.todoLists.todoLists)
-                          .find((todoList: ISingleList) => todoList.isSelected)
-                        || [];
-  const listId  = displayedList._id;
-  
+  const list = useAppSelector(state => state.todoLists.todoLists) || [];
+  const displayedList = list.find((todoList: ISingleList) => todoList.isSelected) ;
+    
   return (
-    displayedList.name 
+    displayedList
       ? <section 
           className={`
             displayed-todos
@@ -43,7 +40,7 @@ const DisplayedTodos: React.FC<IDisplayedTodosProps> = ({
           </div>
           <TodoElementForm 
             todoElementTemplate={todoElementTemplate}
-            listId={listId}
+            listId={displayedList['_id']}
           />
         </section>
       : <></>
