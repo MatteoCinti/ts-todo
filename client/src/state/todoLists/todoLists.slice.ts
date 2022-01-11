@@ -10,9 +10,10 @@ const emptyTodoListsState: ITodoLists = {
 
 const persistedState = getPersistedState();
 const initialState = persistedState && persistedState.todoLists
-                      ? persistedState.todoLists
-                      : emptyTodoListsState
+? persistedState.todoLists
+: emptyTodoListsState
 
+console.log("🚀 ~ file: todoLists.slice.ts ~ line 13 ~ initialState", initialState)
 const todoListsSlice = createSlice({
   name: 'userLists',
   initialState,
