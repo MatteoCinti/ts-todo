@@ -34,19 +34,31 @@ export const handleLogin = createAsyncThunk (
       }
   
       const parsedNewUser = await response.json();
+      console.log("🚀 ~ file: user.reducers.ts ~ line 37 ~ parsedNewUser", parsedNewUser)
       delete parsedNewUser.todoLists;
       const userState = {
         state: 'user',
+        guest: true,
         ...parsedNewUser
       }
       saveToLocalStorage('user', userState);
-      navigate(`/${userObject.username}/lists`);
+      if(userState.guest){
+        console.log('guest');
+        navigate(`/Matteo/lists`);
+
+      } else {
+        navigate(`/${userObject.username}/lists`);
+      }
       return parsedNewUser;
     } catch (error) {
       throw error;
     }
   }
 );
+
+export const updateUserObject = () => {
+
+} 
 
 export const logOut: CaseReducer<IUserState> = (state) => {
   localStorage.setItem("justDoItState", JSON.stringify({}));

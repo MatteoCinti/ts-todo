@@ -11,6 +11,7 @@ import { useAppSelector } from "../../state/hooks";
 
 const Home: React.FC = () => {
   const { username } = useParams();
+  console.log("🚀 ~ file: Home.page.tsx ~ line 14 ~ username", username)
 
   useEffect(() => {
     // console.log("🚀 ~ file: Home.page.tsx ~ line 14 ~ useEffect ~ username", username)

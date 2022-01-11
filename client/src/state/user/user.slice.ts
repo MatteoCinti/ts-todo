@@ -6,15 +6,15 @@ import { handleLogin, logOut } from './user.reducers';
 export const emptyUserState: IUserState = {
   state: 'user',
   username: '',
-  password: '',
+  password: 'hidden',
   isLoggedIn: false,
   error: false
 }
 
 const persistedState = getPersistedState();
-const initialState = persistedState 
-                      ? persistedState.user
-                      : emptyUserState
+const initialState = persistedState && persistedState.user
+                        ? persistedState.user
+                        : emptyUserState
 
 const userSlice = createSlice({
   name: 'user',

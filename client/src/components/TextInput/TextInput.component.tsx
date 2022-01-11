@@ -22,6 +22,16 @@ const TextInput: React.FC<TextInputProps> = ({
   const [isEmpty, setIsEmpty] = useState(true);
 
   useEffect(() => {
+    const password = Object.keys(todoValue).find(key => key === 'password');
+    if(password && setTodoValue) {
+      setTodoValue(todoValue => ({
+          ...todoValue,
+          password: ''
+        }));
+    }
+  }, [])
+
+  useEffect(() => {
     if(todoValue[name] !== '' && todoValue[name]) {
       setIsEmpty(false);
     }

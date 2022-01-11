@@ -9,7 +9,7 @@ const emptyTodoListsState: ITodoLists = {
 }
 
 const persistedState = getPersistedState();
-const initialState = persistedState
+const initialState = persistedState && persistedState.todoLists
                       ? persistedState.todoLists
                       : emptyTodoListsState
 

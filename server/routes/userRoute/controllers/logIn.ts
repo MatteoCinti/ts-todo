@@ -35,7 +35,11 @@ const logIn = async (req, res, next) => {
 
   try {
     const user = await retrieveUser(username, password);
-    res.json( user );
+    const userHiddenPassword = {
+      ...user,
+      password: 'hidden'
+    }
+    res.json( userHiddenPassword );
   } catch (error) {
     next(error);
   }
