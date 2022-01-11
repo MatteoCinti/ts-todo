@@ -18,7 +18,9 @@ const Home: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    socket.emit(FETCH_USER_DATA, username);
+    if(username) {
+      socket.emit(FETCH_USER_DATA, username);
+    }
     console.log("🚀 ~ file: Home.page.tsx ~ line 23 ~ username", username)
   }, [username])
   

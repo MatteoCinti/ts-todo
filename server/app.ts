@@ -7,7 +7,7 @@ import path from 'path';
 import axios from 'axios';
 dotenv.config({path: path.join(__dirname, '..', '.env')});
 
-import { CREATE_SHARED_LIST, JOINED_SHARED_LIST, CREATE_NEW_LIST, USER_LISTS_UPDATE, USER_LIST_DELETE, FETCH_USER_DATA, ADD_TODO_OBJECT, UPDATE_DISPLAYED_TODOS } from '../client/src/sockets/actions';
+import { CREATE_SHARED_LIST, JOINED_SHARED_LIST, CREATE_NEW_LIST, USER_LISTS_UPDATE, USER_LIST_DELETE, FETCH_USER_DATA, ADD_TODO_OBJECT } from '../client/src/sockets/actions';
 import { socketsSetup } from './sockets/setup';
 import { connectToDatabase } from './db';
 import socketsRouter from './routes/socketsRouter';
@@ -89,6 +89,7 @@ io.on('connection', (socket) => {
       console.log("🚀 ~ file: app.ts ~ line 88 ~ socket.on ~ todoLists", todoLists)
       
       const response = await axios.put(`${HOST}/api/users/${username}/lists`, { todoLists });
+      console.log("🚀 ~ file: app.ts ~ line 93 ~ socket.on ~ response.data", response.data)
       const updatedTodoLists = response.data.todoLists;
       io.emit(USER_LISTS_UPDATE, updatedTodoLists);
     } catch (error) {
