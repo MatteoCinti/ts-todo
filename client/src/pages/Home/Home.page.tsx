@@ -13,6 +13,9 @@ const Home: React.FC = () => {
   const { username } = useParams();
   const [sidebarMinimized, setSidebarMinimized] = useState<boolean>(false);
 
+  useEffect(() => {
+    // socket.join('1')
+  }, [])
 
   useEffect(() => {
     // console.log("🚀 ~ file: Home.page.tsx ~ line 14 ~ useEffect ~ username", username)

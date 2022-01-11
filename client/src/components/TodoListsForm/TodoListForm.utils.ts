@@ -11,7 +11,7 @@ export const handleSubmit = (props: ITodoListsHandleSubmit<ISingleList>): void =
     throw new Error('Wrong Params Passed to Function');
   }
   // console.log("🚀 ~ file: ListItem.utils.ts ~ line 55 ~ unselectedLists", unselectedLists)
-  dispatch(addNewList({...formState, username}));
+  dispatch(todoListsActions.addNewList({...formState, username}));
   navigate(`/${username}/lists/${formState.name}`)
   setFormState(emptySingleList);
 }

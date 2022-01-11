@@ -57,6 +57,7 @@
   "license": "ISC",
   "homepage": "https://github.com/MatteoCinti/ts-todo#readme",
   "dependencies": {
+    "@types/socket.io": "^3.0.2",
     "axios": "^0.24.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

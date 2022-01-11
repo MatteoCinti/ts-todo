@@ -4,6 +4,13 @@ import { todoListsActions } from "../state/todoLists/todoLists.slice";
 
 import { JOINED_SHARED_LIST, CREATE_SHARED_LIST, USER_LISTS_UPDATE, ADD_TODO_OBJECT, UPDATE_DISPLAYED_TODOS, USER_UPDATE } from './actions';
 
+export const socketConnectToPrivateRoom = ( 
+  socket: Socket<DefaultEventsMap, DefaultEventsMap>, 
+  username: string,
+ ) : void => {
+  // socket.join("username");
+ }
+
 export const socketConnectionListener = (
   socket: Socket<DefaultEventsMap, DefaultEventsMap>, 
   privateRoom: Socket<DefaultEventsMap, DefaultEventsMap>,

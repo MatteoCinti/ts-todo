@@ -7,7 +7,6 @@ export interface ITodo {
   role: string;
 }
 
-
 export const todoElementTemplate: ITodo = {
   state: 'singleTodo',
   name: '',

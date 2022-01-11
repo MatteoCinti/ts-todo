@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
       const response = await axios.post(`${HOST}/api/users/${username}/lists`, { listName });
       const todoLists = response.data;
 
-      socket.emit(USER_LISTS_UPDATE, todoLists)
+      io.emit(USER_LISTS_UPDATE, todoLists)
     } catch (error) {
       console.error(error.message)
     }
@@ -62,7 +62,7 @@ io.on('connection', (socket) => {
       const response = await axios.delete(`${HOST}/api/users/${username}/lists/${listId}`);
       const todoLists = response.data;
 
-      socket.emit(USER_LISTS_UPDATE, todoLists)
+      io.emit(USER_LISTS_UPDATE, todoLists)
     } catch (error) {
       console.error(error.message)      
     }
@@ -77,7 +77,7 @@ io.on('connection', (socket) => {
       console.log("🚀 ~ file: app.ts ~ line 77 ~ socket.on ~ response.data", response.data)
       console.log("🚀 ~ file: app.ts ~ line 77 ~ socket.on ~ todoLists", todoLists)
 
-      socket.emit(USER_LISTS_UPDATE, todoLists)
+      io.emit(USER_LISTS_UPDATE, todoLists)
     } catch (error) {
       console.error(error.message);
     }
@@ -90,7 +90,7 @@ io.on('connection', (socket) => {
       
       const response = await axios.put(`${HOST}/api/users/${username}/lists`, { todoLists });
       const updatedTodoLists = response.data.todoLists;
-      socket.emit(USER_LISTS_UPDATE, updatedTodoLists);
+      io.emit(USER_LISTS_UPDATE, updatedTodoLists);
     } catch (error) {
       console.error(error)
     }
@@ -102,7 +102,7 @@ io.on('connection', (socket) => {
       const response = await axios.post(`${HOST}/api/users/${username}/lists/${listId}`, { todoObject });
       
       const updatedTodos = response.data;
-      socket.emit(USER_LISTS_UPDATE, updatedTodos);
+      io.emit(USER_LISTS_UPDATE, updatedTodos);
     } catch (error) {
       console.error(error)
     }

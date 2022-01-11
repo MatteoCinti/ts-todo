@@ -5,13 +5,20 @@ import { addNewList, updateTodoLists } from "./todoLists.reducers";
 
 const emptyTodoListsState: ITodoLists = {
   state: 'todoLists',
-  todoLists: []
+  todoLists: [
+    {
+      state: 'singleList',
+      isSelected: false,
+      name: 'LIst',
+      todos: []
+    }
+  ]
 }
 
 const persistedState = getPersistedState();
 const initialState = persistedState && persistedState.todoLists
-? persistedState.todoLists
-: emptyTodoListsState
+                        ? persistedState.todoLists
+                        : emptyTodoListsState
 
 console.log("🚀 ~ file: todoLists.slice.ts ~ line 13 ~ initialState", initialState)
 const todoListsSlice = createSlice({
@@ -24,4 +31,4 @@ const todoListsSlice = createSlice({
 });
 
 export const { actions: todoListsActions } = todoListsSlice;
-export default todoListsSlice.reducer;
+export default todoListsSlice.reducer; 
