@@ -43,9 +43,9 @@ export const handleLogin = createAsyncThunk (
       saveToLocalStorage('user', userState);
       if(userState.guest){
         console.log('guest');
-        navigate(`/Matteo/lists`);
+        navigate(`/app/Matteo/lists`);
       } else {
-        navigate(`/${userObject.username}/lists`);
+        navigate(`/app/${userObject.username}/lists`);
       }
       return parsedNewUser;
     } catch (error) {

@@ -12,6 +12,6 @@ export const handleSubmit = (props: ITodoListsHandleSubmit<ISingleList>): void =
   }
   // console.log("🚀 ~ file: ListItem.utils.ts ~ line 55 ~ unselectedLists", unselectedLists)
   dispatch(todoListsActions.addNewList({...formState, username}));
-  navigate(`/${username}/lists/${formState.name}`)
+  navigate(`/app/${username}/lists/${formState.name}`)
   setFormState(emptySingleList);
 }

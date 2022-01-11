@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const  { isLoggedIn, username } = userState
     if ( isLoggedIn ) {
-      navigate(`${username}/lists/`);
+      navigate(`/app/${username}/lists/`);
     } 
     socketConnectionListener(socket, privateRoom, dispatch);
   }, []);
@@ -26,19 +26,19 @@ function App() {
   const handleClick = () => {
     socket.connect();
     socket.emit(CREATE_SHARED_LIST, "privateRoom");
-    navigate(`/${socket.id}/lists/1`);
+    navigate(`/app/${socket.id}/lists/1`);
   }
 
   return (
     <div className="App">
         <Routes>
-          <Route path="/" element={<WelcomePage />} />
+          <Route path="/app" element={<WelcomePage />} />
           <Route 
-            path=":username/lists" 
+            path="/app/:username/lists" 
             element={<Home />} 
           />
           <Route 
-            path=":username/lists/:list" 
+            path="/app/:username/lists/:list" 
             element={<Home />} 
           />
         </Routes>
