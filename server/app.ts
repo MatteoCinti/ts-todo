@@ -106,17 +106,17 @@ io.on('connection', (socket) => {
 
 });
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client', 'build')));
+
+  app.get('/^(?!\/api).+/mig', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+  });
+}
 
 app.use('/sockets', socketsRouter);
 app.use('/api/users', userRouter);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client', 'build')));
-
-  app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-  });
-}
 app.use(function (err, req, res, next) {
   console.error(err);
   res.status(err.code || 500).json(err.message);
