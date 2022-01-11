@@ -18,8 +18,8 @@ const Home: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    // console.log("🚀 ~ file: Home.page.tsx ~ line 14 ~ useEffect ~ username", username)
     socket.emit(FETCH_USER_DATA, username);
+    console.log("🚀 ~ file: Home.page.tsx ~ line 23 ~ username", username)
   }, [username])
   
   return (
