@@ -22,7 +22,9 @@ You can share a list by copying the list url
       things that are still pending
     - I as a user can be sure that my todos will be persisted so that important information is 
       not lost when server restarts 
-      
+    
+    - You can edit other users todo lists from your own account
+
 ### 
 I have learned a lot with typescript and definitely took a liking to it and will be applying it thoroughly. It makes refactoring and debugging really easier. Also it integrates perfectly with Mongoose and it's schemas. 
 
