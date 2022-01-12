@@ -1,26 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getPersistedState } from "../utils/utils";
-import { ITodoLists } from "./todoLists.interfaces";
-import { addNewList, updateTodoLists } from "./todoLists.reducers";
+import { createSlice } from '@reduxjs/toolkit';
+import { getPersistedState } from '../utils/utils';
+import { ITodoLists } from './todoLists.interfaces';
+import { addNewList, updateTodoLists } from './todoLists.reducers';
 
 const emptyTodoListsState: ITodoLists = {
   state: 'todoLists',
-  todoLists: []
-}
+  todoLists: [],
+};
 
 const persistedState = getPersistedState();
 const initialState = persistedState && persistedState.todoLists
-                        ? persistedState.todoLists
-                        : emptyTodoListsState
+  ? persistedState.todoLists
+  : emptyTodoListsState;
 
 const todoListsSlice = createSlice({
   name: 'userLists',
   initialState,
   reducers: {
     updateTodoLists,
-    addNewList
-  }
+    addNewList,
+  },
 });
 
 export const { actions: todoListsActions } = todoListsSlice;
-export default todoListsSlice.reducer; 
+export default todoListsSlice.reducer;

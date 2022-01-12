@@ -23,9 +23,6 @@
     "declarationMap": true,
     "outDir": "./dist",
   },
-  "references": [
-    { "path": "../common" }
-  ],
   "include": [
     "src",
     "public"

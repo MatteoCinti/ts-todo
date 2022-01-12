@@ -11,6 +11,10 @@
 .user-form {
   @include flex-centred(column);
   min-height: 350px;
+  &__error {
+    color: red;
+    font-size: 14px;
+  }
 }
 
 .logo {
@@ -30,6 +34,7 @@
     font-size: $font-size-big;
     padding-bottom: .125em;
   }
+
 
 }
 

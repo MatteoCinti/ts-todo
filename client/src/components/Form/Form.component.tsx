@@ -1,34 +1,31 @@
 import React, { Children, cloneElement, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../state/hooks';
 import { FormProps } from './Form.interfaces';
-import {ReactComponent as Create} from '../../images/Create.svg';
+import { ReactComponent as Create } from '../../images/Create.svg';
+import './Form.styles.scss';
 
-import './Form.styles.scss'
-import { useNavigate, useParams } from 'react-router-dom';
-
-const Form = ({ 
-  ariaLabel, cssClass, children, svg, isLoginOrRegister, state, buttonValue, handleSubmit, listId
-}: FormProps) => {
+function Form({
+  ariaLabel, cssClass, children, svg, isLoginOrRegister, state, buttonValue, handleSubmit, listId,
+}: FormProps) {
   const [formState, setFormState] = useState(state);
-  // console.log("🚀 ~ file: Form.component.tsx ~ line 13 ~ formState", formState)
   const dispatch = useAppDispatch();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { username } = useParams();
-  console.log("🚀 ~ file: Form.component.tsx ~ line 17 ~ username", username)
-  
-  const childrenWithExtraProp = Children.map(children, child => (
+
+  const childrenWithExtraProp = Children.map(children, (child) => (
     cloneElement(child, { todoState: [formState, setFormState] })
   ));
 
   return (
-    <form 
-      id={ariaLabel} 
-      className={`form ${cssClass}`} 
-      aria-label={ariaLabel} 
+    <form
+      id={ariaLabel}
+      className={`form ${cssClass}`}
+      aria-label={ariaLabel}
       onSubmit={(e) => handleSubmit({
-        e, dispatch, isLoginOrRegister, setFormState, formState, navigate, username, listId
+        e, dispatch, isLoginOrRegister, setFormState, formState, navigate, username, listId,
       })}
-    > 
+    >
       {childrenWithExtraProp}
       <label className={svg && `${cssClass}__submit icon-submit`}>
         <input
@@ -37,10 +34,10 @@ const Form = ({
           name={cssClass}
           value={buttonValue && buttonValue}
         />
-        {svg && <Create className='create' />}
+        {svg && <Create className="create" />}
       </label>
     </form>
   );
-};
+}
 
 export default Form;

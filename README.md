@@ -1,8 +1,7 @@
 # ts-todo
 
 # UPDATE!!!
-## Experiencing issues with websockets
-The behaviour is not stable. If you delete localstorage and reload the page the app seems to be working and live emitting all the changes. On localhost the behvaiour is very different at this time. I am working on trying to replicate the behaviours to be able to debug.
+## If inputting dont work just refresh the page.
 
 # START
 
@@ -15,6 +14,16 @@ The behaviour is not stable. If you delete localstorage and reload the page the 
     - for the tests
 
 You can share a list by copying the list url
+
+
+## Completed Stories
+
+    - I as a user can mark to-do items as “done” - so that I can avoid clutter and focus on 
+      things that are still pending
+    - I as a user can be sure that my todos will be persisted so that important information is 
+      not lost when server restarts 
+    
+    - You can edit other users todo lists from your own account
 
 ### 
 I have learned a lot with typescript and definitely took a liking to it and will be applying it thoroughly. It makes refactoring and debugging really easier. Also it integrates perfectly with Mongoose and it's schemas. 

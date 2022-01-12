@@ -1,11 +1,15 @@
-import { Schema, model, Document, Model } from 'mongoose';
-import { IUser } from '../../../client/src/state/user/user.interfaces'
+import {
+  Schema, model,
+} from 'mongoose';
+import { IUser } from '../../../client/src/state/user/user.interfaces';
 import todoLists from './lists.schema';
 
-const schema = new Schema ({
+const schema = new Schema({
   username: { type: String, required: true, index: { unique: true } },
   password: { type: String, required: true },
-  todoLists: [todoLists]
+  todoLists: [todoLists],
+}, {
+  versionKey: false,
 });
 
 const User = model<IUser>('User', schema);

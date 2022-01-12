@@ -1,22 +1,24 @@
-import { useAppSelector } from "../../state/hooks";
-import { ISingleList, ITodo, todoElementTemplate } from "../../state/todoLists/todoLists.interfaces";
-import TodoElementForm from "../TodoElementForm/TodoElementForm.component";
-import TodoItem from "../TodoItem/TodoItem.component";
+import React from 'react';
+import { useAppSelector } from '../../state/hooks';
+import { ISingleList, ITodo, todoElementTemplate } from '../../state/todoLists/todoLists.interfaces';
+import TodoElementForm from '../TodoElementForm/TodoElementForm.component';
+import TodoItem from '../TodoItem/TodoItem.component';
 import './DisplayedTodos.styles.scss';
 
-interface IDisplayedTodosProps { 
+interface IDisplayedTodosProps {
   minimized: boolean;
 }
 
 const DisplayedTodos: React.FC<IDisplayedTodosProps> = ({
-  minimized
+  minimized,
 }) => {
-  const list = useAppSelector(state => state.todoLists.todoLists) || [];
-  const displayedList = list.find((todoList: ISingleList) => todoList.isSelected) ;
-    
+  const list = useAppSelector((state) => state.todoLists.todoLists) || [];
+  const displayedList = list.find((todoList: ISingleList) => todoList.isSelected);
+
   return (
     displayedList
-      ? <section 
+      ? (
+        <section
           className={`
             displayed-todos
             ${minimized ? 'displayed-todos--minimized' : ''}
@@ -28,23 +30,24 @@ const DisplayedTodos: React.FC<IDisplayedTodosProps> = ({
               <span className="displayed-todos__tag"> - List</span>
             </h3>
           </header>
-          
+
           <div className="displayed-todos__container">
-            {displayedList.todos && displayedList.todos.map((todo: ITodo) => 
-              <TodoItem 
-                todoItem={todo} 
-                key={todo['_id']}
-                listId={displayedList['_id']}
+            {displayedList.todos && displayedList.todos.map((todo: ITodo) => (
+              <TodoItem
+                todoItem={todo}
+                key={todo._id}
+                listId={displayedList._id}
               />
-            )}
+            ))}
           </div>
-          <TodoElementForm 
+          <TodoElementForm
             todoElementTemplate={todoElementTemplate}
-            listId={displayedList['_id']}
+            listId={displayedList._id}
           />
         </section>
+      )
       : <></>
-  )
-}
+  );
+};
 
 export default DisplayedTodos;

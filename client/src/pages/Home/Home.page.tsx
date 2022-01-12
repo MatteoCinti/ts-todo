@@ -1,35 +1,38 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { FETCH_USER_DATA, JOIN_ROOM } from "../../sockets/actions";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { FETCH_USER_DATA, JOIN_ROOM } from '../../sockets/actions';
 
-import socket from "../../sockets";
-import DisplayedTodos from "../../components/DisplayedTodos/DisplayedTodos.component";
-import Navigation from "../../components/Navigation/Navigation.component";
-import TodoLists from "../../components/SidebarTodoLists/SidebarTodoLists.component";
-import './Home.styles.scss'
-import { useAppSelector } from "../../state/hooks";
+import { socket } from '../../sockets';
+import DisplayedTodos from '../../components/DisplayedTodos/DisplayedTodos.component';
+import Navigation from '../../components/Navigation/Navigation.component';
+import TodoLists from '../../components/SidebarTodoLists/SidebarTodoLists.component';
+import './Home.styles.scss';
+import { useAppSelector } from '../../state/hooks';
 
 const Home: React.FC = () => {
-  const { username } = useParams();
+  const hostUsername = useParams().username;
+  const activeUserName = useAppSelector((state) => state.user.username);
   const [sidebarMinimized, setSidebarMinimized] = useState<boolean>(false);
 
   useEffect(() => {
-    // socket.join('1')
-  }, [])
-
-  useEffect(() => {
-    if(username) {
-      socket.emit(JOIN_ROOM, username);
-      socket.emit(FETCH_USER_DATA, username);
+    if (hostUsername) {
+      socket.emit(JOIN_ROOM, {
+        roomName: hostUsername,
+        user: activeUserName,
+      });
+      socket.emit(FETCH_USER_DATA, hostUsername);
     }
-  }, [username])
-  
+
+    return () => { socket.disconnect(); };
+  }, [hostUsername, activeUserName]);
+
   return (
     <article className="home-page">
       <Navigation />
-      <TodoLists sidebarMinimized={[sidebarMinimized, setSidebarMinimized]}/>  
-      <DisplayedTodos minimized={sidebarMinimized}/> 
+      <TodoLists sidebarMinimized={[sidebarMinimized, setSidebarMinimized]} />
+      <DisplayedTodos minimized={sidebarMinimized} />
     </article>
-)}
+  );
+};
 
 export default Home;
