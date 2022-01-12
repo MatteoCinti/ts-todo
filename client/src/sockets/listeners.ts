@@ -2,7 +2,7 @@ import { DefaultEventsMap } from "@socket.io/component-emitter";
 import { Socket } from "socket.io-client";
 import { todoListsActions } from "../state/todoLists/todoLists.slice";
 
-import { JOINED_SHARED_LIST, CREATE_SHARED_LIST, USER_LISTS_UPDATE, ADD_TODO_OBJECT, UPDATE_DISPLAYED_TODOS, USER_UPDATE } from './actions';
+import { JOINED_SHARED_LIST, CREATE_SHARED_LIST, USER_LISTS_UPDATE, ADD_TODO_OBJECT, UPDATE_DISPLAYED_TODOS, USER_UPDATE, JOIN_ROOM } from './actions';
 
 export const socketConnectToPrivateRoom = ( 
   socket: Socket<DefaultEventsMap, DefaultEventsMap>, 
@@ -28,8 +28,14 @@ export const socketConnectionListener = (
     console.log(`Joined 🍂 room: ${message.room}, with 🐛 ID: ${socket.id} `)
   })
 
+  socket.on(JOIN_ROOM, (message) => {
+    console.log("🚀 ~ file: listeners.ts ~ line 32 ~ socket.on ~ message", message)
+  })
+
   socket.on(USER_LISTS_UPDATE, (updatedTodoList) => {
-    const payload = updatedTodoList
+    console.log("🚀 ~ file: listeners.ts ~ line 36 ~ socket.on ~ USER_LISTS_UPDATE", 'UPDATE FRONTEND');
+    const payload = updatedTodoList;
+    console.log("🚀 ~ file: listeners.ts ~ line 38 ~ socket.on ~ updatedTodoList", updatedTodoList)
     dispatch(todoListsActions.updateTodoLists(payload));
   })
   socket.on(USER_UPDATE, (updatedUser) => {

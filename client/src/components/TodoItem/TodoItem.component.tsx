@@ -3,6 +3,7 @@ import {ReactComponent as Delete} from '../../images/Delete.svg';
 import  './TodoItem.styles.scss';
 import { handleCompleteClick, handleDeleteClick } from "./TodoItem.utils";
 import { useAppSelector } from "../../state/hooks";
+import { useParams } from "react-router-dom";
 
 interface ITodoItemProps {
   todoItem: ITodo;
@@ -15,7 +16,7 @@ const TodoItem: React.FC<ITodoItemProps> = ({
 }) => {
   const userState = useAppSelector(state => state.user);
   const todoListsState = useAppSelector(state => state.todoLists);
-  const { username } = userState;
+  const username  = useParams().username || userState.username;
   const id = todoItem['_id'];
   const { isCompleted } = todoItem;
 

@@ -4,7 +4,7 @@ import { handleDeleteClick, handleSelectClick } from './ListItem.utils';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
 import { ISingleList } from '../../state/todoLists/todoLists.interfaces';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 interface IListItemProps {
@@ -23,7 +23,7 @@ const ListItem: React.FC<IListItemProps> = ({
   const navigate = useNavigate();
   // const [ isSelected, setIsSelected ] = useState(false);
   const { todoLists } = todoListsState;
-  const { username } = userState;
+  const username = useParams().username || userState.username;
 
   return (
     <div className='list-item'>
