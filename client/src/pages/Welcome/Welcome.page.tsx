@@ -1,4 +1,4 @@
-import React, { SetStateAction, useState } from "react";
+import React, { useState } from "react";
 
 import "./Welcome.styles.scss";
 import Form from "../../components/Form/Form.component";
@@ -8,7 +8,6 @@ import { useAppSelector } from "../../state/hooks";
 import LogOrRegister from "../../components/LogOrRegister/LogOrRegister.component";
 import { RegisterLogin } from "../../state/user/user.interfaces";
 import { userFormHandleSubmit } from "../../components/Form/Form.utils";
-import { useNavigate } from "react-router-dom";
 
 const WelcomePage: React.FC = () => {
   const userState = useAppSelector(state => state.user);

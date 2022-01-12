@@ -11,7 +11,6 @@ const LogOrRegister: React.FC<IComponentProps> = ({
   isLoginOrRegister,
   setLogOrRegister
 }) => (
-
   <p className="form-switch bold">
     {isLoginOrRegister === RegisterLogin.register
       ? 'Alredy' 

@@ -3,7 +3,7 @@ import {ReactComponent as Delete} from '../../images/Delete.svg';
 import { handleDeleteClick, handleSelectClick } from './ListItem.utils';
 import { useAppSelector } from '../../state/hooks';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGetDBUsername } from '../../customHooks';
+import { useGetOperationsUsername } from '../../customHooks';
 
 interface IListItemProps {
   listName: string;
@@ -18,7 +18,7 @@ const ListItem: React.FC<IListItemProps> = ({
 }) => {
   const todoListsState = useAppSelector(state => state.todoLists);
   const navigate = useNavigate();
-  const username = useGetDBUsername();
+  const username = useGetOperationsUsername();
 
   return (
     <div className='list-item'>

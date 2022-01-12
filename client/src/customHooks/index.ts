@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../state/hooks";
 
-export const useGetDBUsername = () => {
-  const userState = useAppSelector(state => state.user);
-  return useParams().username || userState.username;
+export const useGetOperationsUsername = () => {
+  const ownerUsername = useAppSelector(state => state.socket.owner);
+  return ownerUsername || useParams().username
 }
