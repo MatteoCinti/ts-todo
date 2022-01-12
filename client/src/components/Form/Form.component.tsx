@@ -14,6 +14,7 @@ const Form = ({
   const dispatch = useAppDispatch();
   let navigate = useNavigate();
   const { username } = useParams();
+  console.log("🚀 ~ file: Form.component.tsx ~ line 17 ~ username", username)
   
   const childrenWithExtraProp = Children.map(children, child => (
     cloneElement(child, { todoState: [formState, setFormState] })

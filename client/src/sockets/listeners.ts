@@ -29,7 +29,7 @@ export const socketConnectionListener = (
   })
 
   socket.on(JOIN_ROOM, (message) => {
-    console.log("🚀 ~ file: listeners.ts ~ line 32 ~ socket.on ~ message", message)
+    // console.log("🚀 ~ file: listeners.ts ~ line 32 ~ socket.on ~ message", message)
   })
 
   socket.on(USER_LISTS_UPDATE, (updatedTodoList) => {
