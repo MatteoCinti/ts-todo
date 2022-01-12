@@ -20,8 +20,6 @@ export const handleSelectClick = (
     username,
     todoLists: updatedState,
   }
-  console.log("🚀 ~ file: ListItem.utils.ts ~ line 23 ~ username", username)
-  console.log("🚀 ~ file: ListItem.utils.ts ~ line 25 ~ `/${username}/lists/${selectedList.name}`", `/${username}/lists/${selectedList.name}`)
   navigate(`/${username}/lists/${selectedList.name}`)
   socket.emit(USER_LISTS_UPDATE, message);
 }

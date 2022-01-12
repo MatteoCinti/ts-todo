@@ -9,6 +9,7 @@ import './Navigation.styles.scss'
 
 const Navigation: React.FC = () => {
   const userState = useAppSelector(state => state.user);
+  const  { username } = userState || 'Guest' 
   const dispatch = useAppDispatch();
   let navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const Navigation: React.FC = () => {
       <h3 className='navigation__title'>
         {`Just Do It `}
         <span className='navigation__username'>
-          {userState.username}
+          {username}
         </span>
       </h3>
       <p 

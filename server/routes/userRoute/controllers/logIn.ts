@@ -6,6 +6,7 @@ import { findUser, checkPassword } from "../../utilities/helpers";
 const validation = async (username:string, password: string): Promise<IUser> => {
   const userExists = await findUser<IUser>(User, 'username', username);
   const error = newError(`Username / Password combination not found`, 401);
+  
   if(!userExists) {
     throw error;
   }

@@ -33,9 +33,7 @@ export const socketConnectionListener = (
   })
 
   socket.on(USER_LISTS_UPDATE, (updatedTodoList) => {
-    console.log("🚀 ~ file: listeners.ts ~ line 36 ~ socket.on ~ USER_LISTS_UPDATE", 'UPDATE FRONTEND');
     const payload = updatedTodoList;
-    console.log("🚀 ~ file: listeners.ts ~ line 38 ~ socket.on ~ updatedTodoList", updatedTodoList)
     dispatch(todoListsActions.updateTodoLists(payload));
   })
   socket.on(USER_UPDATE, (updatedUser) => {
