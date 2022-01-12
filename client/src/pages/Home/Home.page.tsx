@@ -10,19 +10,19 @@ import './Home.styles.scss'
 import { useAppSelector } from "../../state/hooks";
 
 const Home: React.FC = () => {
-  const { username } = useParams();
+  const hostUsername = useParams().username;
+  const activeUserName = useAppSelector(state => state.user.username)
   const [sidebarMinimized, setSidebarMinimized] = useState<boolean>(false);
 
   useEffect(() => {
-    // socket.join('1')
-  }, [])
-
-  useEffect(() => {
-    if(username) {
-      socket.emit(JOIN_ROOM, username);
-      socket.emit(FETCH_USER_DATA, username);
+    if(hostUsername) {
+      socket.emit(JOIN_ROOM, { 
+        roomName: hostUsername, 
+        user: activeUserName 
+      });
+      socket.emit(FETCH_USER_DATA, hostUsername);
     }
-  }, [username])
+  }, [hostUsername])
   
   return (
     <article className="home-page">

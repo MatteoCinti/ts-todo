@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getPersistedState, saveToLocalStorage } from '../utils/utils';
+import { getPersistedState } from '../utils/utils';
 import { IUserState } from './user.interfaces';
 import { handleLogin, logOut } from './user.reducers';
 

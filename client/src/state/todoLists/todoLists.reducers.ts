@@ -1,12 +1,16 @@
-import { CaseReducer, CaseReducerWithPrepare, createAsyncThunk, current, PayloadAction } from "@reduxjs/toolkit";
+import { PayloadAction } from "@reduxjs/toolkit";
 import socket from "../../sockets";
 import { CREATE_NEW_LIST } from "../../sockets/actions";
 import { saveToLocalStorage } from "../utils/utils";
-import { IAddNewListProps, ISingleList, ITodoLists } from "./todoLists.interfaces";
+import { ISingleList, ITodoLists } from "./todoLists.interfaces";
+
+export interface IAddNewListPayload extends ISingleList {
+  username?: string;
+} 
 
 export const addNewList = ( 
   state: ITodoLists, 
-  action: any
+  action: PayloadAction<IAddNewListPayload>
 ) => {
   const { name, username } = action.payload;
   const listName = name;

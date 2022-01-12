@@ -1,11 +1,9 @@
 import './ListItem.styles.scss'
 import {ReactComponent as Delete} from '../../images/Delete.svg';
 import { handleDeleteClick, handleSelectClick } from './ListItem.utils';
-import { useAppDispatch, useAppSelector } from '../../state/hooks';
-import { ISingleList } from '../../state/todoLists/todoLists.interfaces';
-import { useState } from 'react';
+import { useAppSelector } from '../../state/hooks';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import { useGetDBUsername } from '../../customHooks';
 
 interface IListItemProps {
   listName: string;
@@ -18,12 +16,9 @@ const ListItem: React.FC<IListItemProps> = ({
   listId,
   isSelected
 }) => {
-  const userState = useAppSelector(state => state.user);
   const todoListsState = useAppSelector(state => state.todoLists);
   const navigate = useNavigate();
-  // const [ isSelected, setIsSelected ] = useState(false);
-  const { todoLists } = todoListsState;
-  const username = useParams().username || userState.username;
+  const username = useGetDBUsername();
 
   return (
     <div className='list-item'>
