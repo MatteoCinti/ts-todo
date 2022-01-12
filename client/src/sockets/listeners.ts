@@ -18,14 +18,13 @@ export const socketConnectionListener = (
   dispatch: any
 ) : void => {
   socket.on('connect', () => {
-    // console.log(`🦧🌊 PENDEJO chingastes con ID: 💨${socket.id}`);
     console.log(`🦧🌊 connected to websockets with ID: 💨${socket.id}`);
   });
   
   socket.on(JOIN_ROOM, (message) => {
     console.log(`Joined 🍂 room: ${message.roomName}`);
     const { roomName, user } = message; 
-    
+
     dispatch(
       socketActions
         .setActiveSocket({

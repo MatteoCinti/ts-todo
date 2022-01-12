@@ -6,7 +6,7 @@ import cors from 'cors';
 import path from 'path';
 dotenv.config({path: path.join(__dirname, '..', '.env')});
 
-import { onConnection, socketsSetup } from './sockets/setup';
+import { onConnection, onDisconnect, socketsSetup } from './sockets/setup';
 import { connectToDatabase } from './db';
 import { customErrorHandler } from './routes/utilities/errorHandling';
 import userRouter from './routes/userRoute/userRouter';
@@ -27,13 +27,8 @@ app.set('socketio', io);
 app.use(cors(corsOptions));
 app.use(express.json());
 
-
-
 io.on('connection', onConnection);
-io.on('disconnect', (socket) => {
-  console.log(`Socket: ${socket.id} has disconnected`);
-})
-
+io.on('disconnect', onDisconnect)
 app.use('/api/users', userRouter);
 
 if (process.env.NODE_ENV === 'production') {

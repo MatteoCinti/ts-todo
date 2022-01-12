@@ -8,8 +8,6 @@ import { io } from "../app";
 
 export const createRoomHandlers = (io: Server, socket: Socket) => {
   socket.on(JOIN_ROOM, ({ roomName, user }) => {
-    console.log("🚀 ~ file: controllers.ts ~ line 11 ~ socket.on ~ user", user)
-    console.log("🚀 ~ file: controllers.ts ~ line 14 ~ socket.on ~ roomName", roomName)
     socket.join(roomName);
     socket.emit(JOIN_ROOM, { roomName, user });
   })

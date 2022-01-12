@@ -18,3 +18,7 @@ export const onConnection = (socket) => {
   todoListsHandler(io, socket, HOST);
   todoObjectHandler(io, socket, HOST);
 }
+
+export const onDisconnect = (socket) => {
+  console.log(`Socket: ${socket.id} has disconnected`);
+}

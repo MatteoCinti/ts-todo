@@ -16,8 +16,6 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     if(hostUsername) {
-      console.log("🚀 ~ file: Home.page.tsx ~ line 19 ~ useEffect ~ hostUsername", hostUsername)
-      console.log("🚀 ~ file: Home.page.tsx ~ line 24 ~ useEffect ~ activeUserName", activeUserName)
       socket.emit(JOIN_ROOM, { 
         roomName: hostUsername, 
         user: activeUserName 
