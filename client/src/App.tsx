@@ -5,7 +5,7 @@ import { Routes, Route, useNavigate, useParams } from 'react-router-dom';
 import Home from './pages/Home/Home.page';
 import WelcomePage from './pages/Welcome/Welcome.page';
 
-import { JOINED_SHARED_LIST, CREATE_SHARED_LIST } from './sockets/actions';
+import { JOINED_SHARED_LIST, CREATE_SHARED_LIST, JOIN_ROOM } from './sockets/actions';
 import { useAppDispatch, useAppSelector } from './state/hooks';
 import { socketConnectionListener, socketConnectToPrivateRoom } from './sockets/listeners';
 

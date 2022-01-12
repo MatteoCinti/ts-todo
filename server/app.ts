@@ -7,7 +7,7 @@ import path from 'path';
 import axios from 'axios';
 dotenv.config({path: path.join(__dirname, '..', '.env')});
 
-import { CREATE_SHARED_LIST, JOINED_SHARED_LIST, CREATE_NEW_LIST, USER_LISTS_UPDATE, USER_LIST_DELETE, FETCH_USER_DATA, ADD_TODO_OBJECT } from '../client/src/sockets/actions';
+import { CREATE_SHARED_LIST, JOINED_SHARED_LIST, CREATE_NEW_LIST, USER_LISTS_UPDATE, USER_LIST_DELETE, FETCH_USER_DATA, ADD_TODO_OBJECT, JOIN_ROOM } from '../client/src/sockets/actions';
 import { socketsSetup } from './sockets/setup';
 import { connectToDatabase } from './db';
 import socketsRouter from './routes/socketsRouter';
@@ -58,6 +58,11 @@ io.on('connection', (socket) => {
     }
   })
 
+  socket.on(JOIN_ROOM, (roomName) => {
+    socket.join(roomName);
+    socket.emit(JOIN_ROOM, `Joined room: ${roomName}`)
+  })
+
   socket.on(USER_LIST_DELETE, async (message) => {
     try {
       const { username, listId } = message;
@@ -84,11 +89,11 @@ io.on('connection', (socket) => {
   socket.on(USER_LISTS_UPDATE, async (message) => {
     try {
       const { username, todoLists } = message;
-      console.log("🚀 ~ file: app.ts ~ line 87 ~ socket.on ~ username", username)
+      console.log("🚀 ~ file: app.ts ~ line 87 ~ socket.on ~ username", 'CALLEDGODDAMIT')
       
       const response = await axios.put(`${HOST}/api/users/${username}/lists`, { todoLists });
       const updatedTodoLists = response.data.todoLists;
-      console.log("🚀 ~ file: app.ts ~ line 90 ~ socket.on ~ response", response)
+      // console.log("🚀 ~ file: app.ts ~ line 90 ~ socket.on ~ response", response)
       console.log("🚀 ~ file: app.ts ~ line 90 ~ socket.on ~ response.data", response.data)
       io.to(username).emit(USER_LISTS_UPDATE, updatedTodoLists);
     } catch (error) {

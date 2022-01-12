@@ -1,5 +1,6 @@
-export const CREATE_SHARED_LIST:string = 'CREATE_SHARED_LIST'
-export const JOINED_SHARED_LIST:string = 'JOINED_SHARED_LIST'
+export const CREATE_SHARED_LIST = 'CREATE_SHARED_LIST'
+export const JOINED_SHARED_LIST = 'JOINED_SHARED_LIST'
+export const JOIN_ROOM = 'JOIN_ROOM'
 
 export const CREATE_NEW_LIST = 'CREATE_NEW_LIST';
 export const USER_UPDATE = 'USER_UPDATE';

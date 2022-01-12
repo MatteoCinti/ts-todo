@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FETCH_USER_DATA } from "../../sockets/actions";
+import { FETCH_USER_DATA, JOIN_ROOM } from "../../sockets/actions";
 
 import socket from "../../sockets";
 import DisplayedTodos from "../../components/DisplayedTodos/DisplayedTodos.component";
@@ -19,6 +19,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     if(username) {
+      socket.emit(JOIN_ROOM, username);
       socket.emit(FETCH_USER_DATA, username);
     }
   }, [username])
