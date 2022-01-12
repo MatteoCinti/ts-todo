@@ -7,3 +7,8 @@ export const newError = (message: string, code: number): ErrnoException => {
   error.code = code;
   return error;
 }
+
+export const customErrorHandler = (err, req, res, next) => {
+  console.error(err);
+  res.status(err.code || 500).json(err.message);
+}
