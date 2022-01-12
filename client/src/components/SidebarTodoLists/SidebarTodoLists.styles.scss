@@ -35,8 +35,9 @@
     width: 45px;
     height: auto;
     cursor: pointer;
-    margin-left: $sidebar-margin-left; 
   }
+  
+
 
   &__icon-container{
     height: fit-content;
@@ -45,6 +46,11 @@
   & > *,
   .icon-container__label {
     transition: opacity 300ms 600ms ease;
+  }
+
+  &__icons-container {
+    margin-left: $sidebar-margin-left; 
+    transition: all 300ms 500ms ease-out;
   }
 
   &--minimized {
@@ -58,9 +64,8 @@
       visibility: hidden;
       transition: all 400ms ease-out, transform 5s ease-out;
     }
-    .todo-lists__minimize {
-      margin-left: 0;
-      transition: all 300ms 600ms ease;
+    .todo-lists__icons-container {
+      margin-left: 0px;
     }
     .icon-container__label {
       opacity: 0;
@@ -71,7 +76,7 @@
 
 .icon-container {
   display: flex;
-  height:fit-content;
+  height: 45px;
 }
 
 .todo-lists-form {
