@@ -1,5 +1,9 @@
 # ts-todo
 
+# UPDATE!!!
+## Experiencing issues with websockets
+The behaviour is not stable. If you delete localstorage and reload the page the app seems to be working and live emitting all the changes. On localhost the behvaiour is very different at this time. I am working on trying to replicate the behaviours to be able to debug.
+
 # START
 
   run: npm run heroku-prebuild 
@@ -11,11 +15,6 @@
     - for the tests
 
 You can share a list by copying the list url
-
-# NOTE ON HEROKU
-##  If page shows white please delete local storage state for the app
-
-
 
 ### 
 I have learned a lot with typescript and definitely took a liking to it and will be applying it thoroughly. It makes refactoring and debugging really easier. Also it integrates perfectly with Mongoose and it's schemas. 

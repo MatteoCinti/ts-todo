@@ -101,6 +101,7 @@ io.on('connection', (socket) => {
       const response = await axios.post(`${HOST}/api/users/${username}/lists/${listId}`, { todoObject });
       
       const updatedTodos = response.data;
+
       io.to(username).emit(USER_LISTS_UPDATE, updatedTodos);
     } catch (error) {
       console.error(error)
