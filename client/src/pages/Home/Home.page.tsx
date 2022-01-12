@@ -22,6 +22,8 @@ const Home: React.FC = () => {
       });
       socket.emit(FETCH_USER_DATA, hostUsername);
     }
+
+    return () => { socket.disconnect() };
   }, [hostUsername])
   
   return (
