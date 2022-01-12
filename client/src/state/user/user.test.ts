@@ -1,5 +1,6 @@
-import { IUserState, RegisterLogin } from './user.interfaces';
-import reducer, { emptyUserState, userActions } from './user.slice';
+import { RegisterLogin } from './user.interfaces';
+import reducer, { userActions } from './user.slice';
+import { emptyUserState } from './user.interfaces';
 import { handleLogin } from './user.reducers';
 
 describe('User reducer actions', () => {

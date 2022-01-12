@@ -1,17 +1,15 @@
-import { Schema, model } from 'mongoose';
+import { Schema } from 'mongoose';
 import { ITodo } from '../../../client/src/state/todoLists/todoLists.interfaces';
 
-
-const singleTodoSchema = new Schema<ITodo> ({
-  name: {type: String, required: true},
+const singleTodoSchema = new Schema<ITodo>({
+  name: { type: String, required: true },
   index: Number,
   isCompleted: {
     type: Boolean,
-    default: false
+    default: false,
   },
-  role: {type: String, required: true},
+  role: { type: String, required: true },
 });
 
-
-export { ITodo }
-export default singleTodoSchema; 
+export { ITodo };
+export default singleTodoSchema;

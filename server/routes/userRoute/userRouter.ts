@@ -14,7 +14,7 @@ router.post('/login', logIn);
 router.get('/:username', getUserData);
 router.post('/:username/lists', addNewList);
 router.put('/:username/lists', updateTodoLists);
-router.delete('/:username/lists/:listId', removeList)
-router.post('/:username/lists/:listId', addTodoObject)
+router.delete('/:username/lists/:listId', removeList);
+router.post('/:username/lists/:listId', addTodoObject);
 
 export default router;

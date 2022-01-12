@@ -1,44 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getPersistedState } from '../utils/utils';
-import { IUserState } from './user.interfaces';
+import { emptyUserState } from './user.interfaces';
 import { handleLogin, logOut } from './user.reducers';
-
-export const emptyUserState: IUserState = {
-  state: 'user',
-  username: '',
-  password: 'hidden',
-  isLoggedIn: false,
-  error: false
-}
 
 const persistedState = getPersistedState();
 const initialState = persistedState && persistedState.user
-                        ? persistedState.user
-                        : emptyUserState
+  ? persistedState.user
+  : emptyUserState;
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    logOut
+    logOut,
   },
   extraReducers: (builder) => {
     builder
       .addCase(handleLogin.fulfilled, (state, action) => {
         const loggedInUserState = {
           ...action.payload,
-          isLoggedIn: true
-        }
+          isLoggedIn: true,
+        };
         return loggedInUserState;
       })
-      .addCase(handleLogin.rejected, (state, action) =>  ({
-          ...emptyUserState,
-          error: true,
-          errorMessage: action.error.message
-        })
-      )
-      
-  }
+      .addCase(handleLogin.rejected, (state, action) => ({
+        ...emptyUserState,
+        error: true,
+        errorMessage: action.error.message,
+      }));
+  },
 });
 
 export const { actions: userActions } = userSlice;

@@ -9,20 +9,20 @@ export const emptySocketState: ISocket = {
   connected: false,
   owner: undefined,
   name: undefined,
-}
+};
 
 const persistedState = getPersistedState();
 const initialState = persistedState && persistedState.socket
-                        ? persistedState.socket
-                        : emptySocketState;
+  ? persistedState.socket
+  : emptySocketState;
 
 const socketSlice = createSlice({
   name: 'socket',
   initialState,
   reducers: {
     setActiveSocket,
-  }
-})
+  },
+});
 
 export const { actions: socketActions } = socketSlice;
 export default socketSlice.reducer;

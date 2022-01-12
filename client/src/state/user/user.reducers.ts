@@ -1,8 +1,6 @@
-import { CaseReducer, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { CaseReducer, createAsyncThunk } from '@reduxjs/toolkit';
 import { saveToLocalStorage } from '../utils/utils';
-import { IUserState, IUserRequest } from "./user.interfaces";
-import { emptyUserState } from './user.slice';
-
+import { IUserState, IUserRequest, emptyUserState } from './user.interfaces';
 
 const parseUserPayload = (payload: IUserRequest) => {
   const uri = process.env.REACT_APP_HOST;
@@ -13,24 +11,24 @@ const parseUserPayload = (payload: IUserRequest) => {
   const options = {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-      body: JSON.stringify(userObject)
+    body: JSON.stringify(userObject),
   };
 
   return {
-    userObject, 
+    userObject,
     options,
-    uri
-  }
-}
+    uri,
+  };
+};
 
-const parseUserResponse = async (response:Response, ) => {
-  if(response.status === 401) {
-    throw new Error('User & password combination not found')
+const parseUserResponse = async (response:Response) => {
+  if (response.status === 401) {
+    throw new Error('User & password combination not found');
   }
-  if(response.status === 409) {
-    throw new Error('User already exists')
+  if (response.status === 409) {
+    throw new Error('User already exists');
   }
 
   const parsedNewUser = await response.json();
@@ -38,36 +36,32 @@ const parseUserResponse = async (response:Response, ) => {
 
   const userState = {
     state: 'user',
-    ...parsedNewUser
-  }
+    ...parsedNewUser,
+  };
 
-  return { parsedNewUser, userState }
-}
+  return { parsedNewUser, userState };
+};
 
-export const handleLogin = createAsyncThunk (
+export const handleLogin = createAsyncThunk(
   'users/handleLogin',
-  async (payload: IUserRequest, thunkAPI) => {
-    try {
-      const { request, navigate } = payload;
-      const { userObject, options, uri} = parseUserPayload(payload);
-      
-      const url = `${uri}/api/users/${request.toLowerCase()}`;
-      const response = await fetch(url, options);
-      const { parsedNewUser, userState } = await parseUserResponse(response);
+  async (payload: IUserRequest) => {
+    const { request, navigate } = payload;
+    const { userObject, options, uri } = parseUserPayload(payload);
 
-      saveToLocalStorage('user', userState);
-      navigate(`/${userObject.username}/lists`);
+    const url = `${uri}/api/users/${request.toLowerCase()}`;
+    const response = await fetch(url, options);
+    const { parsedNewUser, userState } = await parseUserResponse(response);
 
-      return parsedNewUser;
-    } catch (error) {
-      throw error;
-    }
-  }
+    saveToLocalStorage('user', userState);
+    navigate(`/${userObject.username}/lists`);
+
+    return parsedNewUser;
+  },
 );
 
 export const logOut: CaseReducer<IUserState> = (state) => {
-  localStorage.setItem("justDoItState", JSON.stringify({}));
+  localStorage.setItem('justDoItState', JSON.stringify({}));
   return ({
-    ...emptyUserState
-  })
+    ...emptyUserState,
+  });
 };

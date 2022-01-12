@@ -1,4 +1,5 @@
-export const handleMinimizeClick = ( 
+const handleMinimizeClick = (
   setMinimize: React.Dispatch<React.SetStateAction<boolean>>,
-  boolean: boolean
-) => setMinimize(minimized => !minimized);
+) => setMinimize((minimized) => !minimized);
+
+export default handleMinimizeClick;

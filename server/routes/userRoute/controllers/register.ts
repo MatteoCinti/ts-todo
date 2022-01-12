@@ -1,44 +1,37 @@
-import { ObjectId } from 'mongoose';
-import { IUser } from '../../../db/schemas/user.schema'
-import User from '../../../db/schemas/user.schema';
+import User, { IUser } from '../../../db/schemas/user.schema';
 import { newError } from '../../utilities/errorHandling';
 import { findUser } from '../../utilities/helpers';
-import logIn from './logIn';
 
-export const createUser = async (username:string, password: string): Promise<IUser> => {
+export const createUser = async (username:string, password: string) => {
   try {
-    const userExists = await findUser<IUser>(User, 'username', username);
-    if(userExists) {
+    const userExists = await findUser(User, 'username', username);
+    if (userExists) {
       const error = newError(`Username ${username} already exists`, 409);
       throw error;
     }
-    const newUser = new User ({
-      username,
-      password
-    })
-    await newUser.save();
-    
+
+    const newUser = await User.create({ username, password });
     return {
-      ...newUser['_doc']
+      ...newUser['_doc'],
     }
   } catch (error) {
     throw error;
   }
-}
+};
 
 const register = async (req, res, next) => {
   const { username, password } = req.body;
-  if( !username || !password ) {
+  if (!username || !password) {
     const error = newError('Username or Password not set!', 400);
     return next(error);
   }
 
   try {
     const newUser = await createUser(username, password);
-    res.status(201).json( newUser );
+    res.status(201).json(newUser);
   } catch (error) {
     next(error);
   }
-}
+};
 
 export default register;

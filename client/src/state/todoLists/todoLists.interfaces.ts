@@ -12,8 +12,8 @@ export const todoElementTemplate: ITodo = {
   name: '',
   index: 0,
   isCompleted: false,
-  role: 'task'
-}
+  role: 'task',
+};
 
 export interface ISingleList {
   _id?: string;
@@ -28,14 +28,14 @@ export const emptySingleList: ISingleList = {
   state: 'singleList',
   isSelected: true,
   name: '',
-  todos: []
-}
+  todos: [],
+};
 
 export interface ITodoLists {
   state: 'todoLists' | string,
   todoLists: ISingleList[]
 }
 
-export interface IAddNewListProps extends ISingleList{ 
+export interface IAddNewListProps extends ISingleList{
   username?: string;
 }
