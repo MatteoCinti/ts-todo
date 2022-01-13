@@ -2,7 +2,7 @@ export interface Map {
   [key: string]: string | undefined
 };
 
-export interface TextInputProps {
+export interface InputProps {
   type: string;
   name: string;
   innerText: string;

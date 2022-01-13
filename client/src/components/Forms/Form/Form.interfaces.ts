@@ -20,7 +20,7 @@ export interface FormProps {
   | ((props: IUserHandleSubmit<IUserState>) => void)
   | ((props: ITodoListsHandleSubmit<ITodoLists>) => void)
   | ((props: IDisplayedTodosHandleSubmit) => void);
-  listId?: string;
+  selectedList?: ISingleList;
 }
 interface IHandleSubmit {
   e: React.FormEvent,
@@ -53,5 +53,5 @@ export interface ITodoListsHandleSubmit<T> extends IHandleSubmit {
 export interface IDisplayedTodosHandleSubmit extends IHandleSubmit {
   isLoginOrRegister?: RegisterLogin;
   username?: string;
-  listId?: string;
+  selectedList?: ISingleList;
 }

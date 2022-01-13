@@ -4,15 +4,21 @@ import { USER_LISTS_UPDATE, USER_LIST_DELETE } from '../../sockets/actions';
 import { ISingleList, ITodoLists } from '../../state/todoLists/todoLists.interfaces';
 import { selectCorrectList, unselectAllLists } from '../../state/todoLists/todoLists.utils';
 
+const getSelectedList = ( 
+  listId: string | undefined,
+  state: ITodoLists,
+) => {
+  const { todoLists } = state;
+  return todoLists.find((list: ISingleList) => list._id === listId);
+}
+
 export const handleSelectClick = (
   username: string,
   listId: string | undefined,
   state: ITodoLists,
   navigate: NavigateFunction,
-  // setIsSelected: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  const { todoLists } = state;
-  const selectedList = todoLists.find((list: ISingleList) => list._id === listId);
+  const selectedList = getSelectedList(listId, state);
   if (!selectedList) { return false; }
 
   const unselectedLists = unselectAllLists(state);
@@ -28,7 +34,9 @@ export const handleSelectClick = (
 export const handleDeleteClick = (
   username: string,
   listId: string | undefined,
+  state: ITodoLists,
 ) => {
+  console.log("🚀 ~ file: ListItem.utils.ts ~ line 32 ~ state", state)
   const message = {
     username,
     listId,

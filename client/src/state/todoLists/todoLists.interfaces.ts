@@ -3,6 +3,7 @@ export interface ITodo {
   _id?: string;
   name: string;
   index: number;
+  price: number | '';
   isCompleted: boolean;
   role: string;
 }
@@ -11,6 +12,7 @@ export const todoElementTemplate: ITodo = {
   state: 'singleTodo',
   name: '',
   index: 0,
+  price: '',
   isCompleted: false,
   role: 'task',
 };

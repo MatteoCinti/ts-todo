@@ -1,4 +1,4 @@
-import { Map } from './TextInput.interfaces';
+import { Map } from './Input.interfaces';
 
 export const hidePassword = (
   todoValue: Map, 

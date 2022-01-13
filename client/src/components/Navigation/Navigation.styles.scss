@@ -27,8 +27,7 @@
   }
 
   &__logout {
-    cursor: pointer;
-    text-decoration: underline;
+    @include text-link;
     margin-right: 1.35rem;
   }
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { TextInputProps } from './TextInput.interfaces';
-import { handleChange, hidePassword, setIsEmptyInput } from './TextInput.utils';
-import './TextInput.styles.scss';
+import { InputProps } from './Input.interfaces';
+import { handleChange, hidePassword, setIsEmptyInput } from './Input.utils';
+import './Input.styles.scss';
 
-const TextInput: React.FC<TextInputProps> = ({
+const Input: React.FC<InputProps> = ({
   type, name, innerText, todoState, cssClass,
 }) => {
   const [todoValue, setTodoValue] = todoState || [{}];
@@ -18,12 +18,12 @@ const TextInput: React.FC<TextInputProps> = ({
   }, [todoValue]);
 
   return (
-    <div className="text-input">
+    <div className={`${type}-input input`}>
       <input
         aria-labelledby={name}
         type={type}
         name={name}
-        className={`text-input__input ${cssClass}__input`}
+        className={`input__element ${cssClass}__input`}
         value={todoValue && todoValue[name]}
         onChange={e => handleChange(e, name, setTodoValue)}
         required
@@ -33,7 +33,7 @@ const TextInput: React.FC<TextInputProps> = ({
         htmlFor={name}
         className={`
           ${cssClass}__label 
-          text-input__label
+          input__label
           ${!isEmpty && 'shrink'}
         `}
       >
@@ -43,4 +43,4 @@ const TextInput: React.FC<TextInputProps> = ({
   );
 };
 
-export default TextInput;
+export default Input;

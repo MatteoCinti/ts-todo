@@ -3,6 +3,7 @@
 @mixin full-screen {
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
 }
 
 @mixin flex-centred($direction) {
@@ -12,10 +13,20 @@
   justify-content: center;
 }
 
+@mixin text-link {
+  cursor: pointer;
+  text-decoration: underline;
+} 
+
+@mixin button-reset {
+  background: none;
+  border: none;
+}
+
 @mixin form-icon-input {
-  $input-width: 220px;
+  $input-width: 185px;
   display: grid;
-  grid-template-columns: minmax($input-width, 80%) 1fr;
+  grid-template-columns: minmax($input-width, 60%) minmax(55px, 20%) 1fr;
   grid-template-rows: $input-height;
   grid-gap: 1rem;
   justify-self: flex-end;
@@ -26,9 +37,19 @@
 
   &__input {
     min-width: $input-width;
+    &[type='number'] {
+      -webkit-appearance: none;
+      margin: 0;
+      -moz-appearance: textfield;
+      min-width : inherit;
+
+      font-size: 14px;
+      line-height: 22px;
+    }
   }
   &__submit {
     justify-self: end;
     align-self: flex-end;
   }
 }
+

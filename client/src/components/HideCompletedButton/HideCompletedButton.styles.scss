@@ -1,0 +1,6 @@
+@use '../../styles/mixins' as *;
+
+.hide-completed {
+  @include text-link;
+  @include button-reset;
+}
