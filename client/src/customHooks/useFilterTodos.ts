@@ -7,8 +7,7 @@ const filterIfCompleted = (
   list: ISingleList | undefined, 
   hideCompleted: boolean
 ) => {
-  if(!list) { return }
-  
+  if(!list || !list.todos) { return }
   const filteredTodos = list.todos.filter(todo => !todo.isCompleted)
   const updatedList = {
     ...list,
@@ -18,7 +17,6 @@ const filterIfCompleted = (
   return hideCompleted
     ? updatedList
     : list
-
 };
 
 const sortByIndex = (list: ISingleList | undefined) => {
@@ -30,8 +28,6 @@ const sortByIndex = (list: ISingleList | undefined) => {
     todos: sortedTodos
   }
 }
-
-
 
 export const useFilterSelectedList = () => {
   const list =  useAppSelector((state) => state.todoLists.todoLists) || [];

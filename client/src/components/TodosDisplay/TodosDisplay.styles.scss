@@ -1,7 +1,7 @@
 @use '../../styles/vars' as *;
 @use '../../styles/mixins' as *;
 
-$margin-left: 5rem;
+$margin-left: 3rem;
 $margin-right: 5rem;
 
 @mixin display-width {
@@ -46,6 +46,14 @@ $margin-right: 5rem;
     @include flex-centred(column);
     @include display-width;
     align-items: flex-start;
+    padding: 0 10px;
+  }
+
+  .todo {
+    order: 1;
+    &.complete {
+      order: 2;
+    }
   }
 }
 
