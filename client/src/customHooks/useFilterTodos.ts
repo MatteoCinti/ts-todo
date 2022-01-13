@@ -27,23 +27,28 @@ const sortByIndex = (list: ISingleList | undefined) => {
     ...list,
     todos: sortedTodos
   }
-}
+};
+
+export const useGetListById = (listId: string) => {
+  const lists: ISingleList[] | [] = useAppSelector((state) => state.todoLists.todoLists) || [];
+  return lists.find(list => list['_id'] === listId);
+};
 
 export const useFilterSelectedList = () => {
-  const list =  useAppSelector((state) => state.todoLists.todoLists) || [];
+  const list = useAppSelector((state) => state.todoLists.todoLists) || [];
   return list.find((todoList: ISingleList) => todoList['isSelected']);
-}
+};
 
 export const useFindCompletedUncompletedTodos = () => {
   const { todos } = useFilterSelectedList();
   return partitionArray(todos, (todo) => todo.isCompleted);
-}
+};
 
 const useFilterTodos = (hideCompleted:boolean)=> {
   const selectedList = useFilterSelectedList();
   const filteredByCompleted = filterIfCompleted(selectedList, hideCompleted);
   const sortedList = sortByIndex(filteredByCompleted);
   return sortedList;
-}
+};
 
 export default useFilterTodos;
