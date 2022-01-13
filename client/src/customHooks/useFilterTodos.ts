@@ -8,15 +8,15 @@ const filterIfCompleted = (
   hideCompleted: boolean
 ) => {
   if(!list || !list.todos) { return }
-  const filteredTodos = list.todos.filter(todo => !todo.isCompleted)
+  const filteredTodos = list.todos.filter(todo => !todo['isCompleted'])
   const updatedList = {
     ...list,
     todos: filteredTodos
   }
 
   return hideCompleted
-    ? updatedList
-    : list
+            ? updatedList
+            : list
 };
 
 const sortByIndex = (list: ISingleList | undefined) => {
@@ -31,7 +31,7 @@ const sortByIndex = (list: ISingleList | undefined) => {
 
 export const useFilterSelectedList = () => {
   const list =  useAppSelector((state) => state.todoLists.todoLists) || [];
-  return list.find((todoList: ISingleList) => todoList.isSelected);
+  return list.find((todoList: ISingleList) => todoList['isSelected']);
 }
 
 export const useFindCompletedUncompletedTodos = () => {

@@ -1,6 +1,6 @@
 import { socket } from '../../sockets';
 import { USER_LISTS_UPDATE } from '../../sockets/actions';
-import { ISingleList, ITodoLists } from '../../state/todoLists/todoLists.interfaces';
+import { ITodoLists } from '../../state/todoLists/todoLists.interfaces';
 import { partitionArray } from '../../state/utils/utils';
 
 export const handleCompleteClick = (

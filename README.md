@@ -23,7 +23,11 @@ You can share a list by copying the list url
     - I as a user can be sure that my todos will be persisted so that important information is not lost when server restarts 
     - I as a user can mark to-do items as “done” - so that I can avoid clutter and focus on things that are still pending 
     -  I as a user can filter the to-do list and view items that were marked as done - so that I can retrospect on my prior progress 
-    - You can edit other users todo lists from your own account
+    - I as a user can specify cost/price for a task or a subtask - so that I can track my 
+    expenses / project cost 
+    
+    
+    - I as a user can edit other users todo lists from your own account
 
 ### 
 I have learned a lot with typescript and definitely took a liking to it and will be applying it thoroughly. It makes refactoring and debugging really easier. Also it integrates perfectly with Mongoose and it's schemas. 
