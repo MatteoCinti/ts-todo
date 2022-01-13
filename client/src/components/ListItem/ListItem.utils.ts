@@ -1,7 +1,8 @@
 import { NavigateFunction } from 'react-router-dom';
+import { useGetListById } from '../../customHooks/useFilterTodos';
 import { socket } from '../../sockets';
 import { USER_LISTS_UPDATE, USER_LIST_DELETE } from '../../sockets/actions';
-import { ISingleList, ITodoLists } from '../../state/todoLists/todoLists.interfaces';
+import { ISingleList, ITodo, ITodoLists } from '../../state/todoLists/todoLists.interfaces';
 import { selectCorrectList, unselectAllLists } from '../../state/todoLists/todoLists.utils';
 
 const getSelectedList = ( 
@@ -36,10 +37,27 @@ export const handleDeleteClick = (
   listId: string | undefined,
   state: ITodoLists,
 ) => {
-  console.log("🚀 ~ file: ListItem.utils.ts ~ line 32 ~ state", state)
   const message = {
     username,
     listId,
   };
   socket.emit(USER_LIST_DELETE, message);
 };
+
+const sumPrices = (
+  items: ITodo[], 
+  prop: string
+) => {
+  return items.reduce((a: any, b: any) => {
+      return a + Number(b[prop]);
+  }, 0);
+};
+
+export const getAccumulatedListBudget = (listId: string | undefined) => {
+  if(!listId) { return };
+  const thisList = useGetListById(listId);
+
+  if(!thisList) { return };
+  const { todos } = thisList;
+  return sumPrices(todos, 'price')
+}

@@ -21,7 +21,6 @@ export const handleSubmit = (props: IDisplayedTodosHandleSubmit): void => {
   const {
     e, formState, setFormState, username, selectedList,
   } = props;
-    console.log("🚀 ~ file: TodoItemForm.utils.ts ~ line 11 ~ handleSubmit ~ formState", formState)
   e.preventDefault();
   if (formState.state !== 'singleTodo') {
     throw new Error('Wrong Params Passed to Function');
