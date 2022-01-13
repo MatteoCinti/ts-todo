@@ -80,5 +80,6 @@
 }
 
 .todo-lists-form {
-  @include form-icon-input
+  @include form-icon-input;
+  grid-template-columns: minmax(220px, 60%) 1fr;
 }

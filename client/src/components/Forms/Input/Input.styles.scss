@@ -5,14 +5,14 @@
   font-size: 12px;
 }
 
-.text-input{
+.input { 
   position: relative;
   margin-bottom: 2rem;
   
-  &__input{
+  &__element{
     display: block;
     min-width: 280px;
-    width: 23vw;
+    width: 100%;
     padding: 10px 10px 10px 5px;
     
     background-color: inherit;
@@ -25,7 +25,7 @@
       outline: none;
     }
 
-    &:focus ~ .text-input__label {
+    &:focus ~ .input__label {
       @include shrinkLabel;
     }
   }

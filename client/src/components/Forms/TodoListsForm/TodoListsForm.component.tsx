@@ -1,6 +1,6 @@
 import { ISingleList } from '../../../state/todoLists/todoLists.interfaces';
 import Form from '../Form/Form.component';
-import TextInput from '../TextInput/TextInput.component';
+import Input from '../Input/Input.component';
 import handleSubmit from './TodoListForm.utils';
 
 interface ITodoFormProps {
@@ -17,7 +17,7 @@ const TodoListsForm: React.FC<ITodoFormProps> = ({
     svg
     handleSubmit={handleSubmit}
   >
-    <TextInput
+    <Input
       type="text"
       name="name"
       cssClass="todo-lists-form"

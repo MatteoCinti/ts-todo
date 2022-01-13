@@ -1,7 +1,7 @@
 @use '../../styles/vars' as *;
 @use '../../styles/mixins' as *;
 
-$margin-left: 5rem;
+$margin-left: 3rem;
 $margin-right: 5rem;
 
 @mixin display-width {
@@ -10,15 +10,18 @@ $margin-right: 5rem;
 }
 
 .displayed-todos {
+  $elem-width: calc(100% - #{$sidebar-width});
   @include flex-centred(column);
   height: calc(100vh - #{$menu-height-mobile});
-  width: calc(100% - #{$sidebar-width});
+  width: $elem-width;
+  min-width: 323px;
   margin-top: $menu-height-mobile;
   margin-left: calc(#{$sidebar-width} + #{$margin-left});
   transition: all 1s 200ms ease-out;
 
   &--minimized {
-    margin-left: calc(#{$logo-width});
+    margin-left: calc((100vw - #{$elem-width})/2);
+    margin-right: calc((100vw - #{$elem-width})/2);
   }
 
   &__header {
@@ -43,13 +46,21 @@ $margin-right: 5rem;
     @include flex-centred(column);
     @include display-width;
     align-items: flex-start;
-
+    padding: 0 10px;
   }
 
+  .todo {
+    order: 1;
+    &.complete {
+      order: 2;
+    }
+  }
 }
 
-.todo-elements-form {
-  @include form-icon-input;
-  padding-right: $margin-right;
+.todos-info {
+  font-size: 14px;
 
+  & * {
+    color: $placeholder-gray;
+  }
 }

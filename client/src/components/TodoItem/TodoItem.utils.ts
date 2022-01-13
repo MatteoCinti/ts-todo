@@ -10,8 +10,8 @@ export const handleCompleteClick = (
   listId?: string,
 ) => {
   const { todoLists } = todoListsState;
-  const [list, remainingLists] = partitionArray(todoLists, (todo) => todo._id === listId);
-  const [todo, remainingTodos] = partitionArray(list[0].todos, (element) => element._id === todoId);
+  const [list, remainingLists] = partitionArray(todoLists, (list) => list._id === listId);
+  const [todo, remainingTodos] = partitionArray(list[0].todos, (todo) => todo._id === todoId);
 
   const payload: ITodoLists = {
     state: 'todoLists',
@@ -46,6 +46,11 @@ export const handleDeleteClick = (
   const { todoLists } = todoListsState;
   const [list, remainingLists] = partitionArray(todoLists, (todo) => todo._id === listId);
   const [_, remainingTodos] = partitionArray(list[0].todos, (todo) => todo._id === todoId);
+  const indexedRemainingTodos = remainingTodos.map((todo, index) => ({ 
+    ...todo,
+    index
+  }))
+  
   const payload: ITodoLists = {
     state: 'todoLists',
     todoLists: [
@@ -53,7 +58,7 @@ export const handleDeleteClick = (
       {
         ...list[0],
         todos: [
-          ...remainingTodos,
+          ...indexedRemainingTodos,
         ],
       },
     ],

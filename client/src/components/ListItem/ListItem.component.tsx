@@ -31,7 +31,7 @@ const ListItem: React.FC<IListItemProps> = ({
       </p>
       <Delete
         className="list-item__delete"
-        onClick={() => handleDeleteClick(username, listId)}
+        onClick={() => handleDeleteClick(username, listId, todoListsState)}
       />
     </div>
   );

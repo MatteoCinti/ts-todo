@@ -8,7 +8,7 @@ import { useGetOperationsUsername } from '../../customHooks';
 
 interface ITodoItemProps {
   todoItem: ITodo;
-  listId: string;
+  listId?: string;
 }
 
 const TodoItem: React.FC<ITodoItemProps> = ({
@@ -17,7 +17,7 @@ const TodoItem: React.FC<ITodoItemProps> = ({
 }) => {
   const todoListsState = useAppSelector((state) => state.todoLists);
   const username = useGetOperationsUsername();
-  const { _id, isCompleted } = todoItem;
+  const { _id, isCompleted, price } = todoItem;
 
   return (
     <div className={`
@@ -32,10 +32,17 @@ const TodoItem: React.FC<ITodoItemProps> = ({
         <span className="todo__custom-checkbox" />
         {todoItem.name}
       </p>
-      <Delete
-        className="list-item__delete"
-        onClick={() => handleDeleteClick(username, todoListsState, _id, listId)}
-      />
+      
+      <p className="todo__price">
+        {price} £
+      </p>
+
+      <div className='todo__icons'>
+        <Delete
+          className="list-item__delete"
+          onClick={() => handleDeleteClick(username, todoListsState, _id, listId)}
+        />
+      </div>
     </div>
   );
 };
