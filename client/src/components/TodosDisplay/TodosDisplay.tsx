@@ -1,15 +1,15 @@
 import React from 'react';
 import { useAppSelector } from '../../state/hooks';
 import { ISingleList, ITodo, todoElementTemplate } from '../../state/todoLists/todoLists.interfaces';
-import TodoElementForm from '../TodoElementForm/TodoElementForm.component';
+import TodoElementForm from '../Forms/TodoElementForm/TodoElementForm.component';
 import TodoItem from '../TodoItem/TodoItem.component';
-import './DisplayedTodos.styles.scss';
+import './TodosDisplay.styles.scss';
 
-interface IDisplayedTodosProps {
+interface ITodosDisplayProps {
   minimized: boolean;
 }
 
-const DisplayedTodos: React.FC<IDisplayedTodosProps> = ({
+const TodosDisplay: React.FC<ITodosDisplayProps> = ({
   minimized,
 }) => {
   const list = useAppSelector((state) => state.todoLists.todoLists) || [];
@@ -50,4 +50,4 @@ const DisplayedTodos: React.FC<IDisplayedTodosProps> = ({
   );
 };
 
-export default DisplayedTodos;
+export default TodosDisplay;

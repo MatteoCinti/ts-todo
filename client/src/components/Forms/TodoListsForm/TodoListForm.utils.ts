@@ -1,6 +1,6 @@
-import { emptySingleList, ISingleList } from '../../state/todoLists/todoLists.interfaces';
+import { emptySingleList, ISingleList } from '../../../state/todoLists/todoLists.interfaces';
 import { ITodoListsHandleSubmit } from '../Form/Form.interfaces';
-import { todoListsActions } from '../../state/todoLists/todoLists.slice';
+import { todoListsActions } from '../../../state/todoLists/todoLists.slice';
 
 const handleSubmit = (props: ITodoListsHandleSubmit<ISingleList>): void => {
   const {

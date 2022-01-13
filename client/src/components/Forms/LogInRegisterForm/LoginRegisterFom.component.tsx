@@ -1,6 +1,6 @@
 import React from 'react';
 import { userFormHandleSubmit } from '../Form/Form.utils';
-import { IUserState, RegisterLogin } from '../../state/user/user.interfaces';
+import { IUserState, RegisterLogin } from '../../../state/user/user.interfaces';
 import Form from '../Form/Form.component';
 import TextInput from '../TextInput/TextInput.component';
 

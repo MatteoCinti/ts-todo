@@ -1,4 +1,4 @@
-import { ISingleList } from '../../state/todoLists/todoLists.interfaces';
+import { ISingleList } from '../../../state/todoLists/todoLists.interfaces';
 import Form from '../Form/Form.component';
 import TextInput from '../TextInput/TextInput.component';
 import handleSubmit from './TodoListForm.utils';

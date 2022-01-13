@@ -1,5 +1,5 @@
-import { IUserState, RegisterLogin, emptyUserState } from '../../state/user/user.interfaces';
-import { handleLogin } from '../../state/user/user.reducers';
+import { IUserState, RegisterLogin, emptyUserState } from '../../../state/user/user.interfaces';
+import { handleLogin } from '../../../state/user/user.reducers';
 import { IUserHandleSubmit } from './Form.interfaces';
 
 export const userFormHandleSubmit = (props: IUserHandleSubmit<IUserState>): void => {

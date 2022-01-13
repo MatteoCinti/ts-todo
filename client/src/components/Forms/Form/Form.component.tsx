@@ -1,8 +1,8 @@
 import React, { Children, cloneElement, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../state/hooks';
+import { useAppDispatch } from '../../../state/hooks';
 import { FormProps } from './Form.interfaces';
-import { ReactComponent as Create } from '../../images/Create.svg';
+import { ReactComponent as Create } from '../../../images/Create.svg';
 import './Form.styles.scss';
 
 function Form({
