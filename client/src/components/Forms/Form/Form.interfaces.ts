@@ -1,8 +1,8 @@
 import { AnyAction } from '@reduxjs/toolkit';
 import { NavigateFunction } from 'react-router-dom';
 import { ThunkDispatch } from 'redux-thunk';
-import { ISingleList, ITodo, ITodoLists } from '../../state/todoLists/todoLists.interfaces';
-import { IUserState, RegisterLogin } from '../../state/user/user.interfaces';
+import { ISingleList, ITodo, ITodoLists } from '../../../state/todoLists/todoLists.interfaces';
+import { IUserState, RegisterLogin } from '../../../state/user/user.interfaces';
 
 export interface FormProps {
   ariaLabel: string;

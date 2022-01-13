@@ -3,7 +3,7 @@ import { useAppSelector } from '../../state/hooks';
 import { emptySingleList, ISingleList } from '../../state/todoLists/todoLists.interfaces';
 import { ReactComponent as Minimize } from '../../images/Minimize.svg';
 import ListItem from '../ListItem/ListItem.component';
-import TodoListsForm from '../TodoListsForm/TodoListsForm.component';
+import TodoListsForm from '../Forms/TodoListsForm/TodoListsForm.component';
 import './SidebarTodoLists.styles.scss';
 import handleMinimizeClick from './SidebarTodoLists.utils';
 

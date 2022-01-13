@@ -1,7 +1,7 @@
 import React from 'react';
-import { socket } from '../../sockets';
-import { ADD_TODO_OBJECT } from '../../sockets/actions';
-import { ITodo, todoElementTemplate } from '../../state/todoLists/todoLists.interfaces';
+import { socket } from '../../../sockets';
+import { ADD_TODO_OBJECT } from '../../../sockets/actions';
+import { ITodo, todoElementTemplate } from '../../../state/todoLists/todoLists.interfaces';
 import { IDisplayedTodosHandleSubmit } from '../Form/Form.interfaces';
 
 export const handleSubmit = (props: IDisplayedTodosHandleSubmit): void => {

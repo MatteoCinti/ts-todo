@@ -5,7 +5,7 @@ import { ReactComponent as Imagotype } from '../../images/Imagotype.svg';
 import { useAppSelector } from '../../state/hooks';
 import LogOrRegister from '../../components/LogOrRegister/LogOrRegister.component';
 import { RegisterLogin } from '../../state/user/user.interfaces';
-import LoginRegisterForm from '../../components/LogInRegisterForm/LoginRegisterFom.component';
+import LoginRegisterForm from '../../components/Forms/LogInRegisterForm/LoginRegisterFom.component';
 
 const WelcomePage: React.FC = () => {
   const userState = useAppSelector((state) => state.user);
