@@ -10,6 +10,7 @@ const singleTodoSchema = new Schema<ITodo>({
     default: false,
   },
   role: { type: String, required: true },
+  parent: String
 });
 
 export { ITodo };

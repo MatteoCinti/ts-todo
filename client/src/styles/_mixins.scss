@@ -1,5 +1,13 @@
 @use 'vars' as *;
 
+@mixin for-desktop-up {
+  @media (min-width: 1200px) { @content; }
+}
+
+@mixin for-tablet-up {
+  @media (min-width: 600px) { @content; }
+}
+
 @mixin full-screen {
   height: 100vh;
   width: 100vw;

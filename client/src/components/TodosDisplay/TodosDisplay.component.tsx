@@ -55,8 +55,8 @@ const TodosDisplay: React.FC<ITodosDisplayProps> = ({
           </div>
 
           <TodoItemForm
-            todoElementTemplate={todoElementTemplate}
             selectedList={selectedList}
+            role = 'task'
           />
         </section>
       )

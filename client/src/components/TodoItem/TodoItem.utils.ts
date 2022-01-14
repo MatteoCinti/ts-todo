@@ -1,6 +1,6 @@
 import { socket } from '../../sockets';
 import { USER_LISTS_UPDATE } from '../../sockets/actions';
-import { ITodoLists } from '../../state/todoLists/todoLists.interfaces';
+import { ITodo, ITodoLists } from '../../state/todoLists/todoLists.interfaces';
 import { partitionArray } from '../../state/utils/utils';
 
 export const handleCompleteClick = (
@@ -70,3 +70,19 @@ export const handleDeleteClick = (
   };
   socket.emit(USER_LISTS_UPDATE, message);
 };
+
+export const handleSubtaskToggle =  (
+  setShowForm: React.Dispatch<React.SetStateAction<boolean>>
+): void => {
+  setShowForm(prevState => !prevState)
+}
+
+export const sumPrices = (
+  items: ITodo[], 
+  prop: string
+) => {
+  return items.reduce((a: any, b: any) => {
+      return a + Number(b[prop]);
+  }, 0);
+};
+

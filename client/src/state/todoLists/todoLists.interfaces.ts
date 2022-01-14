@@ -6,15 +6,27 @@ export interface ITodo {
   price: number | '';
   isCompleted: boolean;
   role: string;
+  parent?: string;
 }
 
-export const todoElementTemplate: ITodo = {
+const emptyTodo: ITodo = {
   state: 'singleTodo',
   name: '',
   index: 0,
   price: '',
   isCompleted: false,
+  role: '',
+}
+
+export const todoElementTemplate: ITodo = {
+  ...emptyTodo,
   role: 'task',
+};
+
+export const subtaskElementTemplate: ITodo = {
+  ...emptyTodo,
+  parent: '',
+  role: 'subtask',
 };
 
 export interface ISingleList {

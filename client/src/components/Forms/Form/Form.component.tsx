@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../../state/hooks';
+import { useAppDispatch, useAppSelector } from '../../../state/hooks';
 import { FormProps } from './Form.interfaces';
 import { ReactComponent as Create } from '../../../images/Create.svg';
 import './Form.styles.scss';
@@ -15,11 +15,13 @@ const Form = ({
   buttonValue, 
   handleSubmit, 
   selectedList,
+  parentTodoId
 }: FormProps) => {
   const [formState, setFormState] = useState(state);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { username } = useParams();
+  const { todoLists } = useAppSelector((state) => state.todoLists);
 
   const childrenWithExtraProp = Children.map(children, (child) => (
     cloneElement(child, { todoState: [formState, setFormState] })
@@ -31,7 +33,15 @@ const Form = ({
       className={`form ${cssClass}`}
       aria-label={ariaLabel}
       onSubmit={(e) => handleSubmit({
-        e, dispatch, isLoginOrRegister, setFormState, formState, navigate, username, selectedList,
+        e, 
+        dispatch, 
+        isLoginOrRegister, 
+        setFormState, 
+        formState, 
+        navigate, 
+        username, 
+        selectedList, 
+        parentTodoId
       })}
     >
       {childrenWithExtraProp}

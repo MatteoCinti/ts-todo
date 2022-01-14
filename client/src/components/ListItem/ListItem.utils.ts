@@ -4,6 +4,7 @@ import { socket } from '../../sockets';
 import { USER_LISTS_UPDATE, USER_LIST_DELETE } from '../../sockets/actions';
 import { ISingleList, ITodo, ITodoLists } from '../../state/todoLists/todoLists.interfaces';
 import { selectCorrectList, unselectAllLists } from '../../state/todoLists/todoLists.utils';
+import { partitionArray } from '../../state/utils/utils';
 
 const getSelectedList = ( 
   listId: string | undefined,
@@ -35,7 +36,6 @@ export const handleSelectClick = (
 export const handleDeleteClick = (
   username: string,
   listId: string | undefined,
-  state: ITodoLists,
 ) => {
   const message = {
     username,
@@ -44,7 +44,7 @@ export const handleDeleteClick = (
   socket.emit(USER_LIST_DELETE, message);
 };
 
-const sumPrices = (
+export const sumPrices = (
   items: ITodo[], 
   prop: string
 ) => {
@@ -53,11 +53,23 @@ const sumPrices = (
   }, 0);
 };
 
+const getMainTasksBudget = (
+  todos: ITodo[],
+) : ITodo[] => {
+  const [tasks, subtasks] = partitionArray(todos, todo => todo.role === 'task');
+  const filteredSubtasks = subtasks.filter((subtask) => {
+    return tasks.some((task) => subtask.parent !== task['_id']);
+  })
+  console.log("🚀 ~ file: ListItem.utils.ts ~ line 63 ~ filteredSubtasks ~ filteredSubtasks", filteredSubtasks)
+  return [];
+}
+
 export const getAccumulatedListBudget = (listId: string | undefined) => {
   if(!listId) { return };
   const thisList = useGetListById(listId);
 
   if(!thisList) { return };
   const { todos } = thisList;
+  getMainTasksBudget(todos)
   return sumPrices(todos, 'price')
 }

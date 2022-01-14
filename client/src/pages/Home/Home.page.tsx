@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { FETCH_USER_DATA, JOIN_ROOM } from '../../sockets/actions';
 
 import { socket } from '../../sockets';
-import TodosDisplay from '../../components/TodosDisplay/TodosDisplay';
+import TodosDisplay from '../../components/TodosDisplay/TodosDisplay.component';
 import Navigation from '../../components/Navigation/Navigation.component';
 import TodoLists from '../../components/SidebarTodoLists/SidebarTodoLists.component';
 import './Home.styles.scss';

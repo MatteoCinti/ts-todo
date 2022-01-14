@@ -60,6 +60,34 @@
   &__icons {
     display: flex;
     justify-content: flex-end;
+    
+    & > * {
+      margin-left: 12px;
+      height: auto;
+      cursor: pointer;
+    }
+  }
+
+  &__delete {
+    width: 18px,
+  }
+
+  &__subtask-toggle {
+    width: 18px;
+    transform: translateY(1px);
+  }
+
+  &.subtask {
+    $margin-left: 1.4rem;
+    width: calc(100% - #{$margin-left});
+    margin-left: $margin-left;
+    margin-bottom: .95  rem;
+
+    transform: translateY(-.47rem);
+    &:after {
+      bottom: -0.45em
+    }
+
   }
 
 }

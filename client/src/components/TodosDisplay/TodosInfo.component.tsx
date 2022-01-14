@@ -1,9 +1,5 @@
 import React from 'react';
-import { useFilterSelectedList, useFindCompletedUncompletedTodos } from '../../customHooks/useFilterTodos';
-import { useAppSelector } from '../../state/hooks';
-import { ISingleList } from '../../state/todoLists/todoLists.interfaces';
-
-
+import { useFindCompletedUncompletedTodos } from '../../customHooks/useFilterTodos';
 
 const TodosInfo = () => {
   const [completed, uncompleted] =  useFindCompletedUncompletedTodos();
@@ -20,7 +16,6 @@ const TodosInfo = () => {
       </p>
     </section>
   );
-  return <></>
 };
 
 export default TodosInfo;

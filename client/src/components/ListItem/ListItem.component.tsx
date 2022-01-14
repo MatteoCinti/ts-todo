@@ -5,9 +5,6 @@ import { ReactComponent as Delete } from '../../images/Delete.svg';
 import { getAccumulatedListBudget, handleDeleteClick, handleSelectClick } from './ListItem.utils';
 import { useAppSelector } from '../../state/hooks';
 import { useGetOperationsUsername } from '../../customHooks';
-import { useGetListById } from '../../customHooks/useFilterTodos';
-import { ITodo } from '../../state/todoLists/todoLists.interfaces';
-
 interface IListItemProps {
   listName: string;
   listId: string | undefined;
@@ -37,10 +34,14 @@ const ListItem: React.FC<IListItemProps> = ({
        {totalBudget} £
       </p>
 
-      <Delete
-        className="list-item__delete"
-        onClick={() => handleDeleteClick(username, listId, todoListsState)}
-      />
+      <div className="list-item__icons-container">
+
+
+        <Delete
+          className="list-item__delete"
+          onClick={() => handleDeleteClick(username, listId)}
+        />
+      </div>
     </div>
   );
 };

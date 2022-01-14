@@ -5,11 +5,11 @@ import { newError } from '../../utilities/errorHandling';
 const findAndAddTodo = async (
   username:string,
   listId: string,
-  newListPayload: ITodo,
+  newTodoPayload: ITodo,
 ) : Promise<IUser> => User
   .findOneAndUpdate(
     { username, 'todoLists._id': listId },
-    { $push: { 'todoLists.$.todos': newListPayload } },
+    { $push: { 'todoLists.$.todos': newTodoPayload } },
     { new: true },
   );
 

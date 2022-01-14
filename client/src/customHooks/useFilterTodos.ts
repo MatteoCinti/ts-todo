@@ -1,5 +1,5 @@
 import { useAppSelector } from "../state/hooks";
-import { ISingleList } from "../state/todoLists/todoLists.interfaces";
+import { ISingleList, ITodo } from "../state/todoLists/todoLists.interfaces";
 import { partitionArray } from "../state/utils/utils";
 
 
@@ -8,16 +8,27 @@ const filterIfCompleted = (
   hideCompleted: boolean
 ) => {
   if(!list || !list.todos) { return }
-  const filteredTodos = list.todos.filter(todo => !todo['isCompleted'])
-  const updatedList = {
+  const tasks = list.todos.filter(todo => todo.role === 'task');
+  const filteredTasks = tasks.filter(todo => !todo['isCompleted']);
+  return {
     ...list,
-    todos: filteredTodos
+    todos: hideCompleted 
+            ? filteredTasks
+            : tasks
   }
-
-  return hideCompleted
-            ? updatedList
-            : list
 };
+
+export const useGetSubtasks = (
+  list: ISingleList | undefined,
+  todoId: string | undefined
+) => {
+  if(!list || !todoId) { return };
+  const subtasks = list.todos.filter(todo => todo.role === 'subtask');
+  const filteredSubtasks = subtasks.filter(subtask => subtask.parent === todoId);
+  const orderedSubTasks = sortByIndex({...list, todos: filteredSubtasks});
+  if(!orderedSubTasks) { return };
+  return orderedSubTasks.todos;
+}
 
 const sortByIndex = (list: ISingleList | undefined) => {
   if(!list) { return };
@@ -41,7 +52,8 @@ export const useFilterSelectedList = () => {
 
 export const useFindCompletedUncompletedTodos = () => {
   const { todos } = useFilterSelectedList();
-  return partitionArray(todos, (todo) => todo.isCompleted);
+  const tasks = todos.filter((todo: ITodo) => todo.role === 'task')
+  return partitionArray(tasks, (todo) => todo.isCompleted && todo.role === 'task');
 };
 
 const useFilterTodos = (hideCompleted:boolean)=> {

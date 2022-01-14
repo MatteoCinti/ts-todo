@@ -1,3 +1,4 @@
+
 @use '../../styles/vars' as *;
 @use '../../styles/mixins' as *;
 
@@ -20,8 +21,39 @@ $margin-right: 5rem;
   transition: all 1s 200ms ease-out;
 
   &--minimized {
-    margin-left: calc((100vw - #{$elem-width})/2);
-    margin-right: calc((100vw - #{$elem-width})/2);
+    margin-left: $logo-width; 
+
+    @include for-tablet-up {
+      margin-left: calc((100vw - #{$elem-width})/2);
+      margin-right: calc((100vw - #{$elem-width})/2);
+    }
+  }
+
+  .todo-wrapper {
+    $input-number-min-width: 45px;
+    width: 100%;
+    .todo-elements-form {
+      grid-template-columns: minmax(120px, 75%) minmax($input-number-min-width, 20%) 1fr;
+      padding: 0 5px 1rem;
+      margin-left: 1.4rem;
+
+      &__input {
+        border-bottom: 1px solid $fake-light-grey;
+      }
+
+      &__label,
+      &__input.input__element {
+        font-size: 14px;
+        min-width: 75px;
+      }
+      &__input[type='number'] {
+        line-height: inherit;
+        min-width: $input-number-min-width;
+      }
+      .create {
+        width: 20px;  
+      }
+    }
   }
 
   &__header {
@@ -45,15 +77,9 @@ $margin-right: 5rem;
   &__container{
     @include flex-centred(column);
     @include display-width;
+    min-width: 300px;
     align-items: flex-start;
     padding: 0 10px;
-  }
-
-  .todo {
-    order: 1;
-    &.complete {
-      order: 2;
-    }
   }
 }
 

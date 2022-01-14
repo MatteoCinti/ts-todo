@@ -20,7 +20,7 @@ const HideCompletedButton: React.FC<IHideCompletedButtonProps>= ({
   return (
     <button className="hide-completed" onClick={HideCompletedTodos}>
       { hideCompleted ? 'Show ' : 'Hide ' }
-      Completed Todos
+      Completed
     </button>
   );
 };
