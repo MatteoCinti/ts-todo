@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ITodo } from '../../state/todoLists/todoLists.interfaces';
 import { ReactComponent as Delete } from '../../images/Delete.svg';
 import { ReactComponent as SubtaskToggle } from '../../images/Subtask.svg';
@@ -21,15 +21,11 @@ const TodoItem: React.FC<ITodoItemProps> = ({
 }) => {
   const [showForm, setShowForm] = useState(false)
   const todoListsState = useAppSelector((state) => state.todoLists);
-  const selectedList = useFilterSelectedList();
+  const selectedList = useFilterSelectedList()
   const username = useGetOperationsUsername();
   const { _id, isCompleted, price } = todoItem;
   const subtasks = useGetSubtasks(selectedList, _id) || [];
-  let totalTaskBudget = getTaskTotalPrice(todoItem, subtasks);
-
-  useEffect(() => {
-    totalTaskBudget = getTaskTotalPrice(todoItem, subtasks);
-  }, [subtasks])
+  const taskTotalPrice = getTaskTotalPrice(todoItem, subtasks);
 
   return (
     <div className = 'todo-wrapper'>
@@ -42,7 +38,7 @@ const TodoItem: React.FC<ITodoItemProps> = ({
           {todoItem.name}
         </p>
         
-        <p className="todo__price">{totalTaskBudget} £</p>
+        <p className="todo__price">{taskTotalPrice} £</p>
 
         <div className='todo__icons'>
 

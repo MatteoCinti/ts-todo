@@ -19,7 +19,6 @@ export const handleSelectClick = (
   username: string,
   listId: string | undefined,
   state: ITodoLists,
-  navigate: NavigateFunction,
 ) => {
   const selectedList = getSelectedList(listId, state);
   if (!selectedList) { return false; }
@@ -30,7 +29,6 @@ export const handleSelectClick = (
     username,
     todoLists: updatedState,
   };
-  navigate(`/${username}/lists/${selectedList.name}`);
   socket.emit(USER_LISTS_UPDATE, message);
 };
 
@@ -52,7 +50,6 @@ const getMainTasksBudget = (
   const filteredSubtasks = subtasks.filter((subtask) => {
     return tasks.some((task) => subtask.parent !== task['_id']);
   })
-  console.log("🚀 ~ file: ListItem.utils.ts ~ line 63 ~ filteredSubtasks ~ filteredSubtasks", filteredSubtasks)
   return [];
 }
 

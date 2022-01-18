@@ -1,6 +1,6 @@
 import React from 'react';
 import './ListItem.styles.scss';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as Delete } from '../../images/Delete.svg';
 import { getAccumulatedListBudget, handleDeleteClick, handleSelectClick } from './ListItem.utils';
 import { useAppSelector } from '../../state/hooks';
@@ -18,18 +18,17 @@ const ListItem: React.FC<IListItemProps> = ({
 }) => {
   const todoListsState = useAppSelector((state) => state.todoLists);
   const totalBudget = getAccumulatedListBudget(listId)
-  console.log("🚀 ~ file: ListItem.component.tsx ~ line 21 ~ totalBudget", totalBudget)
-  const navigate = useNavigate();
   const username = useGetOperationsUsername();
 
   return (
     <div className="list-item">
-      <p
+      <Link
+        to={`/${username}/lists/${listId}`}
         className={`list-item__name ${isSelected ? 'selected' : 'unselected'}`}
-        onClick={() => handleSelectClick(username, listId, todoListsState, navigate)}
+        onClick={() => handleSelectClick(username, listId, todoListsState)}
       >
         {listName}
-      </p>
+      </Link>
 
       <p className="list-item__budget">
        {totalBudget} £
