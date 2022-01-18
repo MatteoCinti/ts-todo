@@ -86,3 +86,12 @@ export const sumPrices = (
   }, 0);
 };
 
+export const getTaskTotalPrice = (
+  task: ITodo,
+  subtasks: ITodo[]
+) => {
+  const taskBudget = task.price
+  const subTasksBudget = sumPrices(subtasks, 'price');
+  return taskBudget + subTasksBudget;
+}
+

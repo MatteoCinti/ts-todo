@@ -5,6 +5,7 @@ import { USER_LISTS_UPDATE, USER_LIST_DELETE } from '../../sockets/actions';
 import { ISingleList, ITodo, ITodoLists } from '../../state/todoLists/todoLists.interfaces';
 import { selectCorrectList, unselectAllLists } from '../../state/todoLists/todoLists.utils';
 import { partitionArray } from '../../state/utils/utils';
+import { sumPrices } from '../TodoItem/TodoItem.utils';
 
 const getSelectedList = ( 
   listId: string | undefined,
@@ -42,15 +43,6 @@ export const handleDeleteClick = (
     listId,
   };
   socket.emit(USER_LIST_DELETE, message);
-};
-
-export const sumPrices = (
-  items: ITodo[], 
-  prop: string
-) => {
-  return items.reduce((a: any, b: any) => {
-      return a + Number(b[prop]);
-  }, 0);
 };
 
 const getMainTasksBudget = (

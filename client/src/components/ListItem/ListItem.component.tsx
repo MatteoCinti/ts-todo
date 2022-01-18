@@ -18,6 +18,7 @@ const ListItem: React.FC<IListItemProps> = ({
 }) => {
   const todoListsState = useAppSelector((state) => state.todoLists);
   const totalBudget = getAccumulatedListBudget(listId)
+  console.log("🚀 ~ file: ListItem.component.tsx ~ line 21 ~ totalBudget", totalBudget)
   const navigate = useNavigate();
   const username = useGetOperationsUsername();
 

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ITodo } from '../../state/todoLists/todoLists.interfaces';
 import { ReactComponent as Delete } from '../../images/Delete.svg';
 import { ReactComponent as SubtaskToggle } from '../../images/Subtask.svg';
 import './TodoItem.styles.scss';
-import { handleCompleteClick, handleDeleteClick, handleSubtaskToggle } from './TodoItem.utils';
+import { getTaskTotalPrice, handleCompleteClick, handleDeleteClick, handleSubtaskToggle } from './TodoItem.utils';
 import { useAppSelector } from '../../state/hooks';
 import { useGetOperationsUsername } from '../../customHooks';
 import { useFilterSelectedList, useGetSubtasks } from '../../customHooks/useFilterTodos';
@@ -21,10 +21,15 @@ const TodoItem: React.FC<ITodoItemProps> = ({
 }) => {
   const [showForm, setShowForm] = useState(false)
   const todoListsState = useAppSelector((state) => state.todoLists);
-  const selectedList = useFilterSelectedList()
+  const selectedList = useFilterSelectedList();
   const username = useGetOperationsUsername();
   const { _id, isCompleted, price } = todoItem;
-  const subtasks = useGetSubtasks(selectedList, _id);
+  const subtasks = useGetSubtasks(selectedList, _id) || [];
+  let totalTaskBudget = getTaskTotalPrice(todoItem, subtasks);
+
+  useEffect(() => {
+    totalTaskBudget = getTaskTotalPrice(todoItem, subtasks);
+  }, [subtasks])
 
   return (
     <div className = 'todo-wrapper'>
@@ -37,7 +42,7 @@ const TodoItem: React.FC<ITodoItemProps> = ({
           {todoItem.name}
         </p>
         
-        <p className="todo__price">{price} £</p>
+        <p className="todo__price">{totalTaskBudget} £</p>
 
         <div className='todo__icons'>
 
